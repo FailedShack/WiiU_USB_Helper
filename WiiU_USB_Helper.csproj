@@ -1,0 +1,457 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--Project was exported from assembly: C:\0.6.1.655\WiiU_USB_Helper-cleaned.exe-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{690990CB-C607-4137-A1C0-6066835D76D5}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>WiiU_USB_Helper</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Telerik.WinControls.UI">
+      <HintPath>lib\Telerik.WinControls.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls">
+      <HintPath>lib\Telerik.WinControls.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="AlphaFS">
+      <HintPath>lib\AlphaFS.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="DokanNet">
+      <HintPath>lib\DokanNet.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="HelperChat">
+      <HintPath>lib\HelperChat.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="VDFParser">
+      <HintPath>lib\VDFParser.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>lib\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="MonoGame.Framework">
+      <HintPath>lib\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.WMPLib">
+      <HintPath>lib\Interop.WMPLib.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="AxInterop.WMPLib">
+      <HintPath>lib\AxInterop.WMPLib.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts">
+      <HintPath>lib\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.WinForms">
+      <HintPath>lib\LiveCharts.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.RadDock">
+      <HintPath>lib\Telerik.WinControls.RadDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="StringInterpolationBridge">
+      <HintPath>lib\StringInterpolationBridge.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Xml" />
+    <Reference Include="SharpCompress">
+      <HintPath>lib\SharpCompress.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="CommonCompressors">
+      <HintPath>lib\CommonCompressors.dll</HintPath>
+    </Reference>
+    <Reference Include="LibEveryFileExplorer">
+      <HintPath>lib\LibEveryFileExplorer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell">
+      <HintPath>lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Deployment" />
+    <Reference Include="SharpSteam">
+      <HintPath>lib\SharpSteam.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="TargaImage">
+      <HintPath>lib\TargaImage.dll</HintPath>
+    </Reference>
+    <Reference Include="Be.Windows.Forms.HexBox">
+      <HintPath>lib\Be.Windows.Forms.HexBox.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf">
+      <HintPath>lib\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="WIIU_Downloader\MinerPofile.cs" />
+    <Compile Include="WIIU_Downloader\Properties\Settings.cs" />
+    <Compile Include="WIIU_Downloader\Forms\WhatToAction.cs" />
+    <Compile Include="NusHelper\Platform.cs" />
+    <Compile Include="NusHelper\DataSize.cs" />
+    <Compile Include="NusHelper\TitleId.cs" />
+    <Compile Include="NusHelper\Server\KeyValidationResponse.cs" />
+    <Compile Include="NusHelper\Server\DbRow.cs" />
+    <Compile Include="NusHelper\Emulators\Citra.cs" />
+    <Compile Include="NusHelper\Emulators\VisualBoyAdvance.cs" />
+    <Compile Include="NusHelper\Emulators\Dolphin.cs" />
+    <Compile Include="NusHelper\Emulators\Cemu.cs" />
+    <Compile Include="NusHelper\Emulators\DeSmuMe.cs" />
+    <Compile Include="NusHelper\Emulators\Fceux.cs" />
+    <Compile Include="NusHelper\Emulators\Project64.cs" />
+    <Compile Include="NusHelper\Emulators\Snes9x.cs" />
+    <Compile Include="Nus_Helper_Shared_Core\NusHelper\Saves\SaveDescription.cs" />
+    <Compile Include="Nus_Helper_Shared_Core\NusHelper\Emulators\EmuConfiguration.cs" />
+    <Compile Include="ns0\GClass0.cs" />
+    <Compile Include="ns0\AssemblyInfoAttribute.cs" />
+    <Compile Include="ns0\GClass1.cs" />
+    <Compile Include="ns0\GClass2.cs" />
+    <Compile Include="ns0\GClass3.cs" />
+    <Compile Include="ns0\GClass4.cs" />
+    <Compile Include="ns0\GClass6.cs" />
+    <Compile Include="ns0\GClass7.cs" />
+    <Compile Include="ns0\GClass8.cs" />
+    <Compile Include="ns0\Class3.cs" />
+    <Compile Include="ns0\GClass9.cs" />
+    <Compile Include="ns0\GClass10.cs" />
+    <Compile Include="ns0\GException0.cs" />
+    <Compile Include="ns0\Class4.cs" />
+    <Compile Include="ns0\GClass11.cs" />
+    <Compile Include="ns0\Class5.cs" />
+    <Compile Include="ns0\GClass12.cs" />
+    <Compile Include="ns0\GClass13.cs" />
+    <Compile Include="ns0\Class6.cs" />
+    <Compile Include="ns0\GStruct0.cs" />
+    <Compile Include="ns0\Class7.cs" />
+    <Compile Include="ns0\Class9.cs" />
+    <Compile Include="ns0\Class11.cs" />
+    <Compile Include="ns0\GClass14.cs" />
+    <Compile Include="ns0\GClass15.cs" />
+    <Compile Include="ns0\GClass16.cs" />
+    <Compile Include="ns0\GClass17.cs" />
+    <Compile Include="ns0\Class16.cs" />
+    <Compile Include="ns0\Class17.cs" />
+    <Compile Include="ns0\Class22.cs" />
+    <Compile Include="ns0\GClass18.cs" />
+    <Compile Include="ns0\Class27.cs" />
+    <Compile Include="ns0\GClass20.cs" />
+    <Compile Include="ns0\GClass21.cs" />
+    <Compile Include="ns0\GClass22.cs" />
+    <Compile Include="ns0\Class30.cs" />
+    <Compile Include="ns0\Class31.cs" />
+    <Compile Include="ns0\GClass23.cs" />
+    <Compile Include="ns0\GClass24.cs" />
+    <Compile Include="ns0\GClass25.cs" />
+    <Compile Include="ns0\GStruct2.cs" />
+    <Compile Include="ns0\GClass26.cs" />
+    <Compile Include="ns0\GClass27.cs" />
+    <Compile Include="ns0\GClass28.cs" />
+    <Compile Include="ns0\GEnum1.cs" />
+    <Compile Include="ns0\GClass31.cs" />
+    <Compile Include="ns0\GClass29.cs" />
+    <Compile Include="ns0\GClass32.cs" />
+    <Compile Include="ns0\GEnum2.cs" />
+    <Compile Include="ns0\GEnum3.cs" />
+    <Compile Include="ns0\GClass30.cs" />
+    <Compile Include="ns0\GClass33.cs" />
+    <Compile Include="ns0\GClass34.cs" />
+    <Compile Include="ns0\GClass35.cs" />
+    <Compile Include="ns0\GClass36.cs" />
+    <Compile Include="ns0\GClass37.cs" />
+    <Compile Include="ns0\GClass38.cs" />
+    <Compile Include="ns0\GClass39.cs" />
+    <Compile Include="ns0\GClass40.cs" />
+    <Compile Include="ns0\GClass41.cs" />
+    <Compile Include="ns0\GClass42.cs" />
+    <Compile Include="ns0\GClass43.cs" />
+    <Compile Include="ns0\GClass44.cs" />
+    <Compile Include="ns0\GClass45.cs" />
+    <Compile Include="ns0\GClass46.cs" />
+    <Compile Include="ns0\GClass47.cs" />
+    <Compile Include="ns0\GClass48.cs" />
+    <Compile Include="ns0\GClass49.cs" />
+    <Compile Include="ns0\GClass50.cs" />
+    <Compile Include="ns0\GClass51.cs" />
+    <Compile Include="ns0\GClass52.cs" />
+    <Compile Include="ns0\GClass53.cs" />
+    <Compile Include="ns0\GClass54.cs" />
+    <Compile Include="ns0\GClass55.cs" />
+    <Compile Include="ns0\GClass56.cs" />
+    <Compile Include="ns0\GClass57.cs" />
+    <Compile Include="ns0\GClass58.cs" />
+    <Compile Include="ns0\GClass59.cs" />
+    <Compile Include="ns0\GClass60.cs" />
+    <Compile Include="ns0\GClass61.cs" />
+    <Compile Include="ns0\GClass62.cs" />
+    <Compile Include="ns0\GClass63.cs" />
+    <Compile Include="ns0\GClass64.cs" />
+    <Compile Include="ns0\GClass65.cs" />
+    <Compile Include="ns0\GClass66.cs" />
+    <Compile Include="ns0\GClass67.cs" />
+    <Compile Include="ns0\GClass68.cs" />
+    <Compile Include="ns0\GClass69.cs" />
+    <Compile Include="ns0\GClass70.cs" />
+    <Compile Include="ns0\GClass71.cs" />
+    <Compile Include="ns0\GClass72.cs" />
+    <Compile Include="ns0\GClass73.cs" />
+    <Compile Include="ns0\GClass74.cs" />
+    <Compile Include="ns0\GClass75.cs" />
+    <Compile Include="ns0\GClass76.cs" />
+    <Compile Include="ns0\GClass77.cs" />
+    <Compile Include="ns0\GClass78.cs" />
+    <Compile Include="ns0\Class58.cs" />
+    <Compile Include="ns0\Class59.cs" />
+    <Compile Include="ns0\GStruct3.cs" />
+    <Compile Include="ns0\Class60.cs" />
+    <Compile Include="ns0\GException1.cs" />
+    <Compile Include="ns0\GClass79.cs" />
+    <Compile Include="ns0\GClass80.cs" />
+    <Compile Include="ns0\GEventArgs0.cs" />
+    <Compile Include="ns0\Class64.cs" />
+    <Compile Include="ns0\GEnum5.cs" />
+    <Compile Include="ns0\GClass81.cs" />
+    <Compile Include="ns0\GClass82.cs" />
+    <Compile Include="ns0\GClass83.cs" />
+    <Compile Include="ns0\Stream0.cs" />
+    <Compile Include="ns0\GClass86.cs" />
+    <Compile Include="ns0\GClass84.cs" />
+    <Compile Include="ns0\GClass85.cs" />
+    <Compile Include="ns0\GClass87.cs" />
+    <Compile Include="ns0\GClass88.cs" />
+    <Compile Include="ns0\GClass89.cs" />
+    <Compile Include="ns0\GClass90.cs" />
+    <Compile Include="ns0\Class67.cs" />
+    <Compile Include="ns0\Class72.cs" />
+    <Compile Include="ns0\GClass91.cs" />
+    <Compile Include="ns0\GClass92.cs" />
+    <Compile Include="ns0\GClass93.cs" />
+    <Compile Include="ns0\GClass94.cs" />
+    <Compile Include="ns0\Class81.cs" />
+    <Compile Include="ns0\GClass95.cs" />
+    <Compile Include="ns0\GClass96.cs" />
+    <Compile Include="ns0\GClass97.cs" />
+    <Compile Include="ns0\GClass98.cs" />
+    <Compile Include="ns0\Enum3.cs" />
+    <Compile Include="ns0\GStruct7.cs" />
+    <Compile Include="ns0\Class85.cs" />
+    <Compile Include="ns0\GClass99.cs" />
+    <Compile Include="ns0\Enum4.cs" />
+    <Compile Include="ns0\GEnum6.cs" />
+    <Compile Include="ns0\GClass100.cs" />
+    <Compile Include="ns0\GClass101.cs" />
+    <Compile Include="ns0\GClass102.cs" />
+    <Compile Include="ns0\GClass103.cs" />
+    <Compile Include="ns0\GClass104.cs" />
+    <Compile Include="ns0\GClass107.cs" />
+    <Compile Include="ns0\GClass108.cs" />
+    <Compile Include="ns0\GClass109.cs" />
+    <Compile Include="ns0\GClass110.cs" />
+    <Compile Include="ns0\GClass111.cs" />
+    <Compile Include="ns0\GClass112.cs" />
+    <Compile Include="ns0\GClass113.cs" />
+    <Compile Include="ns0\GClass114.cs" />
+    <Compile Include="ns0\GClass115.cs" />
+    <Compile Include="ns0\GClass116.cs" />
+    <Compile Include="ns0\GClass117.cs" />
+    <Compile Include="ns0\GClass118.cs" />
+    <Compile Include="ns0\GClass119.cs" />
+    <Compile Include="ns0\GClass120.cs" />
+    <Compile Include="ns0\GClass121.cs" />
+    <Compile Include="ns0\GClass122.cs" />
+    <Compile Include="ns0\Class91.cs" />
+    <Compile Include="ns0\Stream1.cs" />
+    <Compile Include="ns0\Class97.cs" />
+    <Compile Include="ns0\Class102.cs" />
+    <Compile Include="ns0\GClass123.cs" />
+    <Compile Include="ns0\frmDriveSetup.cs" />
+    <Compile Include="ns0\GClass124.cs" />
+    <Compile Include="ns0\GClass125.cs" />
+    <Compile Include="ns0\Class108.cs" />
+    <Compile Include="ns0\GClass126.cs" />
+    <Compile Include="ns0\frmChangeLog.cs" />
+    <Compile Include="ns0\FrmFtpProgress.cs" />
+    <Compile Include="ns0\Class112.cs" />
+    <Compile Include="ns0\GClass127.cs" />
+    <Compile Include="ns0\GClass128.cs" />
+    <Compile Include="ns0\GControl0.cs" />
+    <Compile Include="ns0\GControl1.cs" />
+    <Compile Include="ns0\GClass129.cs" />
+    <Compile Include="ns0\GClass130.cs" />
+    <Compile Include="ns0\GClass131.cs" />
+    <Compile Include="ns0\GClass132.cs" />
+    <Compile Include="ns0\GClass133.cs" />
+    <Compile Include="ns0\GClass134.cs" />
+    <Compile Include="ns0\Class120.cs" />
+    <Compile Include="ns0\GClass135.cs" />
+    <Compile Include="ns0\GClass137.cs" />
+    <Compile Include="ns0\GClass138.cs" />
+    <Compile Include="ns0\GClass139.cs" />
+    <Compile Include="ns0\Class121.cs" />
+    <Compile Include="ns0\GClass136.cs" />
+    <Compile Include="ns0\GClass140.cs" />
+    <Compile Include="ns0\GClass143.cs" />
+    <Compile Include="ns0\GClass141.cs" />
+    <Compile Include="ns0\GClass142.cs" />
+    <Compile Include="ns0\Class123.cs" />
+    <Compile Include="ns0\frmAdvancedDiskManagement.cs" />
+    <Compile Include="ns0\Class130.cs" />
+    <Compile Include="ns0\frmCloudSaving.cs" />
+    <Compile Include="ns0\frmCommunitySaves.cs" />
+    <Compile Include="ns0\frmDownloadDotNet.cs" />
+    <Compile Include="ns0\frmDownloadSpecificFiles.cs" />
+    <Compile Include="ns0\frmEmuInfo.cs" />
+    <Compile Include="ns0\frmEmuSettings.cs" />
+    <Compile Include="ns0\frmException.cs" />
+    <Compile Include="ns0\frmFaq.cs" />
+    <Compile Include="ns0\frmFeedback.cs" />
+    <Compile Include="ns0\frmBug.cs" />
+    <Compile Include="ns0\frmChoseSave.cs" />
+    <Compile Include="ns0\frmCreateSave.cs" />
+    <Compile Include="ns0\frmDisclaimerCEMU.cs" />
+    <Compile Include="ns0\frmDonation.cs" />
+    <Compile Include="ns0\frmHelpOverlay.cs" />
+    <Compile Include="ns0\frmHowToUseCloudSaving.cs" />
+    <Compile Include="ns0\frmInjection.cs" />
+    <Compile Include="ns0\frmInjectionAnimation.cs" />
+    <Compile Include="ns0\frmLegal.cs" />
+    <Compile Include="ns0\frmLoadOverlay.cs" />
+    <Compile Include="ns0\frmManageCloudSaves.cs" />
+    <Compile Include="ns0\Class152.cs" />
+    <Compile Include="ns0\frmMessageFromAdmin.cs" />
+    <Compile Include="ns0\frmMining.cs" />
+    <Compile Include="ns0\frmOverlay.cs" />
+    <Compile Include="ns0\frmRawOrEmu.cs" />
+    <Compile Include="ns0\GForm0.cs" />
+    <Compile Include="ns0\frmSelectTheme.cs" />
+    <Compile Include="ns0\GEnum9.cs" />
+    <Compile Include="ns0\frmShortcutType.cs" />
+    <Compile Include="ns0\frmSupport.cs" />
+    <Compile Include="ns0\frmUnhandledException.cs" />
+    <Compile Include="ns0\frmUnpackAnimation.cs" />
+    <Compile Include="ns0\frmVideo.cs" />
+    <Compile Include="ns0\frmSupportOver.cs" />
+    <Compile Include="ns0\GForm1.cs" />
+    <Compile Include="ns0\frmCommunitySaveDescription.cs" />
+    <Compile Include="ns0\FrmAskTicket.cs" />
+    <Compile Include="ns0\GStruct8.cs" />
+    <Compile Include="ns0\FrmHallOfFame.cs" />
+    <Compile Include="ns0\FrmImport.cs" />
+    <Compile Include="ns0\Struct4.cs" />
+    <Compile Include="ns0\FrmNewTitles.cs" />
+    <Compile Include="ns0\FrmSelectDrive.cs" />
+    <Compile Include="ns0\FrmSelectVersion.cs" />
+    <Compile Include="ns0\FrmWait.cs" />
+    <Compile Include="ns0\FrmWhatToCopy.cs" />
+    <Compile Include="ns0\FrmImgPreview.cs" />
+    <Compile Include="ns0\NusGrabberForm.cs" />
+    <Compile Include="ns0\FrmWelcome.cs" />
+    <Compile Include="ns0\GEnum10.cs" />
+    <Compile Include="ns0\Class200.cs" />
+    <Compile Include="IWshRuntimeLibrary\IWshShell.cs" />
+    <Compile Include="IWshRuntimeLibrary\IWshShell2.cs" />
+    <Compile Include="IWshRuntimeLibrary\IWshShell3.cs" />
+    <Compile Include="IWshRuntimeLibrary\IWshShortcut.cs" />
+    <Compile Include="IWshRuntimeLibrary\WshShell.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="sndAdd" />
+    <Resource Include="sndNotification" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ns0\Class123.resx" />
+    <EmbeddedResource Include="ns0\frmAdvancedDiskManagement.resx" />
+    <EmbeddedResource Include="ns0\FrmAskTicket.resx" />
+    <EmbeddedResource Include="ns0\frmBug.resx" />
+    <EmbeddedResource Include="ns0\frmChangeLog.resx" />
+    <EmbeddedResource Include="ns0\frmChoseSave.resx" />
+    <EmbeddedResource Include="ns0\frmCloudSaving.resx" />
+    <EmbeddedResource Include="ns0\frmCommunitySaveDescription.resx" />
+    <EmbeddedResource Include="ns0\frmCommunitySaves.resx" />
+    <EmbeddedResource Include="ns0\frmCreateSave.resx" />
+    <EmbeddedResource Include="ns0\frmDisclaimerCEMU.resx" />
+    <EmbeddedResource Include="ns0\frmDonation.resx" />
+    <EmbeddedResource Include="ns0\frmDownloadDotNet.resx" />
+    <EmbeddedResource Include="ns0\frmDownloadSpecificFiles.resx" />
+    <EmbeddedResource Include="ns0\frmDriveSetup.resx" />
+    <EmbeddedResource Include="ns0\frmEmuInfo.resx" />
+    <EmbeddedResource Include="ns0\frmEmuSettings.resx" />
+    <EmbeddedResource Include="ns0\frmException.resx" />
+    <EmbeddedResource Include="ns0\frmFaq.resx" />
+    <EmbeddedResource Include="ns0\frmFeedback.resx" />
+    <EmbeddedResource Include="ns0\FrmFtpProgress.resx" />
+    <EmbeddedResource Include="ns0\FrmHallOfFame.resx" />
+    <EmbeddedResource Include="ns0\frmHelpOverlay.resx" />
+    <EmbeddedResource Include="ns0\frmHowToUseCloudSaving.resx" />
+    <EmbeddedResource Include="ns0\FrmImgPreview.resx" />
+    <EmbeddedResource Include="ns0\FrmImport.resx" />
+    <EmbeddedResource Include="ns0\frmInjection.resx" />
+    <EmbeddedResource Include="ns0\frmInjectionAnimation.resx" />
+    <EmbeddedResource Include="ns0\frmLegal.resx" />
+    <EmbeddedResource Include="ns0\frmLoadOverlay.resx" />
+    <EmbeddedResource Include="ns0\frmManageCloudSaves.resx" />
+    <EmbeddedResource Include="ns0\frmMessageFromAdmin.resx" />
+    <EmbeddedResource Include="ns0\frmMining.resx" />
+    <EmbeddedResource Include="ns0\FrmNewTitles.resx" />
+    <EmbeddedResource Include="ns0\frmOverlay.resx" />
+    <EmbeddedResource Include="ns0\frmRawOrEmu.resx" />
+    <EmbeddedResource Include="ns0\FrmSelectDrive.resx" />
+    <EmbeddedResource Include="ns0\frmSelectTheme.resx" />
+    <EmbeddedResource Include="ns0\FrmSelectVersion.resx" />
+    <EmbeddedResource Include="ns0\frmShortcutType.resx" />
+    <EmbeddedResource Include="ns0\frmSupport.resx" />
+    <EmbeddedResource Include="ns0\frmSupportOver.resx" />
+    <EmbeddedResource Include="ns0\frmUnhandledException.resx" />
+    <EmbeddedResource Include="ns0\frmUnpackAnimation.resx" />
+    <EmbeddedResource Include="ns0\frmVideo.resx" />
+    <EmbeddedResource Include="ns0\FrmWait.resx" />
+    <EmbeddedResource Include="ns0\FrmWelcome.resx" />
+    <EmbeddedResource Include="ns0\FrmWhatToCopy.resx" />
+    <EmbeddedResource Include="ns0\NusGrabberForm.resx" />
+    <EmbeddedResource Include="WIIU_Downloader\Forms\frmDebug.resx" />
+    <EmbeddedResource Include="WIIU_Downloader\Resources\contb.ttf" />
+    <EmbeddedResource Include="WIIU_Downloader\Themes\!DarkGreen.tssp" />
+    <EmbeddedResource Include="WIIU_Downloader\Themes\!DarkRed.tssp" />
+    <EmbeddedResource Include="WIIU_Downloader\Themes\!Desert.tssp" />
+    <EmbeddedResource Include="WIIU_Downloader\Themes\!LightGrey.tssp" />
+    <EmbeddedResource Include="WIIU_Downloader\Themes\!Silver.tssp" />
+    <EmbeddedResource Include="WIIU_Downloader\Themes\DarkBlue.tssp" />
+    <EmbeddedResource Include="WIIU_Downloader\Themes\DarkOrange.tssp" />
+    <EmbeddedResource Include="WIIU_Downloader\Themes\Light.tssp" />
+    <EmbeddedResource Include="WiiU_USB_Helper\exe.licenses" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
