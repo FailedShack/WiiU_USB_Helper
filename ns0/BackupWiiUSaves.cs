@@ -11,9 +11,9 @@ using System.Net;
 
 namespace ns0
 {
-  internal static class Class4
+  internal static class BackupWiiUSaves
   {
-    public static void smethod_0(GClass30 gclass30_0, IPAddress ipaddress_0, string string_0)
+    public static void BackupWiiUSave(GClass30 gclass30_0, IPAddress ipaddress_0, string string_0)
     {
       if (gclass30_0.TitleId.IdType != DownloadType.GameWiiOrU)
         throw new Exception("You can only backup game saves!");
@@ -34,7 +34,7 @@ namespace ns0
       using (FileStream fileStream = System.IO.File.Open(string_0, FileMode.Open))
       {
         using (ZipArchive zipArchive_0 = new ZipArchive((Stream) fileStream, ZipArchiveMode.Read))
-          new FTPConnection(ipaddress_0.ToString(), "anonymous", "").method_15("/storage_usb/usr/save/00050000/" + gclass30_0.TitleId.High.ToLower() + "/", zipArchive_0);
+          new FTPConnection(ipaddress_0.ToString(), "anonymous", "").FTP_UploadZIP("/storage_usb/usr/save/00050000/" + gclass30_0.TitleId.High.ToLower() + "/", zipArchive_0);
       }
     }
   }

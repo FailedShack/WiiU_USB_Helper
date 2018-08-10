@@ -466,7 +466,7 @@ namespace ns0
       FTPConnection class600 = this.class60_0;
       if (class600 == null)
         return;
-      class600.method_0();
+      class600.FTP_AbortFTP();
     }
 
     public void method_8()
@@ -754,7 +754,7 @@ namespace ns0
         // ISSUE: reference to a compiler-generated field
         string string_4 = Path.Combine("/sd/Install/", class51.string_0);
         this.class60_0 = new FTPConnection(gclass82_0.IPAddress_0.ToString(), "anonymous", "");
-        if (!this.class60_0.method_1())
+        if (!this.class60_0.FTP_ListFiles())
         {
           // ISSUE: reference to a compiler-generated field
           EventHandler<GClass81> eventHandler0 = this.eventHandler_0;
@@ -766,8 +766,8 @@ namespace ns0
         {
           if (nullable_0.HasValue)
             this.class60_0.method_13(nullable_0.Value);
-          this.class60_0.method_2("/sd/Install/");
-          this.class60_0.method_2(string_4);
+          this.class60_0.FTP_MakeDir("/sd/Install/");
+          this.class60_0.FTP_MakeDir(string_4);
           // ISSUE: reference to a compiler-generated method
           this.class60_0.Event_1 += new EventHandler(class51.method_0);
           // ISSUE: reference to a compiler-generated field

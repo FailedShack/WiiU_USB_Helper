@@ -21,21 +21,21 @@ namespace ns0
     private readonly int int_1 = 131072;
     public static volatile bool bool_0;
     private const int int_0 = 5;
-    private readonly string string_0;
-    private readonly string string_1;
-    private readonly string string_2;
-    private readonly string string_3;
+    private readonly string FTPFullURL;
+    private readonly string FTPIP;
+    private readonly string FTPPassword;
+    private readonly string FTPUser;
     private volatile bool bool_1;
     private FtpWebRequest ftpWebRequest_0;
     private FtpWebResponse ftpWebResponse_0;
     private Stream stream_0;
 
-    public FTPConnection(string IPAddress, string FTPUser, string string_6)
+    public FTPConnection(string IPAddress, string FTPUser, string FTPPassword)
     {
-      this.string_1 = IPAddress;
-      this.string_0 = "ftp://" + IPAddress;
-      this.string_3 = FTPUser;
-      this.string_2 = string_6;
+      this.FTPIP = IPAddress;
+      this.FTPFullURL = "ftp://" + IPAddress;
+      this.FTPUser = FTPUser;
+      this.FTPPassword = FTPPassword;
     }
 
     public event EventHandler<long> Event_0;
@@ -44,13 +44,13 @@ namespace ns0
 
     public GClass81 TransferStatus { get; private set; } = new GClass81("Upload complete!", false, GEnum5.const_6);
 
-    public void method_0()
+    public void FTP_AbortFTP()
     {
       this.TransferStatus = new GClass81("Upload aborted.", true, GEnum5.const_2);
       this.bool_1 = true;
     }
 
-    public bool method_1()
+    public bool FTP_ListFiles()
     {
       bool flag = true;
       try
@@ -76,7 +76,7 @@ namespace ns0
       return flag;
     }
 
-    public void method_2(string string_4)
+    public void FTP_MakeDir(string string_4)
     {
       try
       {
@@ -91,7 +91,7 @@ namespace ns0
       }
     }
 
-    public void method_3(string string_4)
+    public void FTP_DelFile(string string_4)
     {
       try
       {
@@ -215,7 +215,7 @@ namespace ns0
       }
     }
 
-    public string method_9(string string_4)
+    public string FTP_CheckFileVersion(string string_4)
     {
       try
       {
@@ -296,7 +296,7 @@ namespace ns0
     {
       try
       {
-        FTPConnection.smethod_2(this.string_1, 21, this.string_3, this.string_2, "INST install/" + string_4);
+        FTPConnection.smethod_2(this.FTPIP, 21, this.FTPUser, this.FTPPassword, "INST install/" + string_4);
       }
       catch (Exception ex)
       {
@@ -308,7 +308,7 @@ namespace ns0
     {
       try
       {
-        FTPConnection.smethod_2(this.string_1, 21, this.string_3, this.string_2, "REMO " + (bool_2 ? "Y" : "N"));
+        FTPConnection.smethod_2(this.FTPIP, 21, this.FTPUser, this.FTPPassword, "REMO " + (bool_2 ? "Y" : "N"));
       }
       catch (Exception ex)
       {
@@ -328,9 +328,9 @@ namespace ns0
       }.method_0));
     }
 
-    public void method_15(string string_4, ZipArchive zipArchive_0)
+    public void FTP_UploadZIP(string string_4, ZipArchive zipArchive_0)
     {
-      this.method_2(string_4);
+      this.FTP_MakeDir(string_4);
       List<string> stringList = new List<string>();
       foreach (ZipArchiveEntry entry in zipArchive_0.Entries)
       {
@@ -343,7 +343,7 @@ namespace ns0
           foreach (string str in strArray)
           {
             string_4_1 = string_4_1 + "/" + str;
-            this.method_2(string_4_1);
+            this.FTP_MakeDir(string_4_1);
           }
         }
       }
@@ -421,8 +421,8 @@ namespace ns0
 
     private FtpWebRequest method_16(string string_4, string string_5)
     {
-      this.ftpWebRequest_0 = (FtpWebRequest) WebRequest.Create(this.string_0 + "/" + string_4);
-      this.ftpWebRequest_0.Credentials = (ICredentials) new NetworkCredential(this.string_3, this.string_2);
+      this.ftpWebRequest_0 = (FtpWebRequest) WebRequest.Create(this.FTPFullURL + "/" + string_4);
+      this.ftpWebRequest_0.Credentials = (ICredentials) new NetworkCredential(this.FTPUser, this.FTPPassword);
       this.ftpWebRequest_0.UseBinary = true;
       this.ftpWebRequest_0.UsePassive = true;
       this.ftpWebRequest_0.KeepAlive = true;

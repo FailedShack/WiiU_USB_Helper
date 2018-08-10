@@ -296,7 +296,7 @@ namespace ns0
       string str2 = Path.Combine(this.String_8, str1 + ".zip");
       try
       {
-        Class4.smethod_0((GClass30) this, gclass82_0.IPAddress_0, str2);
+        BackupWiiUSaves.BackupWiiUSave((GClass30) this, gclass82_0.IPAddress_0, str2);
       }
       catch
       {
@@ -329,7 +329,7 @@ namespace ns0
     public void method_26(GClass82 gclass82_0, string string_15)
     {
       string string_0 = Path.Combine(this.String_8, string_15 + ".zip");
-      Class4.BackupWiiUSaveZip((GClass30) this, gclass82_0.IPAddress_0, string_0);
+      BackupWiiUSaves.BackupWiiUSaveZip((GClass30) this, gclass82_0.IPAddress_0, string_0);
     }
 
     public static DriveInfo smethod_4(DataSize dataSize_1)
