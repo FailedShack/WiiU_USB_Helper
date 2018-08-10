@@ -41,7 +41,7 @@ namespace ns0
     {
       if (this.gclass32_0 == null || RadMessageBox.Show("Are you sure you want to delete this file? It cannot be recovered.", "Are you sure?", MessageBoxButtons.YesNo) != DialogResult.Yes)
         return;
-      GClass6.smethod_20(string.Format("{0}/saves/delete_save.php", (object) Class67.String_1), new NameValueCollection()
+      GClass6.smethod_20(string.Format("{0}/saves/delete_save.php", (object) Class67.CloudWiiUUSBHelperURL), new NameValueCollection()
       {
         {
           "username",
@@ -73,7 +73,7 @@ namespace ns0
     private void method_0()
     {
       this.gclass32_0 = (GClass32) null;
-      List<Class152> class152List = JsonConvert.DeserializeObject<List<Class152>>(GClass6.smethod_20(string.Format("{0}/saves/list_saves.php", (object) Class67.String_1), new NameValueCollection() { { "username", Settings.Default.CloudUserName }, { "password", Settings.Default.CloudPassWord } }));
+      List<Class152> class152List = JsonConvert.DeserializeObject<List<Class152>>(GClass6.smethod_20(string.Format("{0}/saves/list_saves.php", (object) Class67.CloudWiiUUSBHelperURL), new NameValueCollection() { { "username", Settings.Default.CloudUserName }, { "password", Settings.Default.CloudPassWord } }));
       this.lstSaves.BeginUpdate();
       this.lstSaves.Items.Clear();
       foreach (Class152 class152 in class152List)

@@ -144,7 +144,7 @@ namespace ns0
             this.method_17(this.GClass32_0, 1f);
           }
           // ISSUE: reference to a compiler-generated method
-          this.task_0 = Task.Delay(this.GClass32_0.System == GEnum3.const_1 ? 7000 : 1000).ContinueWith(new Action<Task>(class117.method_0));
+          this.task_0 = Task.Delay(this.GClass32_0.System == SystemType.SystemWiiU ? 7000 : 1000).ContinueWith(new Action<Task>(class117.method_0));
         }
       }
       else
@@ -216,7 +216,7 @@ namespace ns0
             {
               try
               {
-                using (MemoryStream memoryStream = new MemoryStream(new GClass78().method_2(this.gclass32_0[int_12 * 10 + int_11].IconUrl)))
+                using (MemoryStream memoryStream = new MemoryStream(new GClass78().DownloadFile(this.gclass32_0[int_12 * 10 + int_11].IconUrl)))
                 {
                   // ISSUE: object of a compiler-generated type is created
                   // ISSUE: variable of a compiler-generated type

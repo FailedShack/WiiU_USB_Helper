@@ -36,7 +36,7 @@ namespace ns0
         try
         {
           // ISSUE: reference to a compiler-generated field
-          this.eventHandler_0((object) this, Encoding.UTF8.GetString(new WebClient().UploadValues(string.Format("{0}/sendEmail.php", (object) Class67.String_4), new NameValueCollection()
+          this.eventHandler_0((object) this, Encoding.UTF8.GetString(new WebClient().UploadValues(string.Format("{0}/sendEmail.php", (object) Class67.SupportWiiUUSBHelperURL), new NameValueCollection()
           {
             {
               "from",

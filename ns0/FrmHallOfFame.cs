@@ -62,7 +62,7 @@ namespace ns0
     {
       List<string> stringList = new List<string>();
       this.txtFame.BackColor = this.BackColor;
-      string str1 = new GClass78().method_6(string.Format("{0}/getContributors.php", (object) Class67.String_3));
+      string str1 = new GClass78().method_6(string.Format("{0}/getContributors.php", (object) Class67.RegistrationWiiUUSBHelperURL));
       char[] separator = new char[1]{ '\n' };
       int num = 1;
       foreach (string str2 in str1.Split(separator, (StringSplitOptions) num))

@@ -1339,7 +1339,7 @@ namespace ns0
       }
       else
       {
-        Class60.bool_0 = true;
+        FTPConnection.bool_0 = true;
         // ISSUE: reference to a compiler-generated field
         class171.string_0 = "";
         string string_0 = "--COPY REPORT--" + Environment.NewLine;
@@ -1364,7 +1364,7 @@ namespace ns0
           class173.class172_0 = class172;
           // ISSUE: reference to a compiler-generated field
           // ISSUE: reference to a compiler-generated field
-          if (class173.class172_0.gclass30_0.System != GEnum3.const_1)
+          if (class173.class172_0.gclass30_0.System != SystemType.SystemWiiU)
             return;
           // ISSUE: reference to a compiler-generated field
           // ISSUE: reference to a compiler-generated field
@@ -1425,7 +1425,7 @@ namespace ns0
         this.gclass82_0 = (GClass82) null;
         this.method_63(false, true, (List<GClass32>) null);
         this.radButton1_Click((object) null, (EventArgs) null);
-        Class60.bool_0 = false;
+        FTPConnection.bool_0 = false;
       }
     }
 
@@ -1563,7 +1563,7 @@ namespace ns0
         GClass78 gclass78 = new GClass78();
         try
         {
-          byte[] bytes = this.bool_5 || this.bool_4 || this.bool_6 ? gclass78.method_4(string_4 + "json", 2) : gclass78.method_2(string_4);
+          byte[] bytes = this.bool_5 || this.bool_4 || this.bool_6 ? gclass78.method_4(string_4 + "json", 2) : gclass78.DownloadFile(string_4);
           Directory.CreateDirectory(NusGrabberForm.string_2);
           System.IO.File.WriteAllBytes(path, bytes);
           return bytes;
@@ -2001,7 +2001,7 @@ namespace ns0
         return;
       IEnumerable<GClass32> source1 = this.lstGames.SelectedItems.Select<ListViewDataItem, GClass32>((Func<ListViewDataItem, GClass32>) (listViewDataItem_0 => listViewDataItem_0.Tag as GClass32));
       IEnumerable<GClass32> source2 = source1;
-      Func<GClass32, bool> func1 = (Func<GClass32, bool>) (gclass32_0 => gclass32_0.System == GEnum3.const_1);
+      Func<GClass32, bool> func1 = (Func<GClass32, bool>) (gclass32_0 => gclass32_0.System == SystemType.SystemWiiU);
       Func<GClass32, bool> predicate1;
       if (source2.All<GClass32>(predicate1))
       {
@@ -2010,7 +2010,7 @@ namespace ns0
       else
       {
         IEnumerable<GClass32> source3 = source1;
-        Func<GClass32, bool> func2 = (Func<GClass32, bool>) (gclass32_0 => gclass32_0.System == GEnum3.const_0);
+        Func<GClass32, bool> func2 = (Func<GClass32, bool>) (gclass32_0 => gclass32_0.System == SystemType.System3DS);
         Func<GClass32, bool> predicate2;
         if (source3.All<GClass32>(predicate2))
           this.radContextMenu_0.Items[7].Text = "Pack to CIA (3DS)";
@@ -2019,7 +2019,7 @@ namespace ns0
       }
       this.radContextMenu_0.Items[1].Enabled = tag.Boolean_3 && this.lstGames.SelectedItems.Count == 1;
       this.radContextMenu_0.Items[2].Enabled = tag.Boolean_2 && this.lstGames.SelectedItems.Count == 1;
-      this.radContextMenu_0.Items[11].Enabled = !source1.Any<GClass32>((Func<GClass32, bool>) (gclass32_0 => gclass32_0.System != GEnum3.const_1));
+      this.radContextMenu_0.Items[11].Enabled = !source1.Any<GClass32>((Func<GClass32, bool>) (gclass32_0 => gclass32_0.System != SystemType.SystemWiiU));
       RadContextMenu radContextMenu0 = this.radContextMenu_0;
       int x1 = e.OriginalEventArgs.X;
       Point location = this.Location;
@@ -2109,7 +2109,7 @@ namespace ns0
         NusGrabberForm.Class180 class180 = new NusGrabberForm.Class180();
         // ISSUE: reference to a compiler-generated field
         class180.nusGrabberForm_0 = this;
-        if (Class60.bool_0)
+        if (FTPConnection.bool_0)
           return;
         // ISSUE: reference to a compiler-generated field
         class180.list_0 = GClass83.smethod_0(gclass82_1);
@@ -2234,7 +2234,7 @@ namespace ns0
         {
           foreach (GClass32 gclass32_1 in this.lstGames.SelectedItems.Select<ListViewDataItem, GClass32>((Func<ListViewDataItem, GClass32>) (listViewDataItem_0 => listViewDataItem_0.Tag as GClass32)))
           {
-            if (gclass32_1.System == GEnum3.const_1)
+            if (gclass32_1.System == SystemType.SystemWiiU)
             {
               FrmWhatToCopy frmWhatToCopy = new FrmWhatToCopy(gclass32_1, WhatToAction.Unpack);
               if (frmWhatToCopy.ShowDialog() == DialogResult.OK)
@@ -2250,7 +2250,7 @@ namespace ns0
                 }
               }
             }
-            else if (gclass32_1.System == GEnum3.const_0)
+            else if (gclass32_1.System == SystemType.System3DS)
             {
               FrmWhatToCopy frmWhatToCopy = new FrmWhatToCopy(gclass32_1, WhatToAction.Unpack);
               if (frmWhatToCopy.ShowDialog() == DialogResult.OK)
@@ -2579,7 +2579,7 @@ namespace ns0
           {
             int num1 = (int) RadMessageBox.Show("This title does not support emulation for the moment.");
           }
-          else if (!this.CurrentlyDownloading && gclass32_2.System == GEnum3.const_1 && gclass32_2.Size.TotalBytes < 150000000UL)
+          else if (!this.CurrentlyDownloading && gclass32_2.System == SystemType.SystemWiiU && gclass32_2.Size.TotalBytes < 150000000UL)
           {
             int num2 = (int) RadMessageBox.Show("USB Helper will now download and prepare your game.");
             gclass95.Play();
@@ -2725,7 +2725,7 @@ namespace ns0
 
     private void method_47()
     {
-      Class67.smethod_4();
+      Class67.CheckOrInstallDirectXRuntime();
       Cemu cemu = new Cemu((GClass30) null, false);
       if (!cemu.Boolean_0 && !cemu.EmuConfiguration_0.AutoUpdate)
       {
@@ -2883,14 +2883,14 @@ namespace ns0
           GClass32 gclass32 = GClass28.dictionary_0[new TitleId((string) titleId.FullGame)];
           switch (titleId.IdType)
           {
-            case GEnum1.const_1:
+            case DownloadType.GameWiiOrU:
               if (gclass32.GEnum2_0 != GEnum2.const_2)
               {
                 this.method_6((GClass30) gclass32);
                 continue;
               }
               continue;
-            case GEnum1.const_2:
+            case DownloadType.DLC:
               if (gclass32.Boolean_2 && gclass32.Dlc.GEnum2_0 != GEnum2.const_2)
               {
                 this.method_6((GClass30) gclass32.Dlc);
@@ -3166,9 +3166,9 @@ namespace ns0
       this.lblStatusGameEmu.ForeColor = this.SelectedGame.Color_1;
       this.lblStatusGameEmu.LabelElement.ToolTipText = this.SelectedGame.String_4;
       this.lblTitleId.Text = this.SelectedGame.TitleId.ToSplitString();
-      this.cmdRestoreSave.Enabled = this.SelectedGame.System == GEnum3.const_1;
-      this.cmdBackupSave.Enabled = this.SelectedGame.System == GEnum3.const_1;
-      this.cmdImportCemu.Enabled = this.SelectedGame.System == GEnum3.const_1;
+      this.cmdRestoreSave.Enabled = this.SelectedGame.System == SystemType.SystemWiiU;
+      this.cmdBackupSave.Enabled = this.SelectedGame.System == SystemType.SystemWiiU;
+      this.cmdImportCemu.Enabled = this.SelectedGame.System == SystemType.SystemWiiU;
       this.cmdCommunitySaves.Enabled = this.SelectedGame.method_14(false) != null && this.SelectedGame.method_14(false).FileSaveLocation != null;
       try
       {
@@ -3233,13 +3233,13 @@ namespace ns0
       this.pbBanner.Image = (Image) Class123.banner;
       switch (this.SelectedGame.System)
       {
-        case GEnum3.const_0:
+        case SystemType.System3DS:
           this.pictureLogo.Image = (Image) Class123.logo3ds;
           break;
-        case GEnum3.const_1:
+        case SystemType.SystemWiiU:
           this.pictureLogo.Image = (Image) Class123.logoWiiU;
           break;
-        case GEnum3.const_3:
+        case SystemType.SystemWii:
           this.pictureLogo.Image = (Image) Class123.logoWii;
           break;
         default:

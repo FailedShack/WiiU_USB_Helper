@@ -64,7 +64,7 @@ namespace ns0
 
     public ushort TitleVersion { get; set; }
 
-    private void method_0(Stream stream_0, GEnum3 genum3_0)
+    private void method_0(Stream stream_0, SystemType genum3_0)
     {
       stream_0.Seek(0L, SeekOrigin.Begin);
       byte[] buffer1 = new byte[8];
@@ -97,15 +97,15 @@ namespace ns0
       this.NumOfContents = GClass27.smethod_4(BitConverter.ToUInt16(buffer1, 2));
       this.ushort_2 = GClass27.smethod_4(BitConverter.ToUInt16(buffer1, 4));
       this.ushort_5 = GClass27.smethod_4(BitConverter.ToUInt16(buffer1, 6));
-      if (genum3_0 != GEnum3.const_3)
+      if (genum3_0 != SystemType.SystemWii)
         stream_0.Position = 2820L;
       this.list_0 = new List<GClass101>();
       for (int index = 0; index < (int) this.NumOfContents; ++index)
       {
         GClass101 gclass101;
-        if (genum3_0 != GEnum3.const_1 && genum3_0 != GEnum3.const_3)
+        if (genum3_0 != SystemType.SystemWiiU && genum3_0 != SystemType.SystemWii)
         {
-          if (genum3_0 != GEnum3.const_0)
+          if (genum3_0 != SystemType.System3DS)
             throw new NotImplementedException();
           GClass102 gclass102 = new GClass102();
           gclass102.Hash = new byte[32];
@@ -125,7 +125,7 @@ namespace ns0
         gclass101.Size = new DataSize(GClass27.smethod_6(BitConverter.ToUInt64(buffer1, 0)));
         stream_0.Read(gclass101.Hash, 0, gclass101.Hash.Length);
         this.list_0.Add(gclass101);
-        if (genum3_0 == GEnum3.const_1)
+        if (genum3_0 == SystemType.SystemWiiU)
         {
           byte[] buffer2 = new byte[12];
           stream_0.Read(buffer2, 0, 12);
@@ -168,12 +168,12 @@ namespace ns0
       }
     }
 
-    public static GClass100 smethod_0(string string_0, GEnum3 genum3_0)
+    public static GClass100 smethod_0(string string_0, SystemType genum3_0)
     {
       return GClass100.smethod_1(File.ReadAllBytes(string_0), genum3_0);
     }
 
-    public static GClass100 smethod_1(byte[] byte_10, GEnum3 genum3_0)
+    public static GClass100 smethod_1(byte[] byte_10, SystemType genum3_0)
     {
       GClass100 gclass100 = new GClass100();
       MemoryStream memoryStream = new MemoryStream(byte_10);

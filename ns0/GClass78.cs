@@ -52,7 +52,7 @@ namespace ns0
       this.TotalDataDownloaded = new DataSize(0UL);
     }
 
-    public byte[] method_2(string string_0)
+    public byte[] DownloadFile(string string_0)
     {
       HttpWebRequest http = WebRequest.CreateHttp(string_0);
       if (this.bool_0)
@@ -83,7 +83,7 @@ namespace ns0
 
     public byte[] method_3(string string_0)
     {
-      return this.method_2(Class67.smethod_1(string_0, 7200));
+      return this.DownloadFile(Class67.smethod_1(string_0, 7200));
     }
 
     public byte[] method_4(string string_0, int int_1)
@@ -93,7 +93,7 @@ namespace ns0
       {
         if ((DateTime.Now - GClass88.smethod_6(string_1)).TotalHours <= (double) int_1)
           return GClass88.smethod_4(string_1);
-        byte[] byte_1 = new WebClient().UploadValues(string.Format("{0}/requestZipHash.php", (object) Class67.String_0), new NameValueCollection()
+        byte[] byte_1 = new WebClient().UploadValues(string.Format("{0}/requestZipHash.php", (object) Class67.ApplicationWiiUUSBHelperURL), new NameValueCollection()
         {
           {
             "url",
@@ -107,7 +107,7 @@ namespace ns0
             return buffer;
         }
       }
-      using (MemoryStream memoryStream = new MemoryStream(this.method_2(string.Format("{0}/zipProxy.php?url=", (object) Class67.String_0) + Convert.ToBase64String(Encoding.UTF8.GetBytes(string_0)))))
+      using (MemoryStream memoryStream = new MemoryStream(this.DownloadFile(string.Format("{0}/zipProxy.php?url=", (object) Class67.ApplicationWiiUUSBHelperURL) + Convert.ToBase64String(Encoding.UTF8.GetBytes(string_0)))))
       {
         using (ZipArchive zipArchive = new ZipArchive((Stream) memoryStream))
         {
@@ -153,7 +153,7 @@ namespace ns0
 
     public string method_6(string string_0)
     {
-      return Encoding.UTF8.GetString(this.method_2(string_0));
+      return Encoding.UTF8.GetString(this.DownloadFile(string_0));
     }
 
     public string method_7(string string_0, int int_1 = 604800)

@@ -28,7 +28,7 @@ namespace ns0
       List<GClass32> gclass32List = new List<GClass32>();
       try
       {
-        foreach (string str in new Class60(gclass82_0.IPAddress_0.ToString(), "", "").method_4("/storage_usb/usr/title/00050000"))
+        foreach (string str in new FTPConnection(gclass82_0.IPAddress_0.ToString(), "", "").method_4("/storage_usb/usr/title/00050000"))
         {
           if (str.Length == 8)
           {
@@ -48,7 +48,7 @@ namespace ns0
     {
       try
       {
-        byte[] bytes = new Class60(gclass82_0.IPAddress_0.ToString(), "", "").method_7(string.Format("/storage_usb/usr/title/0005000e/{0}/meta/meta.xml", (object) gclass30_0.TitleId.High.ToLower()));
+        byte[] bytes = new FTPConnection(gclass82_0.IPAddress_0.ToString(), "", "").method_7(string.Format("/storage_usb/usr/title/0005000e/{0}/meta/meta.xml", (object) gclass30_0.TitleId.High.ToLower()));
         XmlDocument xmlDocument = new XmlDocument();
         string xml = Encoding.UTF8.GetString(bytes).Trim('\xFEFF');
         xmlDocument.LoadXml(xml);

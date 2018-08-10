@@ -129,7 +129,7 @@ namespace ns0
     {
       try
       {
-        KeyValidationResponse validationResponse = JsonConvert.DeserializeObject<KeyValidationResponse>(Encoding.UTF8.GetString(new WebClient().UploadValues(string.Format("{0}/verifyDonationKey.php", (object) Class67.String_3), new NameValueCollection()
+        KeyValidationResponse validationResponse = JsonConvert.DeserializeObject<KeyValidationResponse>(Encoding.UTF8.GetString(new WebClient().UploadValues(string.Format("{0}/verifyDonationKey.php", (object) Class67.RegistrationWiiUUSBHelperURL), new NameValueCollection()
         {
           {
             "key",

@@ -82,7 +82,7 @@ namespace ns0
       foreach (string str1 in class156.string_0)
       {
         string str2 = "Ready to import";
-        GClass100 gclass100 = GClass100.smethod_0(str1, GEnum3.const_1);
+        GClass100 gclass100 = GClass100.smethod_0(str1, SystemType.SystemWiiU);
         TitleId titleId = new TitleId(gclass100.TitleId.ToString("x16"));
         if (!GClass28.dictionary_0.ContainsKey(titleId.FullGame))
         {
@@ -98,14 +98,14 @@ namespace ns0
           GClass30 gclass30 = (GClass30) null;
           switch (titleId.IdType)
           {
-            case GEnum1.const_0:
+            case DownloadType.Update:
               gclass30 = (GClass30) GClass28.dictionary_0[titleId.FullGame];
-              if (gclass30.System == GEnum3.const_0)
+              if (gclass30.System == SystemType.System3DS)
               {
                 gclass30 = (GClass30) GClass28.dictionary_0[titleId.FullGame].Updates.Last<GClass33>();
                 break;
               }
-              if (gclass30.System == GEnum3.const_1)
+              if (gclass30.System == SystemType.SystemWiiU)
               {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
@@ -126,16 +126,16 @@ namespace ns0
               }
               else
                 break;
-            case GEnum1.const_1:
+            case DownloadType.GameWiiOrU:
               gclass30 = (GClass30) GClass28.dictionary_0[titleId.FullGame];
               break;
-            case GEnum1.const_2:
+            case DownloadType.DLC:
               gclass30 = (GClass30) GClass28.dictionary_0[titleId.FullGame].Dlc;
               break;
-            case GEnum1.const_3:
+            case DownloadType.Game3DS:
               gclass30 = (GClass30) GClass28.dictionary_0[titleId.FullGame];
               break;
-            case GEnum1.const_4:
+            case DownloadType.GameDSI:
               gclass30 = (GClass30) GClass28.dictionary_0[titleId.FullGame];
               break;
           }
@@ -167,7 +167,7 @@ namespace ns0
           if (!(new DirectoryInfo(Path.GetDirectoryName(str)).Name != "meta"))
           {
             TitleId key = new TitleId(XDocument.Load(str).Descendants((XName) "title_id").ElementAt<XElement>(0).Value);
-            if (key.IdType == GEnum1.const_1)
+            if (key.IdType == DownloadType.GameWiiOrU)
             {
               if (GClass28.dictionary_0.ContainsKey(key))
               {

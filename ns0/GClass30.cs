@@ -28,13 +28,13 @@ namespace ns0
     private const int int_2 = 1024;
     protected static List<string> list_0;
     private GEnum2 genum2_0;
-    private Class60 class60_0;
+    private FTPConnection class60_0;
     public byte[] byte_0;
     public string string_0;
     public string string_1;
     public bool bool_0;
 
-    protected GClass30(string string_7, TitleId titleId_1, string string_8, byte[] byte_2, DataSize dataSize_1, string string_9, GEnum3 genum3_1)
+    protected GClass30(string string_7, TitleId titleId_1, string string_8, byte[] byte_2, DataSize dataSize_1, string string_9, SystemType genum3_1)
     {
       this.Name = string_7;
       this.TitleId = titleId_1;
@@ -53,11 +53,11 @@ namespace ns0
       {
         switch (this.System)
         {
-          case GEnum3.const_0:
+          case SystemType.System3DS:
             return "3DS";
-          case GEnum3.const_1:
+          case SystemType.SystemWiiU:
             return "WiiU";
-          case GEnum3.const_2:
+          case SystemType.const_2:
             return "Switch";
           default:
             return "UKN";
@@ -121,7 +121,7 @@ namespace ns0
 
     public Platform Platform { get; internal set; }
 
-    public GEnum3 System { get; internal set; }
+    public SystemType System { get; internal set; }
 
     public string String_1
     {
@@ -282,7 +282,7 @@ namespace ns0
       GClass30.Class44 class44 = new GClass30.Class44();
       // ISSUE: reference to a compiler-generated field
       class44.string_0 = string_7;
-      if (this.System != GEnum3.const_0)
+      if (this.System != SystemType.System3DS)
         return;
       // ISSUE: reference to a compiler-generated field
       if (!Directory.Exists(class44.string_0))
@@ -323,7 +323,7 @@ namespace ns0
       class45.string_0 = string_7;
       // ISSUE: reference to a compiler-generated field
       class45.bool_0 = bool_6;
-      if (this.System != GEnum3.const_0)
+      if (this.System != SystemType.System3DS)
         return;
       // ISSUE: reference to a compiler-generated field
       if (!Directory.Exists(class45.string_0))
@@ -368,7 +368,7 @@ namespace ns0
       class46.bool_1 = bool_7;
       // ISSUE: reference to a compiler-generated field
       class46.bool_2 = bool_6;
-      if (this.System != GEnum3.const_0)
+      if (this.System != SystemType.System3DS)
         throw new Exception("This process can only be done on CTR titles");
       // ISSUE: reference to a compiler-generated field
       Directory.CreateDirectory(class46.string_1);
@@ -463,7 +463,7 @@ namespace ns0
 
     public void method_7()
     {
-      Class60 class600 = this.class60_0;
+      FTPConnection class600 = this.class60_0;
       if (class600 == null)
         return;
       class600.method_0();
@@ -486,7 +486,7 @@ namespace ns0
       string str2 = Path.Combine(driveInfo_0.Name, "Install\\", this.String_6 + (this.CfwOnly ? " (CFW ONLY)" : ""));
       GClass6.smethod_5(str2);
       Directory.CreateDirectory(str2);
-      if (this.System == GEnum3.const_1)
+      if (this.System == SystemType.SystemWiiU)
       {
         try
         {
@@ -498,13 +498,13 @@ namespace ns0
         }
         return "OK";
       }
-      if (this.System == GEnum3.const_0)
+      if (this.System == SystemType.System3DS)
       {
         this.method_5(str1, "game");
         FileSystem.MoveFile(Path.Combine(str1, "game.cia"), Path.Combine(str2, "title.cia"), UIOption.AllDialogs);
         return "OK";
       }
-      if (this.System != GEnum3.const_3)
+      if (this.System != SystemType.SystemWii)
         throw new NotImplementedException();
       this.method_10(Path.Combine(driveInfo_0.Name, "wads"), this.String_6 + ".wad");
       return "OK";
@@ -606,11 +606,11 @@ namespace ns0
 
     public GClass13 method_15()
     {
-      if (this.System != GEnum3.const_1)
+      if (this.System != SystemType.SystemWiiU)
         throw new Exception("The FST can only be retrieved for WUP titles.");
-      GClass100 gclass100 = !(this is GClass33) ? GClass100.smethod_1(new GClass78().method_2(string.Format("{0}tmd", (object) this.String_1)), GEnum3.const_1) : GClass100.smethod_1(new GClass78().method_2(string.Format("{0}tmd.{1}", (object) this.String_1, (object) this.Version)), GEnum3.const_1);
-      GClass99 gclass99 = this is GClass33 || this.Platform == Platform.Wii_U_Custom ? GClass99.smethod_7(new GClass78().method_2(this.String_1 + "cetk"), GEnum3.const_1) : (!this.bool_0 ? GClass99.smethod_7(this.TicketArray, GEnum3.const_1) : GClass99.smethod_7(File.ReadAllBytes(Path.Combine(Path.Combine(GClass88.CachePath, "tickets"), this.TitleId.IdRaw + ".tik")), GEnum3.const_1));
-      byte[] inputBuffer = new GClass78().method_2(this.String_1 + gclass100.GClass101_0[0].ContentId.ToString("x8"));
+      GClass100 gclass100 = !(this is GClass33) ? GClass100.smethod_1(new GClass78().DownloadFile(string.Format("{0}tmd", (object) this.String_1)), SystemType.SystemWiiU) : GClass100.smethod_1(new GClass78().DownloadFile(string.Format("{0}tmd.{1}", (object) this.String_1, (object) this.Version)), SystemType.SystemWiiU);
+      GClass99 gclass99 = this is GClass33 || this.Platform == Platform.Wii_U_Custom ? GClass99.smethod_7(new GClass78().DownloadFile(this.String_1 + "cetk"), SystemType.SystemWiiU) : (!this.bool_0 ? GClass99.smethod_7(this.TicketArray, SystemType.SystemWiiU) : GClass99.smethod_7(File.ReadAllBytes(Path.Combine(Path.Combine(GClass88.CachePath, "tickets"), this.TitleId.IdRaw + ".tik")), SystemType.SystemWiiU));
+      byte[] inputBuffer = new GClass78().DownloadFile(this.String_1 + gclass100.GClass101_0[0].ContentId.ToString("x8"));
       using (AesCryptoServiceProvider cryptoServiceProvider = new AesCryptoServiceProvider())
       {
         cryptoServiceProvider.Key = gclass99.Byte_0;
@@ -631,7 +631,7 @@ namespace ns0
       GClass28.gclass30_0 = this;
       if (bool_6)
         string_7 = Path.Combine(string_7, this.method_12());
-      if (this.System == GEnum3.const_1)
+      if (this.System == SystemType.SystemWiiU)
       {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -708,7 +708,7 @@ namespace ns0
         {
         }
       }
-      else if (this.System == GEnum3.const_0)
+      else if (this.System == SystemType.System3DS)
       {
         GClass28.gclass30_0 = (GClass30) null;
         return false;
@@ -734,7 +734,7 @@ namespace ns0
       class51.gclass30_0 = this;
       // ISSUE: reference to a compiler-generated field
       class51.bool_0 = bool_7;
-      if (this.System != GEnum3.const_1)
+      if (this.System != SystemType.SystemWiiU)
         return;
       this.CurrentlyUploaded = true;
       if (bool_6 && !this.method_20())
@@ -753,7 +753,7 @@ namespace ns0
         class51.long_1 = ((IEnumerable<FileInfo>) new DirectoryInfo(this.OutputPath).GetFiles()).Sum<FileInfo>((Func<FileInfo, long>) (fileInfo_0 => fileInfo_0.Length));
         // ISSUE: reference to a compiler-generated field
         string string_4 = Path.Combine("/sd/Install/", class51.string_0);
-        this.class60_0 = new Class60(gclass82_0.IPAddress_0.ToString(), "anonymous", "");
+        this.class60_0 = new FTPConnection(gclass82_0.IPAddress_0.ToString(), "anonymous", "");
         if (!this.class60_0.method_1())
         {
           // ISSUE: reference to a compiler-generated field
@@ -830,9 +830,9 @@ namespace ns0
 
     private GEnum2 method_19()
     {
-      if (!Directory.Exists(this.OutputPath) || !File.Exists(Path.Combine(this.OutputPath, "title.tmd")) || !File.Exists(Path.Combine(this.OutputPath, "title.tik")) || (this.System == GEnum3.const_1 || this.System == GEnum3.const_3) && !File.Exists(Path.Combine(this.OutputPath, "title.cert")))
+      if (!Directory.Exists(this.OutputPath) || !File.Exists(Path.Combine(this.OutputPath, "title.tmd")) || !File.Exists(Path.Combine(this.OutputPath, "title.tik")) || (this.System == SystemType.SystemWiiU || this.System == SystemType.SystemWii) && !File.Exists(Path.Combine(this.OutputPath, "title.cert")))
         return GEnum2.const_0;
-      if ((this is GClass31 || this.Platform == Platform.Wii_U_Custom) && !new GClass78().method_2(this.String_1 + "tmd").smethod_5(File.ReadAllBytes(Path.Combine(this.OutputPath, "title.tmd"))))
+      if ((this is GClass31 || this.Platform == Platform.Wii_U_Custom) && !new GClass78().DownloadFile(this.String_1 + "tmd").smethod_5(File.ReadAllBytes(Path.Combine(this.OutputPath, "title.tmd"))))
         return GEnum2.const_1;
       foreach (GClass101 gclass101 in GClass100.smethod_0(Path.Combine(this.OutputPath, "title.tmd"), this.System).GClass101_0)
       {

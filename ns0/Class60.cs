@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace ns0
 {
-  internal class Class60
+  internal class FTPConnection
   {
     private readonly int int_1 = 131072;
     public static volatile bool bool_0;
@@ -30,11 +30,11 @@ namespace ns0
     private FtpWebResponse ftpWebResponse_0;
     private Stream stream_0;
 
-    public Class60(string string_4, string string_5, string string_6)
+    public FTPConnection(string IPAddress, string FTPUser, string string_6)
     {
-      this.string_1 = string_4;
-      this.string_0 = "ftp://" + string_4;
-      this.string_3 = string_5;
+      this.string_1 = IPAddress;
+      this.string_0 = "ftp://" + IPAddress;
+      this.string_3 = FTPUser;
       this.string_2 = string_6;
     }
 
@@ -208,7 +208,7 @@ namespace ns0
       foreach (string str in this.method_4(string_4))
       {
         string string_5_1 = Path.Combine(string_5, str);
-        if (Class60.smethod_1(str))
+        if (FTPConnection.smethod_1(str))
           this.method_8(Path.Combine(string_4, str) + "/", zipArchive_0, string_5_1);
         else
           this.method_17(Path.Combine(string_4, str), zipArchive_0, string_5_1);
@@ -296,7 +296,7 @@ namespace ns0
     {
       try
       {
-        Class60.smethod_2(this.string_1, 21, this.string_3, this.string_2, "INST install/" + string_4);
+        FTPConnection.smethod_2(this.string_1, 21, this.string_3, this.string_2, "INST install/" + string_4);
       }
       catch (Exception ex)
       {
@@ -308,7 +308,7 @@ namespace ns0
     {
       try
       {
-        Class60.smethod_2(this.string_1, 21, this.string_3, this.string_2, "REMO " + (bool_2 ? "Y" : "N"));
+        FTPConnection.smethod_2(this.string_1, 21, this.string_3, this.string_2, "REMO " + (bool_2 ? "Y" : "N"));
       }
       catch (Exception ex)
       {
@@ -320,7 +320,7 @@ namespace ns0
     {
       // ISSUE: object of a compiler-generated type is created
       // ISSUE: reference to a compiler-generated method
-      Task.Run(new Action(new Class60.Class61()
+      Task.Run(new Action(new FTPConnection.Class61()
       {
         class60_0 = this,
         string_0 = string_4,
@@ -352,7 +352,7 @@ namespace ns0
         if (!(entry.FullName == "meta.json"))
         {
           string string_4_1 = Path.Combine(string_4, entry.FullName.Replace("\\", "/"));
-          if (!Class60.smethod_1(string_4_1))
+          if (!FTPConnection.smethod_1(string_4_1))
             this.method_19(string_4_1, entry);
         }
       }
@@ -387,8 +387,8 @@ namespace ns0
       {
         TcpClient tcpClient_0 = new TcpClient();
         tcpClient_0.Connect(string_4, int_2);
-        Class60.smethod_0(tcpClient_0);
-        if (Class60.smethod_3(tcpClient_0, "user " + string_5).Contains("331") && Class60.smethod_3(tcpClient_0, "pass " + string_6).Contains("230") && Class60.smethod_3(tcpClient_0, string_7).Contains("200"))
+        FTPConnection.smethod_0(tcpClient_0);
+        if (FTPConnection.smethod_3(tcpClient_0, "user " + string_5).Contains("331") && FTPConnection.smethod_3(tcpClient_0, "pass " + string_6).Contains("230") && FTPConnection.smethod_3(tcpClient_0, string_7).Contains("200"))
           flag = true;
         tcpClient_0.Close();
       }

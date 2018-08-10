@@ -20,7 +20,7 @@ namespace ns0
         {
           if (RadMessageBox.Show("The live support service is currently online. Would you like to require immediate assistance?", "Immediate assistance", MessageBoxButtons.YesNo) == DialogResult.Yes)
           {
-            Process.Start(string.Format("{0}/chat/", (object) Class67.String_4));
+            Process.Start(string.Format("{0}/chat/", (object) Class67.SupportWiiUUSBHelperURL));
             return true;
           }
         }
@@ -35,7 +35,7 @@ namespace ns0
     {
       try
       {
-        return new GClass78().method_6(string.Format("{0}/getStatus.php", (object) Class67.String_4)) == "ONLINE";
+        return new GClass78().method_6(string.Format("{0}/getStatus.php", (object) Class67.SupportWiiUUSBHelperURL)) == "ONLINE";
       }
       catch
       {

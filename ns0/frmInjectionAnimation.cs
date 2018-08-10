@@ -52,7 +52,7 @@ namespace ns0
         this.int_3 = this.pctAarrow.Left;
         this.timer_1.Interval = 25;
         this.timer_1.Start();
-        this.bitmap_0 = (Bitmap) Image.FromStream((Stream) new MemoryStream(new GClass78().method_2(string.Format("http://art.gametdb.com/wii/disc/{0}/{1}.png", this.gclass91_0.ToInject.Region == "USA" ? (object) "US" : (object) "EN", (object) this.gclass91_0.ToInject.ProductId))));
+        this.bitmap_0 = (Bitmap) Image.FromStream((Stream) new MemoryStream(new GClass78().DownloadFile(string.Format("http://art.gametdb.com/wii/disc/{0}/{1}.png", this.gclass91_0.ToInject.Region == "USA" ? (object) "US" : (object) "EN", (object) this.gclass91_0.ToInject.ProductId))));
         this.bitmap_0.SetResolution(96f, 96f);
         this.timer_0.Interval = 30;
         this.timer_0.Start();

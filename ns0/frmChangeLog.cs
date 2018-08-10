@@ -26,7 +26,7 @@ namespace ns0
     {
       try
       {
-        this.txtLog.Text = new GClass78().method_6(string.Format("{0}/res/txt/changelog.txt", (object) Class67.String_2)).Replace("\n", "\r\n");
+        this.txtLog.Text = new GClass78().method_6(string.Format("{0}/res/txt/changelog.txt", (object) Class67.CDNWiiUUSBHelperURL)).Replace("\n", "\r\n");
       }
       catch
       {

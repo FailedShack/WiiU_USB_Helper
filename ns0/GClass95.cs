@@ -63,7 +63,7 @@ namespace ns0
     {
       get
       {
-        return string.Format("{0}/res/emulators/{1}.zip", (object) Class67.String_2, (object) this.Name);
+        return string.Format("{0}/res/emulators/{1}.zip", (object) Class67.CDNWiiUUSBHelperURL, (object) this.Name);
       }
     }
 
@@ -117,7 +117,7 @@ namespace ns0
       string str = Path.Combine(Path.GetDirectoryName(string_2), Convert.ToBase64String(Encoding.UTF8.GetBytes(string_3 + " " + string_4 + " " + this.gclass30_0.TitleId.IdRaw)));
       GClass6.smethod_6(str);
       System.IO.File.Move(string_2, str);
-      string text = Class67.smethod_14(str, string.Format("{0}/saves/upload_save_b64.php", (object) Class67.String_1));
+      string text = Class67.smethod_14(str, string.Format("{0}/saves/upload_save_b64.php", (object) Class67.CloudWiiUUSBHelperURL));
       if (!(text != "OK"))
         return;
       int num = (int) RadMessageBox.Show(text);
@@ -150,7 +150,7 @@ namespace ns0
       if (this.FileSaveLocation == null)
         return;
       WebClient webClient = new WebClient();
-      if (new WebClient().UploadValues(new Uri(string.Format("{0}/saves/get_save.php", (object) Class67.String_1)), new NameValueCollection()
+      if (new WebClient().UploadValues(new Uri(string.Format("{0}/saves/get_save.php", (object) Class67.CloudWiiUUSBHelperURL)), new NameValueCollection()
       {
         {
           "username",
@@ -176,7 +176,7 @@ namespace ns0
       webClient.UploadValuesCompleted += new UploadValuesCompletedEventHandler(class83.method_0);
       // ISSUE: reference to a compiler-generated method
       webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(class83.method_1);
-      webClient.UploadValuesAsync(new Uri(string.Format("{0}/saves/get_save.php", (object) Class67.String_1)), new NameValueCollection()
+      webClient.UploadValuesAsync(new Uri(string.Format("{0}/saves/get_save.php", (object) Class67.CloudWiiUUSBHelperURL)), new NameValueCollection()
       {
         {
           "username",
@@ -564,7 +564,7 @@ namespace ns0
 
     protected virtual void PrepareRomIfNecessary(bool directDownload)
     {
-      if (this.Boolean_2 || this.gclass30_0.System != GEnum3.const_1)
+      if (this.Boolean_2 || this.gclass30_0.System != SystemType.SystemWiiU)
         return;
       this.gclass30_0.method_16(this.String_5, true, directDownload, (IEnumerable<GClass12>) null, false);
     }

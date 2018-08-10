@@ -37,12 +37,12 @@ namespace ns0
       return !((IEnumerable<byte>) byte_0).Where<byte>(new Func<byte, int, bool>(class38.method_0)).Any<byte>();
     }
 
-    public static bool smethod_2(string string_0)
+    public static bool InSysDir(string string_0)
     {
       return System.IO.File.Exists(Path.Combine(Environment.SystemDirectory, string_0));
     }
 
-    public static bool smethod_3(string string_0)
+    public static bool InWinSysWOW64(string string_0)
     {
       return System.IO.File.Exists(Path.Combine(Environment.GetEnvironmentVariable("windir"), "SysWOW64", string_0));
     }
@@ -114,12 +114,12 @@ namespace ns0
 
     public static void smethod_10(string string_0)
     {
-      GClass27.smethod_7(string.Format("{0}/res/starter/starter.zip", (object) Class67.String_2), string_0);
+      GClass27.smethod_7(string.Format("{0}/res/starter/starter.zip", (object) Class67.CDNWiiUUSBHelperURL), string_0);
     }
 
     public static void smethod_11(string string_0)
     {
-      GClass27.smethod_7(string.Format("{0}/res/emulators/extract_toolkit.zip", (object) Class67.String_2), string_0);
+      GClass27.smethod_7(string.Format("{0}/res/emulators/extract_toolkit.zip", (object) Class67.CDNWiiUUSBHelperURL), string_0);
     }
   }
 }

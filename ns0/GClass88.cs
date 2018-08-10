@@ -37,7 +37,7 @@ namespace ns0
           return File.ReadAllBytes(str);
         try
         {
-          byte[] bytes = new GClass78().method_2(uri_0.ToString());
+          byte[] bytes = new GClass78().DownloadFile(uri_0.ToString());
           File.WriteAllBytes(str, bytes);
           return bytes;
         }

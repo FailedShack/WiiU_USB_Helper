@@ -93,7 +93,7 @@ namespace ns0
               str2 = GClass28.gclass30_0.TitleId.IdRaw + "v" + GClass28.gclass30_0.Version ?? "0";
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
             string str3 = Class102.string_0 ?? ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
-            GClass6.smethod_19(string.Format("{0}/postBug.php", (object) Class67.String_4), new NameValueCollection()
+            GClass6.smethod_19(string.Format("{0}/postBug.php", (object) Class67.SupportWiiUUSBHelperURL), new NameValueCollection()
             {
               {
                 "bug_target_site",

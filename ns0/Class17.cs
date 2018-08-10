@@ -39,7 +39,7 @@ namespace ns0
     {
       if (!Directory.Exists(string_1))
         Directory.CreateDirectory(string_1);
-      if (gclass30_1.System != GEnum3.const_1)
+      if (gclass30_1.System != SystemType.SystemWiiU)
         throw new ArgumentException("Only wup titles are compatible");
       this.string_0 = string_1;
       Directory.CreateDirectory(this.string_0);

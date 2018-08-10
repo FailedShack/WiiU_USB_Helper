@@ -46,11 +46,11 @@ namespace ns0
 
     private GClass32 method_1(TitleId titleId_0, string string_5, string string_6, string string_7, DataSize dataSize_0)
     {
-      GClass32 gclass32 = new GClass32(string_5, titleId_0, "ALL", (byte[]) null, dataSize_0, (List<GClass33>) null, "0", "CTR-P-CTAP", "", "http://ccs.cdn.c.shop.nintendowifi.net/ccs/download/", Platform.Unknown, GEnum3.const_0);
+      GClass32 gclass32 = new GClass32(string_5, titleId_0, "ALL", (byte[]) null, dataSize_0, (List<GClass33>) null, "0", "CTR-P-CTAP", "", "http://ccs.cdn.c.shop.nintendowifi.net/ccs/download/", Platform.Unknown, SystemType.System3DS);
       gclass32.CfwOnly = true;
       gclass32.TicketArray = GClass99.smethod_0(titleId_0.IdRaw, string_7, 0);
       gclass32.byte_0 = string_6.smethod_6();
-      gclass32.Ticket = GClass99.smethod_7(gclass32.TicketArray, GEnum3.const_0);
+      gclass32.Ticket = GClass99.smethod_7(gclass32.TicketArray, SystemType.System3DS);
       gclass32.Ticket.Byte_0 = string_6.smethod_6();
       return gclass32;
     }
@@ -76,7 +76,7 @@ namespace ns0
         foreach (Class72.Class73 class73 in source.Where<Class72.Class73>((Func<Class72.Class73, bool>) (class73_0 =>
         {
           if (class73_0.encTitleKey != null && class73_0.titleID != null)
-            return new TitleId(class73_0.titleID).IdType == GEnum1.const_0;
+            return new TitleId(class73_0.titleID).IdType == DownloadType.Update;
           return false;
         })))
         {
@@ -100,7 +100,7 @@ namespace ns0
         foreach (Class72.Class73 class73 in source.Where<Class72.Class73>((Func<Class72.Class73, bool>) (class73_0 =>
         {
           if (class73_0.encTitleKey != null && class73_0.titleID != null)
-            return new TitleId(class73_0.titleID).IdType == GEnum1.const_2;
+            return new TitleId(class73_0.titleID).IdType == DownloadType.DLC;
           return false;
         })))
         {
@@ -117,12 +117,12 @@ namespace ns0
             DataSize dataSize0 = gstruct4.dataSize_0;
             string string_9 = "http://ccs.cdn.wup.shop.nintendo.net/ccs/download/";
             int num2 = 0;
-            GClass31 gclass31_1 = new GClass31(string_7, titleId_1, string_8, (byte[]) local, dataSize0, string_9, (GEnum3) num2);
+            GClass31 gclass31_1 = new GClass31(string_7, titleId_1, string_8, (byte[]) local, dataSize0, string_9, (SystemType) num2);
             gclass31_1.CfwOnly = true;
             gclass31_1.TicketArray = GClass99.smethod_0((string) key, class73.encTitleKey, 1);
             gclass31_1.byte_0 = class73.titleKey.smethod_6();
             GClass31 gclass31_2 = gclass31_1;
-            gclass31_2.Ticket = GClass99.smethod_7(gclass31_2.TicketArray, GEnum3.const_0);
+            gclass31_2.Ticket = GClass99.smethod_7(gclass31_2.TicketArray, SystemType.System3DS);
             gclass31_2.Ticket.Byte_0 = class73.titleKey.smethod_6();
             GClass28.list_6.Add(gclass31_2);
           }
@@ -151,7 +151,7 @@ namespace ns0
             GClass28.list_0.Add(this.method_1(index, "ARC7", class73.titleKey, class73.encTitleKey, new DataSize(1UL)));
           if (index.IdRaw == "0004009B00014002")
             GClass28.gclass32_0 = this.method_1(index, "Shared Font", class73.titleKey, class73.encTitleKey, new DataSize(1466880UL));
-          if ((index.IdType == GEnum1.const_3 || index.IdType == GEnum1.const_4) && GClass28.dictionary_2.ContainsKey(index))
+          if ((index.IdType == DownloadType.Game3DS || index.IdType == DownloadType.GameDSI) && GClass28.dictionary_2.ContainsKey(index))
           {
             DbRow dbRow = GClass28.dictionary_2[index];
             string str = HttpUtility.HtmlDecode(class73.name.Trim()).Replace("\n", " ");
@@ -163,23 +163,23 @@ namespace ns0
               {
                 if (gstruct5.string_2 != null && gstruct5.string_1 != null)
                 {
-                  GClass33 gclass33_1 = new GClass33(str, gstruct5.titleId_0, string_8, (byte[]) null, gstruct5.dataSize_0, gstruct5.string_0, "http://ccs.cdn.wup.shop.nintendo.net/ccs/download/", GEnum3.const_0);
+                  GClass33 gclass33_1 = new GClass33(str, gstruct5.titleId_0, string_8, (byte[]) null, gstruct5.dataSize_0, gstruct5.string_0, "http://ccs.cdn.wup.shop.nintendo.net/ccs/download/", SystemType.System3DS);
                   gclass33_1.CfwOnly = true;
                   GClass33 gclass33_2 = gclass33_1;
                   gclass33_2.TicketArray = GClass99.smethod_0((string) gstruct5.titleId_0, gstruct5.string_1, int.Parse(gstruct5.string_0));
                   gclass33_2.byte_0 = gstruct5.string_2.smethod_6();
-                  gclass33_2.Ticket = GClass99.smethod_7(gclass33_2.TicketArray, GEnum3.const_0);
+                  gclass33_2.Ticket = GClass99.smethod_7(gclass33_2.TicketArray, SystemType.System3DS);
                   gclass33_2.Ticket.Byte_0 = gstruct5.string_2.smethod_6();
                   list_2.Add(gclass33_2);
                 }
               }
             }
-            GClass32 gclass32_1 = new GClass32(str, index, dbRow.Region, (byte[]) null, dbRow.Size, list_2, dbRow.EshopId, dbRow.ProductCode, dbRow.IconUrl, "http://ccs.cdn.c.shop.nintendowifi.net/ccs/download/", dbRow.Platform, GEnum3.const_0);
+            GClass32 gclass32_1 = new GClass32(str, index, dbRow.Region, (byte[]) null, dbRow.Size, list_2, dbRow.EshopId, dbRow.ProductCode, dbRow.IconUrl, "http://ccs.cdn.c.shop.nintendowifi.net/ccs/download/", dbRow.Platform, SystemType.System3DS);
             gclass32_1.CfwOnly = true;
             GClass32 gclass32_2 = gclass32_1;
             gclass32_2.TicketArray = GClass99.smethod_0(index.IdRaw, class73.encTitleKey, 1);
             gclass32_2.byte_0 = class73.titleKey.smethod_6();
-            gclass32_2.Ticket = GClass99.smethod_7(gclass32_2.TicketArray, GEnum3.const_0);
+            gclass32_2.Ticket = GClass99.smethod_7(gclass32_2.TicketArray, SystemType.System3DS);
             gclass32_2.Ticket.Byte_0 = class73.titleKey.smethod_6();
             GClass28.dictionary_0.Add(index, gclass32_2);
           }
@@ -193,12 +193,12 @@ namespace ns0
         if (GClass28.dictionary_2.ContainsKey(index))
         {
           DbRow dbRow = GClass28.dictionary_2[index];
-          GClass32 gclass32_1 = new GClass32(class74.name, index, dbRow.Region, (byte[]) null, dbRow.Size, new List<GClass33>(), dbRow.EshopId, dbRow.ProductCode, dbRow.IconUrl, "http://ccs.cdn.wup.shop.nintendo.net/ccs/download/", dbRow.Platform, GEnum3.const_3);
+          GClass32 gclass32_1 = new GClass32(class74.name, index, dbRow.Region, (byte[]) null, dbRow.Size, new List<GClass33>(), dbRow.EshopId, dbRow.ProductCode, dbRow.IconUrl, "http://ccs.cdn.wup.shop.nintendo.net/ccs/download/", dbRow.Platform, SystemType.SystemWii);
           gclass32_1.CfwOnly = true;
           GClass32 gclass32_2 = gclass32_1;
           byte[] numArray = GClass99.smethod_1((string) dbRow.TitleId, class74.titleKey, 0);
           gclass32_2.TicketArray = numArray;
-          gclass32_2.Ticket = GClass99.smethod_7(gclass32_2.TicketArray, GEnum3.const_3);
+          gclass32_2.Ticket = GClass99.smethod_7(gclass32_2.TicketArray, SystemType.SystemWii);
           GClass28.dictionary_0.Add(dbRow.TitleId, gclass32_2);
         }
       }

@@ -70,7 +70,7 @@ namespace ns0
         GClass78 gclass78 = new GClass78();
         try
         {
-          gclass78.method_2(this.txtUrl.Text);
+          gclass78.DownloadFile(this.txtUrl.Text);
           this.FileLocationWiiU = this.txtUrl.Text;
           this.DialogResult = DialogResult.OK;
           this.Close();

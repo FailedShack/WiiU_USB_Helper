@@ -107,7 +107,7 @@ namespace ns0
 
     public static void smethod_8(string string_0, string string_1)
     {
-      GClass6.smethod_9(new GClass78().method_2(string_0), string_1);
+      GClass6.smethod_9(new GClass78().DownloadFile(string_0), string_1);
     }
 
     public static void smethod_9(byte[] byte_0, string string_0)

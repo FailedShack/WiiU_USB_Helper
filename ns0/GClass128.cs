@@ -148,7 +148,7 @@ namespace ns0
       System.IO.Path.Combine(GClass88.CachePath, "steam");
       string string_1 = GClass128.smethod_8(gclass32_0);
       System.IO.Directory.CreateDirectory(GClass128.String_0);
-      new GClass78().method_5(string.Format("{0}/res/tools/Shortcut.exe", (object) Class67.String_2), string_1, 0UL, GClass78.GEnum4.const_0, (WebProxy) null, 0L, (byte[]) null, (byte[]) null, (byte) 0);
+      new GClass78().method_5(string.Format("{0}/res/tools/Shortcut.exe", (object) Class67.CDNWiiUUSBHelperURL), string_1, 0UL, GClass78.GEnum4.const_0, (WebProxy) null, 0L, (byte[]) null, (byte[]) null, (byte) 0);
       System.IO.File.WriteAllText(string_1 + ".arg", string.Format("{0}|{1}|{2}", (object) gclass95_0.GetExecutable(), (object) gclass95_0.GetArguments(), (object) System.IO.Path.GetDirectoryName(gclass95_0.GetExecutable())));
       return string_1;
     }
@@ -158,7 +158,7 @@ namespace ns0
       string str1 = System.IO.Path.Combine(GClass88.CachePath, "icons");
       string str2 = System.IO.Path.Combine(str1, gclass32_0.TitleId.IdRaw + ".ico");
       System.IO.Directory.CreateDirectory(str1);
-      using (MemoryStream memoryStream = new MemoryStream(new GClass78().method_2(gclass32_0.IconUrl)))
+      using (MemoryStream memoryStream = new MemoryStream(new GClass78().DownloadFile(gclass32_0.IconUrl)))
       {
         using (FileStream fileStream = System.IO.File.Create(str2))
           GClass124.smethod_0((Bitmap) Image.FromStream((Stream) memoryStream), (Stream) fileStream, 128, false);
@@ -285,7 +285,7 @@ namespace ns0
       {
         try
         {
-          string string_0 = string.Format("{0}/res/emulators/banners/{1}.png", (object) Class67.String_2, (object) gclass32_0.TitleId.IdRaw);
+          string string_0 = string.Format("{0}/res/emulators/banners/{1}.png", (object) Class67.CDNWiiUUSBHelperURL, (object) gclass32_0.TitleId.IdRaw);
           string_1 = System.IO.Path.Combine(GClass128.String_0, gclass32_0.TitleId.IdRaw + ".banner.png");
           new GClass78().method_5(string_0, string_1, 0UL, GClass78.GEnum4.const_0, (WebProxy) null, 0L, (byte[]) null, (byte[]) null, (byte) 0);
           return string_1;
