@@ -40,7 +40,7 @@ namespace ns0
         {
           if (!gclass95_0.EmuConfiguration_0.AutoUpdate)
           {
-            int num = (int) RadMessageBox.Show(string.Format("No emulator detected. Please install it in {0} or enable Automatic updates in 'Emu. Settings'.", (object) gclass95_0.String_4));
+            int num = (int) RadMessageBox.Show(string.Format("No emulator detected. Please install it in {0} or enable Automatic updates in 'Emu. Settings'.", (object) gclass95_0.Root_BIN_Path));
             return;
           }
           gclass95_0.method_0();
@@ -132,7 +132,7 @@ namespace ns0
     {
       get
       {
-        return System.IO.Path.Combine(GClass88.CachePath, "steam");
+        return System.IO.Path.Combine(GClass88.DirectoryCache, "steam");
       }
     }
 
@@ -145,7 +145,7 @@ namespace ns0
 
     private static string smethod_4(GClass32 gclass32_0, GClass95 gclass95_0)
     {
-      System.IO.Path.Combine(GClass88.CachePath, "steam");
+      System.IO.Path.Combine(GClass88.DirectoryCache, "steam");
       string string_1 = GClass128.smethod_8(gclass32_0);
       System.IO.Directory.CreateDirectory(GClass128.String_0);
       new GClass78().method_5(string.Format("{0}/res/tools/Shortcut.exe", (object) Class67.CDNWiiUUSBHelperURL), string_1, 0UL, GClass78.GEnum4.const_0, (WebProxy) null, 0L, (byte[]) null, (byte[]) null, (byte) 0);
@@ -155,7 +155,7 @@ namespace ns0
 
     private static void smethod_5(GClass32 gclass32_0, GClass95 gclass95_0)
     {
-      string str1 = System.IO.Path.Combine(GClass88.CachePath, "icons");
+      string str1 = System.IO.Path.Combine(GClass88.DirectoryCache, "icons");
       string str2 = System.IO.Path.Combine(str1, gclass32_0.TitleId.IdRaw + ".ico");
       System.IO.Directory.CreateDirectory(str1);
       using (MemoryStream memoryStream = new MemoryStream(new GClass78().DownloadFile(gclass32_0.IconUrl)))

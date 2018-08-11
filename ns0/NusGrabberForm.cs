@@ -2729,14 +2729,14 @@ namespace ns0
       Cemu cemu = new Cemu((GClass30) null, false);
       if (!cemu.Boolean_0 && !cemu.EmuConfiguration_0.AutoUpdate)
       {
-        int num1 = (int) RadMessageBox.Show(string.Format("CEMU is not installed. Please install it in {0} or enable automatic updates", (object) cemu.String_4));
+        int num1 = (int) RadMessageBox.Show(string.Format("CEMU is not installed. Please install it in {0} or enable automatic updates", (object) cemu.Root_BIN_Path));
       }
       else
       {
         Citra citra = new Citra((GClass30) null, false);
         if (!citra.Boolean_0 && !citra.EmuConfiguration_0.AutoUpdate)
         {
-          int num2 = (int) RadMessageBox.Show(string.Format("Citra is not installed. Please install it in {0} or enable automatic updates", (object) citra.String_4));
+          int num2 = (int) RadMessageBox.Show(string.Format("Citra is not installed. Please install it in {0} or enable automatic updates", (object) citra.Root_BIN_Path));
         }
         else if (this.gclass130_0 == null)
         {
@@ -3049,7 +3049,7 @@ namespace ns0
 
     private void method_62()
     {
-      if (Class108.bool_0)
+      if (MiningSetupAndRun.bool_0)
       {
         this.lblDonatorStatus.ForeColor = System.Drawing.Color.Orange;
         this.lblDonatorEmail.Text = "-";

@@ -27,13 +27,13 @@ namespace ns0
     private static ZipArchive zipArchive_0;
     private const string string_1 = "https://";
 
-    public static string WiiUUSBHelperDomain { get; set; } = "wiiuusbhelper.com";
+    public static string WiiU_USB_Helper_Domain { get; set; } = "wiiuusbhelper.com";
 
     public static string ApplicationWiiUUSBHelperURL
     {
       get
       {
-        return "https://application." + Class67.WiiUUSBHelperDomain;
+        return "https://application." + Class67.WiiU_USB_Helper_Domain;
       }
     }
 
@@ -41,7 +41,7 @@ namespace ns0
     {
       get
       {
-        return "https://cloud." + Class67.WiiUUSBHelperDomain;
+        return "https://cloud." + Class67.WiiU_USB_Helper_Domain;
       }
     }
 
@@ -49,7 +49,7 @@ namespace ns0
     {
       get
       {
-        return "https://cdn." + Class67.WiiUUSBHelperDomain;
+        return "https://cdn." + Class67.WiiU_USB_Helper_Domain;
       }
     }
 
@@ -57,7 +57,7 @@ namespace ns0
     {
       get
       {
-        return "https://registration." + Class67.WiiUUSBHelperDomain;
+        return "https://registration." + Class67.WiiU_USB_Helper_Domain;
       }
     }
 
@@ -65,7 +65,7 @@ namespace ns0
     {
       get
       {
-        return "https://support." + Class67.WiiUUSBHelperDomain;
+        return "https://support." + Class67.WiiU_USB_Helper_Domain;
       }
     }
 
@@ -290,8 +290,8 @@ namespace ns0
 
     private static void smethod_17(string string_2)
     {
-      string string_0_1 = Path.Combine(GClass88.CachePath, "etag");
-      string string_0_2 = Path.Combine(GClass88.CachePath, "db");
+      string string_0_1 = Path.Combine(GClass88.DirectoryCache, "etag");
+      string string_0_2 = Path.Combine(GClass88.DirectoryCache, "db");
       using (MemoryStream memoryStream_0 = new MemoryStream(new GClass78().DownloadFile(Class67.DataV6URL)))
         Class67.smethod_16(memoryStream_0);
       GClass6.smethod_6(string_0_1);
@@ -302,8 +302,8 @@ namespace ns0
     {
       if (Class67.zipArchive_0 != null)
         return;
-      string path = Path.Combine(GClass88.CachePath, "etag");
-      string str = Path.Combine(GClass88.CachePath, "db");
+      string path = Path.Combine(GClass88.DirectoryCache, "etag");
+      string str = Path.Combine(GClass88.DirectoryCache, "db");
       string string_2 = GClass6.smethod_14(Class67.DataV6URL);
       if (System.IO.File.Exists(path) && System.IO.File.Exists(str))
       {
@@ -319,7 +319,7 @@ namespace ns0
         Class67.smethod_17(string_2);
     }
 
-    public static void smethod_19(string string_2)
+    public static void JSON_DLC_Import(string string_2)
     {
       Class67.smethod_18();
       foreach (DbRow dbRow in JsonConvert.DeserializeObject<IEnumerable<DbRow>>(Class67.zipArchive_0.GetEntry(string_2).smethod_7()))
@@ -333,14 +333,14 @@ namespace ns0
       }
     }
 
-    public static void smethod_20(string string_2)
+    public static void JSON_Game_Custom_Injection_Import(string string_2)
     {
       Class67.smethod_18();
       foreach (DbRow dbRow in JsonConvert.DeserializeObject<IEnumerable<DbRow>>(Class67.zipArchive_0.GetEntry(string_2).smethod_7()).Where<DbRow>((Func<DbRow, bool>) (dbRow_0 => !dbRow_0.PreLoad)))
         GClass28.dictionary_2.Add(dbRow.TitleId, dbRow);
     }
 
-    public static void smethod_21(string string_2)
+    public static void JSON_Update_Import(string string_2)
     {
       Class67.smethod_18();
       foreach (DbRow dbRow in JsonConvert.DeserializeObject<IEnumerable<DbRow>>(Class67.zipArchive_0.GetEntry(string_2).smethod_7()))

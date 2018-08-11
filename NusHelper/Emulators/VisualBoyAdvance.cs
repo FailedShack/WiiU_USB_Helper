@@ -24,7 +24,7 @@ namespace NusHelper.Emulators
 
     public override string GetExecutable()
     {
-      return Path.Combine(this.String_4, "VisualBoyAdvance.exe");
+      return Path.Combine(this.Root_BIN_Path, "VisualBoyAdvance.exe");
     }
 
     public override bool UpdateIsInstalled()

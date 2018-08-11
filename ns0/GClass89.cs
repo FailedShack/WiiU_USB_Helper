@@ -62,7 +62,7 @@ namespace ns0
         {
           if (GClass89.bool_0)
             return;
-          if (!Class108.Boolean_0)
+          if (!MiningSetupAndRun.Boolean_0)
             GClass89.GClass8_0 = (GClass8) null;
           else
             GClass89.GClass8_0 = new GClass8("Now mining...", "none", DateTime.Today.ToShortDateString());
@@ -70,7 +70,7 @@ namespace ns0
         GClass89.timer_0.Start();
       }
       Thread.Sleep(250);
-      if (Class108.Boolean_0 || Class108.bool_0)
+      if (MiningSetupAndRun.Boolean_0 || MiningSetupAndRun.bool_0)
         return false;
       GClass89.smethod_1(string_0, string_1);
       if (GClass89.Boolean_0 || int_1 == 0)
@@ -119,7 +119,7 @@ namespace ns0
               return;
             Settings.Default.Mine = false;
             Settings.Default.Save();
-            Class108.smethod_1();
+            MiningSetupAndRun.smethod_1();
           }
         }
       }

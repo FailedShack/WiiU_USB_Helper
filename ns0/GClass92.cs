@@ -141,7 +141,7 @@ namespace ns0
       catch
       {
       }
-      GClass6.smethod_8(string.Format("{0}/res/SNES/vc-template.zip", (object) Class67.CDNWiiUUSBHelperURL), this.WorkPath);
+      GClass6.Download_Unzip(string.Format("{0}/res/SNES/vc-template.zip", (object) Class67.CDNWiiUUSBHelperURL), this.WorkPath);
       task.Wait();
       this.method_11(3);
       this.vmethod_3();

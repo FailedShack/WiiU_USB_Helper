@@ -14,25 +14,25 @@ namespace ns0
 {
   public static class GClass88
   {
-    public static string CachePath { get; private set; }
+    public static string DirectoryCache { get; private set; }
 
     public static void smethod_0(string string_1)
     {
-      if (!GClass88.smethod_1(string_1))
+      if (!GClass88.Check_If_Exists_In_Cache_Dir(string_1))
         return;
-      GClass6.smethod_6(GClass88.smethod_11(string_1));
+      GClass6.smethod_6(GClass88.Combine_Cache_Dir_With_String_1(string_1));
     }
 
-    public static bool smethod_1(string string_1)
+    public static bool Check_If_Exists_In_Cache_Dir(string string_1)
     {
-      return File.Exists(GClass88.smethod_11(string_1));
+      return File.Exists(GClass88.Combine_Cache_Dir_With_String_1(string_1));
     }
 
     public static byte[] smethod_2(Uri uri_0, TimeSpan timeSpan_0)
     {
       try
       {
-        string str = GClass88.smethod_11(uri_0.smethod_14());
+        string str = GClass88.Combine_Cache_Dir_With_String_1(uri_0.smethod_14());
         if (!str.smethod_15(timeSpan_0))
           return File.ReadAllBytes(str);
         try
@@ -65,7 +65,7 @@ namespace ns0
       class66.action_1 = action_1;
       // ISSUE: reference to a compiler-generated field
       // ISSUE: reference to a compiler-generated field
-      class66.string_0 = GClass88.smethod_11(class66.uri_0.smethod_14());
+      class66.string_0 = GClass88.Combine_Cache_Dir_With_String_1(class66.uri_0.smethod_14());
       // ISSUE: reference to a compiler-generated field
       if (class66.string_0.smethod_15(timeSpan_0))
       {
@@ -86,8 +86,8 @@ namespace ns0
 
     public static byte[] smethod_4(string string_1)
     {
-      if (GClass88.smethod_1(string_1))
-        return File.ReadAllBytes(GClass88.smethod_11(string_1));
+      if (GClass88.Check_If_Exists_In_Cache_Dir(string_1))
+        return File.ReadAllBytes(GClass88.Combine_Cache_Dir_With_String_1(string_1));
       return (byte[]) null;
     }
 
@@ -98,13 +98,13 @@ namespace ns0
 
     public static DateTime smethod_6(string string_1)
     {
-      return new FileInfo(GClass88.smethod_11(string_1)).LastWriteTime;
+      return new FileInfo(GClass88.Combine_Cache_Dir_With_String_1(string_1)).LastWriteTime;
     }
 
     public static string[] smethod_7(string string_1)
     {
-      if (GClass88.smethod_1(string_1))
-        return File.ReadAllLines(GClass88.smethod_11(string_1));
+      if (GClass88.Check_If_Exists_In_Cache_Dir(string_1))
+        return File.ReadAllLines(GClass88.Combine_Cache_Dir_With_String_1(string_1));
       return (string[]) null;
     }
 
@@ -115,32 +115,32 @@ namespace ns0
 
     public static void smethod_9(Uri uri_0, byte[] byte_0)
     {
-      File.WriteAllBytes(GClass88.smethod_11(uri_0.smethod_14()), byte_0);
+      File.WriteAllBytes(GClass88.Combine_Cache_Dir_With_String_1(uri_0.smethod_14()), byte_0);
     }
 
     public static void smethod_10(string string_1, string[] string_2)
     {
-      File.WriteAllLines(GClass88.smethod_11(string_1), string_2);
+      File.WriteAllLines(GClass88.Combine_Cache_Dir_With_String_1(string_1), string_2);
     }
 
-    internal static string smethod_11(this string string_1)
+    internal static string Combine_Cache_Dir_With_String_1(this string string_1)
     {
-      return GClass88.smethod_16(string_1);
+      return GClass88.Combine_Cache_Dir_With_String(string_1);
     }
 
     internal static string smethod_12(string string_1)
     {
-      if (GClass88.smethod_1(string_1))
-        return File.ReadAllText(GClass88.smethod_11(string_1));
+      if (GClass88.Check_If_Exists_In_Cache_Dir(string_1))
+        return File.ReadAllText(GClass88.Combine_Cache_Dir_With_String_1(string_1));
       return (string) null;
     }
 
-    internal static void smethod_13(string string_1)
+    internal static void Check_For_Create_Cache_Dir(string CreateDirString)
     {
-      GClass88.CachePath = string_1;
-      if (Directory.Exists(GClass88.CachePath))
+      GClass88.DirectoryCache = CreateDirString;
+      if (Directory.Exists(GClass88.DirectoryCache))
         return;
-      Directory.CreateDirectory(GClass88.CachePath);
+      Directory.CreateDirectory(GClass88.DirectoryCache);
     }
 
     internal static string smethod_14(this Uri uri_0)
@@ -155,9 +155,9 @@ namespace ns0
       return true;
     }
 
-    private static string smethod_16(string string_1)
+    private static string Combine_Cache_Dir_With_String(string string_1)
     {
-      return Path.Combine(GClass88.CachePath, string_1);
+      return Path.Combine(GClass88.DirectoryCache, string_1);
     }
   }
 }

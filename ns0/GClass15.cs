@@ -230,7 +230,7 @@ namespace ns0
     {
       get
       {
-        return Alphaleonis.Win32.Filesystem.Path.Combine(GClass88.CachePath, "mods", (string) this.gclass32_0.TitleId);
+        return Alphaleonis.Win32.Filesystem.Path.Combine(GClass88.DirectoryCache, "mods", (string) this.gclass32_0.TitleId);
       }
     }
 
@@ -269,7 +269,7 @@ namespace ns0
         if (!md5.ComputeHash(Alphaleonis.Win32.Filesystem.File.ReadAllBytes(this.method_12(string_0))).smethod_5(gclass14_0.Md5.smethod_6()))
           this.method_10(gclass14_0);
       }
-      GClass6.smethod_9(Alphaleonis.Win32.Filesystem.File.ReadAllBytes(this.method_12(string_0)), this.String_0);
+      GClass6.Unzip(Alphaleonis.Win32.Filesystem.File.ReadAllBytes(this.method_12(string_0)), this.String_0);
       using (FileStream fileStream = Alphaleonis.Win32.Filesystem.File.OpenRead(this.method_12(string_0)))
       {
         using (ZipArchive zipArchive = new ZipArchive((Stream) fileStream, ZipArchiveMode.Read))

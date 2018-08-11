@@ -411,7 +411,7 @@ namespace ns0
       if (Directory.Exists(this.String_2))
         FileSystem.DeleteDirectory(this.String_2, DeleteDirectoryOption.DeleteAllContents);
       FileSystem.RenameDirectory(this.OutputPath, this.TitleId.IdRaw);
-      string path = Path.Combine(GClass88.CachePath, "makecia.exe");
+      string path = Path.Combine(GClass88.DirectoryCache, "makecia.exe");
       try
       {
         File.WriteAllBytes(path, Class123.makecia);
@@ -451,7 +451,7 @@ namespace ns0
     public static void smethod_0()
     {
       GClass30.list_0 = new List<string>();
-      if (!GClass88.smethod_1("installed"))
+      if (!GClass88.Check_If_Exists_In_Cache_Dir("installed"))
         return;
       GClass30.list_0.AddRange((IEnumerable<string>) GClass88.smethod_7("installed"));
     }
@@ -609,7 +609,7 @@ namespace ns0
       if (this.System != SystemType.SystemWiiU)
         throw new Exception("The FST can only be retrieved for WUP titles.");
       GClass100 gclass100 = !(this is GClass33) ? GClass100.smethod_1(new GClass78().DownloadFile(string.Format("{0}tmd", (object) this.String_1)), SystemType.SystemWiiU) : GClass100.smethod_1(new GClass78().DownloadFile(string.Format("{0}tmd.{1}", (object) this.String_1, (object) this.Version)), SystemType.SystemWiiU);
-      GClass99 gclass99 = this is GClass33 || this.Platform == Platform.Wii_U_Custom ? GClass99.smethod_7(new GClass78().DownloadFile(this.String_1 + "cetk"), SystemType.SystemWiiU) : (!this.bool_0 ? GClass99.smethod_7(this.TicketArray, SystemType.SystemWiiU) : GClass99.smethod_7(File.ReadAllBytes(Path.Combine(Path.Combine(GClass88.CachePath, "tickets"), this.TitleId.IdRaw + ".tik")), SystemType.SystemWiiU));
+      GClass99 gclass99 = this is GClass33 || this.Platform == Platform.Wii_U_Custom ? GClass99.smethod_7(new GClass78().DownloadFile(this.String_1 + "cetk"), SystemType.SystemWiiU) : (!this.bool_0 ? GClass99.smethod_7(this.TicketArray, SystemType.SystemWiiU) : GClass99.smethod_7(File.ReadAllBytes(Path.Combine(Path.Combine(GClass88.DirectoryCache, "tickets"), this.TitleId.IdRaw + ".tik")), SystemType.SystemWiiU));
       byte[] inputBuffer = new GClass78().DownloadFile(this.String_1 + gclass100.GClass101_0[0].ContentId.ToString("x8"));
       using (AesCryptoServiceProvider cryptoServiceProvider = new AesCryptoServiceProvider())
       {

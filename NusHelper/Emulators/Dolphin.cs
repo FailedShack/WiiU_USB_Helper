@@ -25,7 +25,7 @@ namespace NusHelper.Emulators
 
     public override string GetExecutable()
     {
-      return Path.Combine(this.String_4, "Dolphin.exe");
+      return Path.Combine(this.Root_BIN_Path, "Dolphin.exe");
     }
 
     public override bool UpdateIsInstalled()

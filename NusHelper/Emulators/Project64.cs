@@ -26,7 +26,7 @@ namespace NusHelper.Emulators
 
     public override string GetExecutable()
     {
-      return Path.Combine(this.String_4, "Project64.exe");
+      return Path.Combine(this.Root_BIN_Path, "Project64.exe");
     }
 
     public override bool UpdateIsInstalled()
@@ -50,7 +50,7 @@ namespace NusHelper.Emulators
       if (!this.Boolean_2 && this.gclass30_0.System == GEnum3.const_1)
       {
         IEnumerable<GClass12> ienumerable_0 = this.gclass30_0.method_15().Files.Where<GClass12>((Func<GClass12, bool>) (x => x.string_0.Contains("rom")));
-        this.gclass30_0.method_16(this.String_5, true, directDownload, ienumerable_0, true);
+        this.gclass30_0.method_16(this.Root_Games_Path, true, directDownload, ienumerable_0, true);
       }
       this.method_12(true);
     }

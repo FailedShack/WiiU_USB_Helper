@@ -293,7 +293,7 @@ namespace ns0
           return gclass30_0.Ticket;
         }
         this.method_17("Downloading ticket from that site");
-        byte[] bytes = System.IO.File.ReadAllBytes(Path.Combine(Path.Combine(GClass88.CachePath, "tickets"), gclass30_0.TitleId.IdRaw + ".tik"));
+        byte[] bytes = System.IO.File.ReadAllBytes(Path.Combine(Path.Combine(GClass88.DirectoryCache, "tickets"), gclass30_0.TitleId.IdRaw + ".tik"));
         gclass30_0.TicketArray = bytes;
         System.IO.File.WriteAllBytes(str, bytes);
         gclass30_0.Ticket = GClass99.smethod_7(gclass30_0.TicketArray, gclass30_0.System);

@@ -19,11 +19,11 @@ namespace ns0
     {
       try
       {
-        string str1 = Path.Combine(GClass88.CachePath, "packs");
+        string str1 = Path.Combine(GClass88.DirectoryCache, "packs");
         Directory.CreateDirectory(str1);
         GClass27.smethod_7("https://github.com/slashiee/cemu_graphic_packs/archive/master.zip", str1);
         string[] files = Directory.GetFiles(str1, "*", System.IO.SearchOption.AllDirectories);
-        string str2 = Path.Combine(new Cemu((GClass30) null, false).String_4, "graphicPacks");
+        string str2 = Path.Combine(new Cemu((GClass30) null, false).Root_BIN_Path, "graphicPacks");
         Directory.CreateDirectory(str2);
         foreach (string path in ((IEnumerable<string>) files).Where<string>((Func<string, bool>) (string_0 => string_0.Contains("rules.txt"))))
         {

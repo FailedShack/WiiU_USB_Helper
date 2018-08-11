@@ -306,7 +306,7 @@ namespace ns0
             this.method_4("workdir.tmp\\files\\game.iso"),
             this.method_4("workdir.tmp\\files\\disc2.iso")
           };
-          GClass6.smethod_8("https://cdn.wiiuusbhelper.com/res/nintendont/vc-template.zip", this.WorkPath);
+          GClass6.Download_Unzip("https://cdn.wiiuusbhelper.com/res/nintendont/vc-template.zip", this.WorkPath);
           GClass6.smethod_5(this.method_4("workdir.tmp2"));
           GClass6.smethod_5(str5);
           GClass6.smethod_5(str6);
@@ -345,7 +345,7 @@ namespace ns0
                 using (MemoryStream memoryStream = new MemoryStream(new GClass78().DownloadFile(string.Format("{0}/res/Wii/mk_patcher.zip", (object) Class67.CDNWiiUUSBHelperURL))))
                 {
                   using (ZipArchive zipArchive_0 = new ZipArchive((Stream) memoryStream))
-                    zipArchive_0.smethod_0(this.WorkPath, true);
+                    zipArchive_0.UnZip_Process(this.WorkPath, true);
                 }
                 GClass91.smethod_0("patch-wiimmfi.bat", this.WorkPath);
                 GClass6.smethod_6(this.method_4(Alphaleonis.Win32.Filesystem.Path.GetFileName(this.string_3[0])));

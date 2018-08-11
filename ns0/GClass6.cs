@@ -105,17 +105,17 @@ namespace ns0
       return num;
     }
 
-    public static void smethod_8(string string_0, string string_1)
+    public static void Download_Unzip(string Zip_Url, string UnzipLocation)
     {
-      GClass6.smethod_9(new GClass78().DownloadFile(string_0), string_1);
+      GClass6.Unzip(new GClass78().DownloadFile(Zip_Url), UnzipLocation);
     }
 
-    public static void smethod_9(byte[] byte_0, string string_0)
+    public static void Unzip(byte[] Zip_Bytes, string Zip_Destinatio)
     {
-      using (MemoryStream memoryStream = new MemoryStream(byte_0))
+      using (MemoryStream Zip_Memory_stream = new MemoryStream(Zip_Bytes))
       {
-        using (ZipArchive zipArchive_0 = new ZipArchive((Stream) memoryStream))
-          zipArchive_0.smethod_0(string_0, true);
+        using (ZipArchive zipArchive_0 = new ZipArchive((Stream) Zip_Memory_stream))
+          zipArchive_0.UnZip_Process(Zip_Destinatio, true);
       }
     }
 

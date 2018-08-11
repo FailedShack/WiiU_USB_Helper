@@ -226,7 +226,7 @@ namespace ns0
           {
             try
             {
-              string str4 = Path.Combine(GClass88.CachePath, str3);
+              string str4 = Path.Combine(GClass88.DirectoryCache, str3);
               System.IO.File.Copy(sourceFileName, str4, true);
               Encoding.UTF8.GetString(new WebClient().UploadFile(string.Format("{0}/issue/upload.php", (object) Class67.SupportWiiUUSBHelperURL), str4));
             }

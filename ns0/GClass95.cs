@@ -32,8 +32,8 @@ namespace ns0
       this.Name = string_2;
       try
       {
-        if (!Directory.Exists(this.String_6))
-          Directory.CreateDirectory(this.String_6);
+        if (!Directory.Exists(this.Root_Path))
+          Directory.CreateDirectory(this.Root_Path);
       }
       catch (Exception ex)
       {
@@ -48,10 +48,10 @@ namespace ns0
         Environment.Exit(0);
         return;
       }
-      if (!Directory.Exists(this.String_5))
-        Directory.CreateDirectory(this.String_5);
-      if (!Directory.Exists(this.String_4))
-        Directory.CreateDirectory(this.String_4);
+      if (!Directory.Exists(this.Root_Games_Path))
+        Directory.CreateDirectory(this.Root_Games_Path);
+      if (!Directory.Exists(this.Root_BIN_Path))
+        Directory.CreateDirectory(this.Root_BIN_Path);
       this.Url = string_3;
       this.bool_0 = bool_3;
       if (!bool_3)
@@ -72,7 +72,7 @@ namespace ns0
       string str = "";
       try
       {
-        str = System.IO.File.ReadAllText(Path.Combine(this.String_4, "etag"));
+        str = System.IO.File.ReadAllText(Path.Combine(this.Root_BIN_Path, "etag"));
       }
       catch
       {
@@ -83,7 +83,7 @@ namespace ns0
       Class67.smethod_3(this);
       if (!this.Boolean_0)
         return;
-      System.IO.File.WriteAllText(Path.Combine(this.String_4, "etag"), contents);
+      System.IO.File.WriteAllText(Path.Combine(this.Root_BIN_Path, "etag"), contents);
     }
 
     public void method_1()
@@ -127,7 +127,7 @@ namespace ns0
     {
       try
       {
-        string str = Path.Combine(GClass88.CachePath, "saves_backup");
+        string str = Path.Combine(GClass88.DirectoryCache, "saves_backup");
         foreach (DirectoryInfo enumerateDirectory in new DirectoryInfo(str).EnumerateDirectories())
         {
           if (enumerateDirectory.Name.Contains<char>(','))
@@ -240,27 +240,27 @@ namespace ns0
     {
       get
       {
-        return Path.Combine(this.String_5, this.gclass30_0.method_12());
+        return Path.Combine(this.Root_Games_Path, this.gclass30_0.method_12());
       }
     }
 
-    internal string String_4
+    internal string Root_BIN_Path
     {
       get
       {
-        return Path.Combine(this.String_6, "BIN");
+        return Path.Combine(this.Root_Path, "BIN");
       }
     }
 
-    internal string String_5
+    internal string Root_Games_Path
     {
       get
       {
-        return Path.Combine(this.String_6, "GAMES");
+        return Path.Combine(this.Root_Path, "GAMES");
       }
     }
 
-    private string String_6
+    private string Root_Path
     {
       get
       {
@@ -371,7 +371,7 @@ namespace ns0
       process.StartInfo.FileName = this.GetExecutable();
       process.EnableRaisingEvents = true;
       process.StartInfo.Arguments = string_2;
-      process.StartInfo.WorkingDirectory = this.String_4;
+      process.StartInfo.WorkingDirectory = this.Root_BIN_Path;
       process.StartInfo.UseShellExecute = false;
       process.StartInfo.RedirectStandardOutput = true;
       process.Exited += (EventHandler) ((sender, e) => this.method_7());
@@ -383,8 +383,8 @@ namespace ns0
       process.Start();
       if (!Settings.Default.PauseMiner)
         return;
-      Class108.smethod_1();
-      this.Event_0 += (EventHandler) ((sender, e) => Class108.smethod_0());
+      MiningSetupAndRun.smethod_1();
+      this.Event_0 += (EventHandler) ((sender, e) => MiningSetupAndRun.Miner_Compatability_Check_And_PrepOrStart());
     }
 
     protected static long smethod_0(Stream stream_0, byte[] byte_0)
@@ -470,7 +470,7 @@ namespace ns0
 
     protected void method_9(bool bool_3)
     {
-      string path1 = Path.Combine(GClass88.CachePath, "rpl2elf.exe");
+      string path1 = Path.Combine(GClass88.DirectoryCache, "rpl2elf.exe");
       if (!System.IO.File.Exists(path1))
         System.IO.File.WriteAllBytes(path1, Class123.rpl2elf);
       GClass13 gclass13 = this.gclass30_0.method_15();
@@ -481,7 +481,7 @@ namespace ns0
           return gclass12_0.string_1 == "code";
         return false;
       }));
-      this.gclass30_0.method_16(this.String_5, true, (bool_3 ? 1 : 0) != 0, (IEnumerable<GClass12>) new GClass12[2]
+      this.gclass30_0.method_16(this.Root_Games_Path, true, (bool_3 ? 1 : 0) != 0, (IEnumerable<GClass12>) new GClass12[2]
       {
         gclass12_1,
         gclass12_2
@@ -566,7 +566,7 @@ namespace ns0
     {
       if (this.Boolean_2 || this.gclass30_0.System != SystemType.SystemWiiU)
         return;
-      this.gclass30_0.method_16(this.String_5, true, directDownload, (IEnumerable<GClass12>) null, false);
+      this.gclass30_0.method_16(this.Root_Games_Path, true, directDownload, (IEnumerable<GClass12>) null, false);
     }
 
     public struct GStruct6

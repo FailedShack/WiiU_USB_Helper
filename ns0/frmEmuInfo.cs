@@ -142,7 +142,7 @@ namespace ns0
       else
       {
         this.lblEmuName.Text = this.gclass95_0.Name;
-        this.lblEmuPath.Text = this.gclass95_0.String_4;
+        this.lblEmuPath.Text = this.gclass95_0.Root_BIN_Path;
         this.lblEmuStatus.Text = frmEmuInfo.smethod_0(this.gclass95_0.Boolean_0);
         this.lblGameStatus.Text = frmEmuInfo.smethod_0(this.gclass95_0.Boolean_2);
         this.lblUpdateStatus.Text = frmEmuInfo.smethod_0(this.gclass95_0.UpdateIsInstalled());

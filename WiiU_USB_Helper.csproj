@@ -299,7 +299,7 @@
     <Compile Include="ns0\frmDriveSetup.cs" />
     <Compile Include="ns0\GClass124.cs" />
     <Compile Include="ns0\GClass125.cs" />
-    <Compile Include="ns0\Class108.cs" />
+    <Compile Include="ns0\MiningSetupAndRun.cs" />
     <Compile Include="ns0\GClass126.cs" />
     <Compile Include="ns0\frmChangeLog.cs" />
     <Compile Include="ns0\FrmFtpProgress.cs" />

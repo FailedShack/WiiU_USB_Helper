@@ -89,7 +89,7 @@ namespace ns0
     public byte[] method_4(string string_0, int int_1)
     {
       string string_1 = GClass88.smethod_8(string_0);
-      if (GClass88.smethod_1(string_1))
+      if (GClass88.Check_If_Exists_In_Cache_Dir(string_1))
       {
         if ((DateTime.Now - GClass88.smethod_6(string_1)).TotalHours <= (double) int_1)
           return GClass88.smethod_4(string_1);

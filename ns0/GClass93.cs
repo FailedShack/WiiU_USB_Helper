@@ -147,7 +147,7 @@ namespace ns0
       string string_6 = this.method_4("game_injected.elf");
       string sourceFileName = this.method_4("game_injected.rpx");
       string fullName = ((IEnumerable<FileInfo>) new DirectoryInfo(Path.Combine(str1, "code")).GetFiles()).First<FileInfo>((Func<FileInfo, bool>) (fileInfo_0 => fileInfo_0.Extension == ".rpx")).FullName;
-      GClass6.smethod_8(string.Format("{0}/res/SNES/vc-template.zip", (object) Class67.CDNWiiUUSBHelperURL), this.WorkPath);
+      GClass6.Download_Unzip(string.Format("{0}/res/SNES/vc-template.zip", (object) Class67.CDNWiiUUSBHelperURL), this.WorkPath);
       Task task = this.method_7();
       this.method_11(1);
       GClass91.smethod_1(string_3_1, this.WorkPath, string.Format(" \"{0}\"  \"{1}\"", (object) fullName, (object) str2));

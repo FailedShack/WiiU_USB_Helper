@@ -38,9 +38,9 @@ namespace ns0
       GClass26.string_0 = string_5;
       GClass26.string_1 = string_6;
       GClass26.string_2 = string_7;
-      GClass88.smethod_13(GClass26.string_0);
+      GClass88.Check_For_Create_Cache_Dir(GClass26.string_0);
       Directory.CreateDirectory(GClass17.string_0);
-      Class67.WiiUUSBHelperDomain = string_8;
+      Class67.WiiU_USB_Helper_Domain = string_8;
       GClass28.string_5 = Class67.smethod_22();
       GClass28.list_2 = Class67.smethod_2();
       GClass28.string_4 = string_4;
@@ -51,15 +51,15 @@ namespace ns0
       GClass28.dictionary_2.Clear();
       GClass30.smethod_0();
       Class67.smethod_13();
-      Class67.smethod_20("out/games.json");
-      Class67.smethod_20("out/customs.json");
-      Class67.smethod_20("out/injections.json");
-      Class67.smethod_20("out/games3ds.json");
-      Class67.smethod_20("out/gamesWii.json");
-      Class67.smethod_21("out/updates.json");
-      Class67.smethod_21("out/updates3ds.json");
-      Class67.smethod_19("out/dlcs.json");
-      Class67.smethod_19("out/dlcs3ds.json");
+      Class67.JSON_Game_Custom_Injection_Import("out/games.json");
+      Class67.JSON_Game_Custom_Injection_Import("out/customs.json");
+      Class67.JSON_Game_Custom_Injection_Import("out/injections.json");
+      Class67.JSON_Game_Custom_Injection_Import("out/games3ds.json");
+      Class67.JSON_Game_Custom_Injection_Import("out/gamesWii.json");
+      Class67.JSON_Update_Import("out/updates.json");
+      Class67.JSON_Update_Import("out/updates3ds.json");
+      Class67.JSON_DLC_Import("out/dlcs.json");
+      Class67.JSON_DLC_Import("out/dlcs3ds.json");
       if (!bool_0)
       {
         try
@@ -104,7 +104,7 @@ namespace ns0
           }
         }
       }
-      if (GClass88.smethod_1("lasttitles"))
+      if (GClass88.Check_If_Exists_In_Cache_Dir("lasttitles"))
       {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: reference to a compiler-generated method
@@ -114,7 +114,7 @@ namespace ns0
         }.method_0)).ToList<GClass32>();
       }
       GClass88.smethod_10("lasttitles", GClass28.dictionary_0.Values.Select<GClass32, string>((Func<GClass32, string>) (gclass32_0 => gclass32_0.TitleId.IdRaw)).ToArray<string>());
-      if (GClass88.smethod_1("lastUpdates"))
+      if (GClass88.Check_If_Exists_In_Cache_Dir("lastUpdates"))
       {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: reference to a compiler-generated method

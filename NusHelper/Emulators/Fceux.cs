@@ -31,7 +31,7 @@ namespace NusHelper.Emulators
 
     public override string GetExecutable()
     {
-      return System.IO.Path.Combine(this.String_4, "fceux.exe");
+      return System.IO.Path.Combine(this.Root_BIN_Path, "fceux.exe");
     }
 
     public override bool UpdateIsInstalled()
