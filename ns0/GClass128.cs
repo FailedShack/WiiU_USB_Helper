@@ -43,7 +43,7 @@ namespace ns0
             int num = (int) RadMessageBox.Show(string.Format("No emulator detected. Please install it in {0} or enable Automatic updates in 'Emu. Settings'.", (object) gclass95_0.Root_BIN_Path));
             return;
           }
-          gclass95_0.method_0();
+          gclass95_0.CheckWebForEmulatorUpdate();
         }
         gclass95_0.FullScreen = true;
         frmShortcutType frmShortcutType = new frmShortcutType((GClass30) gclass32_0);

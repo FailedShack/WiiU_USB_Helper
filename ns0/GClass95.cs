@@ -56,10 +56,10 @@ namespace ns0
       this.bool_0 = bool_3;
       if (!bool_3)
         return;
-      this.method_1();
+      this.Check_If_Emulator_Autoupdate_Is_Enabled();
     }
 
-    public string String_0
+    public string Get_Emulator_Web_Location
     {
       get
       {
@@ -67,30 +67,30 @@ namespace ns0
       }
     }
 
-    public void method_0()
+    public void CheckWebForEmulatorUpdate()
     {
-      string str = "";
+      string Current_Emulator_Metadata = "";
       try
       {
-        str = System.IO.File.ReadAllText(Path.Combine(this.Root_BIN_Path, "etag"));
+        Current_Emulator_Metadata = System.IO.File.ReadAllText(Path.Combine(this.Root_BIN_Path, "etag"));
       }
       catch
       {
       }
-      string contents = GClass6.smethod_14(this.String_0);
-      if (this.Boolean_0 && !(str != contents))
+      string Downloaded_Emulator_File_Metadata = GClass6.Get_URL_File_Metadata(this.Get_Emulator_Web_Location);
+      if (this.Boolean_0 && !(Current_Emulator_Metadata != Downloaded_Emulator_File_Metadata))
         return;
       Class67.smethod_3(this);
       if (!this.Boolean_0)
         return;
-      System.IO.File.WriteAllText(Path.Combine(this.Root_BIN_Path, "etag"), contents);
+      System.IO.File.WriteAllText(Path.Combine(this.Root_BIN_Path, "etag"), Downloaded_Emulator_File_Metadata);
     }
 
-    public void method_1()
+    public void Check_If_Emulator_Autoupdate_Is_Enabled()
     {
       if (!new GClass17(this).method_0().AutoUpdate)
         return;
-      this.method_0();
+      this.CheckWebForEmulatorUpdate();
     }
 
     public virtual string FileSaveLocation

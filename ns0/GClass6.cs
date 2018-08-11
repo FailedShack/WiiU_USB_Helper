@@ -170,9 +170,9 @@ namespace ns0
       return "Not available at the moment.";
     }
 
-    public static string smethod_14(string string_0)
+    public static string Get_URL_File_Metadata(string FileURL)
     {
-      WebRequest webRequest = WebRequest.Create(string_0);
+      WebRequest webRequest = WebRequest.Create(FileURL);
       webRequest.Method = "HEAD";
       using (WebResponse response = webRequest.GetResponse())
         return response.Headers["etag"];

@@ -304,7 +304,7 @@ namespace ns0
         return;
       string path = Path.Combine(GClass88.DirectoryCache, "etag");
       string str = Path.Combine(GClass88.DirectoryCache, "db");
-      string string_2 = GClass6.smethod_14(Class67.DataV6URL);
+      string string_2 = GClass6.Get_URL_File_Metadata(Class67.DataV6URL);
       if (System.IO.File.Exists(path) && System.IO.File.Exists(str))
       {
         if (!(System.IO.File.ReadAllText(path) != string_2) && new FileInfo(str).Length != 0L)

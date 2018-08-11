@@ -25,7 +25,7 @@ namespace ns0
     private object object_0 = new object();
     private const DokanNet.FileAccess fileAccess_0 = DokanNet.FileAccess.ReadData | DokanNet.FileAccess.WriteData | DokanNet.FileAccess.AppendData | DokanNet.FileAccess.Execute | DokanNet.FileAccess.GenericExecute | DokanNet.FileAccess.GenericWrite | DokanNet.FileAccess.GenericRead;
     private const DokanNet.FileAccess fileAccess_1 = DokanNet.FileAccess.WriteData | DokanNet.FileAccess.AppendData | DokanNet.FileAccess.Delete | DokanNet.FileAccess.GenericWrite;
-    private readonly string string_0;
+    private readonly string Current_Game_Path;
     private readonly Dictionary<string, ulong> dictionary_0;
     private GClass30 gclass30_0;
     private GClass95 gclass95_0;
@@ -35,14 +35,14 @@ namespace ns0
     private Process process_0;
     private frmLoadOverlay frmLoadOverlay_0;
 
-    public Class17(string string_1, GClass30 gclass30_1)
+    public Class17(string Curren_Game_Path, GClass30 gclass30_1)
     {
-      if (!Directory.Exists(string_1))
-        Directory.CreateDirectory(string_1);
+      if (!Directory.Exists(Curren_Game_Path))
+        Directory.CreateDirectory(Curren_Game_Path);
       if (gclass30_1.System != SystemType.SystemWiiU)
         throw new ArgumentException("Only wup titles are compatible");
-      this.string_0 = string_1;
-      Directory.CreateDirectory(this.string_0);
+      this.Current_Game_Path = Curren_Game_Path;
+      Directory.CreateDirectory(this.Current_Game_Path);
       this.gclass30_0 = gclass30_1;
       this.gclass95_0 = this.gclass30_0.method_14(false);
       this.gclass95_0.Boolean_1 = true;
@@ -156,7 +156,7 @@ namespace ns0
 
     private string method_3(string string_1)
     {
-      return this.string_0 + string_1;
+      return this.Current_Game_Path + string_1;
     }
 
     private bool method_4(string string_1)
@@ -355,7 +355,7 @@ namespace ns0
         this.class9_0.Event_0 += class20.eventHandler_1;
         // ISSUE: reference to a compiler-generated field
         this.class9_0.Event_1 += class20.eventHandler_0;
-        this.class9_0.method_1(this.string_0, true, ((IEnumerable<GClass12>) new GClass12[1]
+        this.class9_0.method_1(this.Current_Game_Path, true, ((IEnumerable<GClass12>) new GClass12[1]
         {
           this.method_8(fileName).gclass12_0
         }).ToList<GClass12>(), false);
@@ -400,7 +400,7 @@ namespace ns0
 
     public NtStatus GetDiskFreeSpace(out long freeBytesAvailable, out long totalNumberOfBytes, out long totalNumberOfFreeBytes, DokanFileInfo info)
     {
-      DriveInfo driveInfo = ((IEnumerable<DriveInfo>) DriveInfo.GetDrives()).Single<DriveInfo>((Func<DriveInfo, bool>) (driveInfo_0 => string.Equals(driveInfo_0.RootDirectory.Name, Path.GetPathRoot(this.string_0 + "\\"), StringComparison.OrdinalIgnoreCase)));
+      DriveInfo driveInfo = ((IEnumerable<DriveInfo>) DriveInfo.GetDrives()).Single<DriveInfo>((Func<DriveInfo, bool>) (driveInfo_0 => string.Equals(driveInfo_0.RootDirectory.Name, Path.GetPathRoot(this.Current_Game_Path + "\\"), StringComparison.OrdinalIgnoreCase)));
       freeBytesAvailable = driveInfo.TotalFreeSpace;
       totalNumberOfBytes = driveInfo.TotalSize;
       totalNumberOfFreeBytes = driveInfo.AvailableFreeSpace;
