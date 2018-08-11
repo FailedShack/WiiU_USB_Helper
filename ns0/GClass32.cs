@@ -347,12 +347,12 @@ namespace ns0
         int index = 0;
         GClass78 gclass78 = new GClass78()
         {
-          bool_0 = true
+          DownloadAsJSON = true
         };
         if (this.System == SystemType.SystemWii)
-          return gclass78.method_6(string.Format("{0}/wii/info/json/{1}/info", (object) Class67.CDNWiiUUSBHelperURL, (object) this.TitleId.IdRaw));
+          return gclass78.Download_File_UTF8(string.Format("{0}/wii/info/json/{1}/info", (object) Class67.CDNWiiUUSBHelperURL, (object) this.TitleId.IdRaw));
         if (this.Platform == Platform.Wii_U_Custom || this.Boolean_0)
-          return gclass78.method_6(string.Format("{0}/wiiu/info/US/{1}", (object) Class67.CDNWiiUUSBHelperURL, (object) this.TitleId.IdRaw));
+          return gclass78.Download_File_UTF8(string.Format("{0}/wiiu/info/US/{1}", (object) Class67.CDNWiiUUSBHelperURL, (object) this.TitleId.IdRaw));
         string str1 = gclass78.method_7(string.Format("https://samurai.ctr.shop.nintendo.net/samurai/ws/{0}/title/{1}/?shop_id=2", (object) string_15, (object) this.EshopId), 604800);
         if (str1 != "")
           return str1;

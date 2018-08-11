@@ -35,7 +35,7 @@ namespace ns0
     {
       try
       {
-        return new GClass78().method_6(string.Format("{0}/getStatus.php", (object) Class67.SupportWiiUUSBHelperURL)) == "ONLINE";
+        return new GClass78().Download_File_UTF8(string.Format("{0}/getStatus.php", (object) Class67.SupportWiiUUSBHelperURL)) == "ONLINE";
       }
       catch
       {

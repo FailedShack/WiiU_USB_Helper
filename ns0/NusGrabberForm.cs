@@ -1306,7 +1306,7 @@ namespace ns0
             foreach (ListViewDataItem checkedItem in (ReadOnlyCollection<ListViewDataItem>) this.chkGameGenres.CheckedItems)
               string_0 += string.Format("genre[]={0}&", (object) (uint) checkedItem.Tag);
             Encoding utF8 = Encoding.UTF8;
-            byte[] bytes = new GClass78() { bool_0 = true }.method_4(string_0, 24);
+            byte[] bytes = new GClass78() { DownloadAsJSON = true }.method_4(string_0, 24);
             foreach (GClass109 gclass109 in JsonConvert.DeserializeObject<GClass111>(utF8.GetString(bytes)).Contents.Content)
               this.list_0.Add(gclass109.Title.Id.ToString());
           }

@@ -133,13 +133,13 @@ namespace ns0
 
     private string method_0()
     {
-      return new GClass78().method_6(string.Format("{0}/music", (object) this.gclass91_0.ToInject.String_6));
+      return new GClass78().Download_File_UTF8(string.Format("{0}/music", (object) this.gclass91_0.ToInject.String_6));
     }
 
     private string method_1(string string_0)
     {
       HtmlAgilityPack.HtmlDocument htmlDocument = new HtmlAgilityPack.HtmlDocument();
-      htmlDocument.LoadHtml(new GClass78().method_6("https://downloads.khinsider.com" + string_0));
+      htmlDocument.LoadHtml(new GClass78().Download_File_UTF8("https://downloads.khinsider.com" + string_0));
       return htmlDocument.DocumentNode.Descendants("audio").First<HtmlNode>().Attributes["src"].Value;
     }
 
@@ -154,7 +154,7 @@ namespace ns0
           {
             HtmlAgilityPack.HtmlDocument htmlDocument = new HtmlAgilityPack.HtmlDocument();
             this.list_0 = new List<string>();
-            htmlDocument.LoadHtml(new GClass78().method_6(this.method_0()));
+            htmlDocument.LoadHtml(new GClass78().Download_File_UTF8(this.method_0()));
             this.list_0.AddRange((IEnumerable<string>) htmlDocument.DocumentNode.Descendants("a").Where<HtmlNode>((Func<HtmlNode, bool>) (htmlNode_0 =>
             {
               if (htmlNode_0.Attributes.Contains("href"))

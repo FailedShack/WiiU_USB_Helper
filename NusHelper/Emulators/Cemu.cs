@@ -165,7 +165,7 @@ namespace NusHelper.Emulators
 
     private string[] GetShaderMetaData()
     {
-      return new GClass78().method_6(this.MetaFileUrl).Split(new string[1]
+      return new GClass78().Download_File_UTF8(this.MetaFileUrl).Split(new string[1]
       {
         Environment.NewLine
       }, StringSplitOptions.RemoveEmptyEntries);
@@ -290,7 +290,7 @@ namespace NusHelper.Emulators
     public override List<GClass95.GStruct6> GetControllerProfiles()
     {
       List<GClass95.GStruct6> controllerProfiles = base.GetControllerProfiles();
-      string str1 = new GClass78().method_6(string.Format("{0}/res/emulators/Cemu/controllers/meta.txt", (object) Class67.String_2));
+      string str1 = new GClass78().Download_File_UTF8(string.Format("{0}/res/emulators/Cemu/controllers/meta.txt", (object) Class67.String_2));
       string[] separator = new string[1]
       {
         Environment.NewLine

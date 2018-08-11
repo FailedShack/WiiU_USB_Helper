@@ -77,11 +77,11 @@ namespace ns0
       }
     }
 
-    public static List<GClass90> smethod_0()
+    public static List<GClass90> Deserialize_FAQ()
     {
       try
       {
-        return JsonConvert.DeserializeObject<List<GClass90>>(new GClass78().method_6(string.Format("{0}/getFaq.php", (object) Class67.SupportWiiUUSBHelperURL)));
+        return JsonConvert.DeserializeObject<List<GClass90>>(new GClass78().Download_File_UTF8(string.Format("{0}/getFaq.php", (object) Class67.SupportWiiUUSBHelperURL)));
       }
       catch
       {
@@ -98,7 +98,7 @@ namespace ns0
     {
       try
       {
-        return new List<string>((IEnumerable<string>) new GClass78().method_6(string.Format("{0}/res/db/forceCFW.txt", (object) Class67.CDNWiiUUSBHelperURL)).ToUpper().Split(new string[1]
+        return new List<string>((IEnumerable<string>) new GClass78().Download_File_UTF8(string.Format("{0}/res/db/forceCFW.txt", (object) Class67.CDNWiiUUSBHelperURL)).ToUpper().Split(new string[1]
         {
           Environment.NewLine
         }, StringSplitOptions.RemoveEmptyEntries));
@@ -207,12 +207,12 @@ namespace ns0
 
     public static string smethod_11()
     {
-      return new GClass78().method_6(string.Format("{0}/res/txt/changelog.txt", (object) Class67.CDNWiiUUSBHelperURL));
+      return new GClass78().Download_File_UTF8(string.Format("{0}/res/txt/changelog.txt", (object) Class67.CDNWiiUUSBHelperURL));
     }
 
     public static string smethod_12()
     {
-      return new GClass78().method_6(string.Format("{0}/getContributors.php", (object) Class67.RegistrationWiiUUSBHelperURL));
+      return new GClass78().Download_File_UTF8(string.Format("{0}/getContributors.php", (object) Class67.RegistrationWiiUUSBHelperURL));
     }
 
     public static void smethod_13()
@@ -358,7 +358,7 @@ namespace ns0
 
     public static string[] smethod_22()
     {
-      return new GClass78().method_6(string.Format("{0}/res/db/blackList.txt", (object) Class67.CDNWiiUUSBHelperURL)).Split(new string[1]
+      return new GClass78().Download_File_UTF8(string.Format("{0}/res/db/blackList.txt", (object) Class67.CDNWiiUUSBHelperURL)).Split(new string[1]
       {
         Environment.NewLine
       }, StringSplitOptions.RemoveEmptyEntries);

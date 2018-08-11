@@ -25,7 +25,7 @@ namespace ns0
     private DateTime dateTime_1 = new DateTime(0L);
     private DataSize dataSize_2 = new DataSize(0UL);
     private object object_0 = new object();
-    public bool bool_0;
+    public bool DownloadAsJSON;
     private const int int_0 = 1;
 
     public GStruct3 DownloadSpeed { get; private set; } = new GStruct3(0UL);
@@ -55,7 +55,7 @@ namespace ns0
     public byte[] DownloadFile(string string_0)
     {
       HttpWebRequest http = WebRequest.CreateHttp(string_0);
-      if (this.bool_0)
+      if (this.DownloadAsJSON)
         http.Accept = "application/json";
       http.Method = "GET";
       this.bool_1 = true;
@@ -151,7 +151,7 @@ namespace ns0
         this.method_10(string_0, string_1, ulong_1, genum4_0, webProxy_0, byte_0, byte_1, byte_2, long_0);
     }
 
-    public string method_6(string string_0)
+    public string Download_File_UTF8(string string_0)
     {
       return Encoding.UTF8.GetString(this.DownloadFile(string_0));
     }
@@ -160,7 +160,7 @@ namespace ns0
     {
       try
       {
-        return this.method_6(Class67.smethod_1(string_0, int_1));
+        return this.Download_File_UTF8(Class67.smethod_1(string_0, int_1));
       }
       catch (Exception ex)
       {
@@ -168,7 +168,7 @@ namespace ns0
       }
     }
 
-    public void method_8()
+    public void Subtract_Total_Download_From_Current_Game_Download()
     {
       this.TotalDataDownloaded -= this.TotalDownloadedCurrentGame;
     }

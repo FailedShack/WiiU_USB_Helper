@@ -294,13 +294,13 @@ namespace ns0
         {
           string_1 = (string) null;
         }
-        string html1 = new GClass78().method_6("http://steambanners.booru.org/index.php?page=post&s=list&tags=" + GClass30.smethod_3(GClass30.smethod_3(gclass32_0.Name.ToLower())).Replace(' ', '+'));
+        string html1 = new GClass78().Download_File_UTF8("http://steambanners.booru.org/index.php?page=post&s=list&tags=" + GClass30.smethod_3(GClass30.smethod_3(gclass32_0.Name.ToLower())).Replace(' ', '+'));
         HtmlAgilityPack.HtmlDocument htmlDocument = new HtmlAgilityPack.HtmlDocument();
         htmlDocument.LoadHtml(html1);
         IEnumerable<string> source = htmlDocument.DocumentNode.Descendants("a").Where<HtmlNode>((Func<HtmlNode, bool>) (htmlNode_0 => htmlNode_0.Attributes.Contains("id"))).Select<HtmlNode, string>((Func<HtmlNode, string>) (htmlNode_0 => htmlNode_0.Attributes["href"].Value)).Where<string>((Func<string, bool>) (string_0 => string_0.Contains("index.php?page=post")));
         if (source.Any<string>())
         {
-          string html2 = new GClass78().method_6("http://steambanners.booru.org/" + HtmlEntity.DeEntitize(source.ElementAt<string>(0)));
+          string html2 = new GClass78().Download_File_UTF8("http://steambanners.booru.org/" + HtmlEntity.DeEntitize(source.ElementAt<string>(0)));
           htmlDocument.LoadHtml(html2);
           string string_0_1 = htmlDocument.DocumentNode.Descendants("img").Where<HtmlNode>((Func<HtmlNode, bool>) (htmlNode_0 => htmlNode_0.Attributes.Contains("src"))).Select<HtmlNode, string>((Func<HtmlNode, string>) (htmlNode_0 => htmlNode_0.Attributes["src"].Value)).Where<string>((Func<string, bool>) (string_0 => string_0.Contains("img.booru.org/steambanners//images"))).ElementAt<string>(0);
           string_1 = System.IO.Path.Combine(GClass128.String_0, gclass32_0.TitleId.IdRaw + ".banner.png");

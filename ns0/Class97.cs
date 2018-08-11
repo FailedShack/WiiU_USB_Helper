@@ -333,7 +333,7 @@ namespace ns0
       try
       {
         string path = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "Updater.exe");
-        string str = new GClass78().method_6(string.Format("{0}/Updater.hash", (object) Class67.ApplicationWiiUUSBHelperURL));
+        string str = new GClass78().Download_File_UTF8(string.Format("{0}/Updater.hash", (object) Class67.ApplicationWiiUUSBHelperURL));
         using (SHA256 shA256 = SHA256.Create())
         {
           if (File.Exists(path) && Convert.ToBase64String(shA256.ComputeHash(File.ReadAllBytes(path))) == str)
