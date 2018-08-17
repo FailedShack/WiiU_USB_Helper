@@ -202,7 +202,7 @@ namespace ns0
             str2 = str2 + Environment.NewLine + string.Format("The user has requested a TeamViewer Session at {0}.", (object) TimeZoneInfo.ConvertTimeFromUtc(this.timeViewer.Value.ToUniversalTime(), TimeZoneInfo.FindSystemTimeZoneById("Romance Standard Time")));
           if (this.string_0 != null)
             str2 = str2 + Environment.NewLine + Environment.NewLine + this.string_0;
-          string s = GClass6.smethod_20(string.Format("{0}/issue/open_issue.php", (object) Class67.String_4), new NameValueCollection() { { "email", this.txtEmail.Text }, { "app_id", Settings.Default.AppId }, { "title", this.txtTitle.Text }, { "syslog", str1 } });
+          string s = GClass6.smethod_20(string.Format("{0}/issue/open_issue.php", (object) Class67.SupportWiiUUSBHelperURL), new NameValueCollection() { { "email", this.txtEmail.Text }, { "app_id", Settings.Default.AppId }, { "title", this.txtTitle.Text }, { "syslog", str1 } });
           try
           {
             int num5 = (int) uint.Parse(s);
@@ -212,7 +212,7 @@ namespace ns0
             int num5 = (int) RadMessageBox.Show("Sorry but we are unable to process your request at the moment");
             return;
           }
-          string str3 = GClass6.smethod_20(string.Format("{0}/issue/answer_issue.php", (object) Class67.String_4), new NameValueCollection() { { "issue_id", s }, { "message", str2 } });
+          string str3 = GClass6.smethod_20(string.Format("{0}/issue/answer_issue.php", (object) Class67.SupportWiiUUSBHelperURL), new NameValueCollection() { { "issue_id", s }, { "message", str2 } });
           try
           {
             int num5 = (int) uint.Parse(str3);
@@ -226,15 +226,15 @@ namespace ns0
           {
             try
             {
-              string str4 = Path.Combine(GClass88.CachePath, str3);
+              string str4 = Path.Combine(GClass88.DirectoryCache, str3);
               System.IO.File.Copy(sourceFileName, str4, true);
-              Encoding.UTF8.GetString(new WebClient().UploadFile(string.Format("{0}/issue/upload.php", (object) Class67.String_4), str4));
+              Encoding.UTF8.GetString(new WebClient().UploadFile(string.Format("{0}/issue/upload.php", (object) Class67.SupportWiiUUSBHelperURL), str4));
             }
             catch
             {
             }
           }
-          int num6 = (int) RadMessageBox.Show(string.Format("<html>Thank you for contacting us!\nYou will be notified by email (make sure to check your spam box) when a reply is available.\nYour issue id is : {0}\nYou can follow its status <a href=\"{1}/issue/view/view.php?issue_id={2}\">here</a>.\nPlease keep it for future reference.<html>", (object) s, (object) Class67.String_4, (object) s));
+          int num6 = (int) RadMessageBox.Show(string.Format("<html>Thank you for contacting us!\nYou will be notified by email (make sure to check your spam box) when a reply is available.\nYour issue id is : {0}\nYou can follow its status <a href=\"{1}/issue/view/view.php?issue_id={2}\">here</a>.\nPlease keep it for future reference.<html>", (object) s, (object) Class67.SupportWiiUUSBHelperURL, (object) s));
           this.Close();
         }
       }

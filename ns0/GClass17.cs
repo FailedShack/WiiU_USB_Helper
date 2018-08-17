@@ -16,7 +16,7 @@ namespace ns0
 {
   public class GClass17
   {
-    public static string string_0 = Path.Combine(GClass88.CachePath, "emu");
+    public static string string_0 = Path.Combine(GClass88.DirectoryCache, "emu");
     private readonly Dictionary<string, EmuConfiguration> dictionary_0 = new Dictionary<string, EmuConfiguration>();
     private readonly GClass95 gclass95_0;
     private EmuConfiguration emuConfiguration_0;

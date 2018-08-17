@@ -44,7 +44,7 @@ namespace ns0
           StartInfo = new ProcessStartInfo()
           {
             FileName = instance.GetExecutable(),
-            WorkingDirectory = instance.String_4
+            WorkingDirectory = instance.Root_BIN_Path
           }
         }.Start();
       }

@@ -60,7 +60,7 @@ namespace ns0
       if (this.gclass32_0.Boolean_0)
         return;
       // ISSUE: reference to a compiler-generated field
-      if (class132.gclass32_0.System != GEnum3.const_1)
+      if (class132.gclass32_0.System != SystemType.SystemWiiU)
         throw new Exception("This only works with WUP titles!");
       this.lstNodesGame.TriStateMode = true;
       this.lstNodesDlc.TriStateMode = true;

@@ -42,7 +42,7 @@ namespace NusHelper.Emulators
     {
       get
       {
-        return System.IO.Path.Combine(this.String_4, "mlc01", "usr", "title", "00050000", this.gclass30_0.TitleId.High.ToLower());
+        return System.IO.Path.Combine(this.Root_BIN_Path, "mlc01", "usr", "title", "00050000", this.gclass30_0.TitleId.High.ToLower());
       }
     }
 
@@ -104,7 +104,7 @@ namespace NusHelper.Emulators
 
     public void PlayStream()
     {
-      string mount_point = System.IO.Path.Combine(GClass88.CachePath, "streaming", System.IO.Path.GetRandomFileName());
+      string mount_point = System.IO.Path.Combine(GClass88.DirectoryCache, "streaming", System.IO.Path.GetRandomFileName());
       System.IO.Directory.CreateDirectory(mount_point);
       Class17 fs = new Class17(this.CurrentGamePath, this.gclass30_0);
       Task.Run((Action) (() => fs.Mount(mount_point, DokanOptions.WriteProtection, 1, (ILogger) null)));
@@ -165,7 +165,7 @@ namespace NusHelper.Emulators
 
     private string[] GetShaderMetaData()
     {
-      return new GClass78().method_6(this.MetaFileUrl).Split(new string[1]
+      return new GClass78().Download_File_UTF8(this.MetaFileUrl).Split(new string[1]
       {
         Environment.NewLine
       }, StringSplitOptions.RemoveEmptyEntries);
@@ -175,7 +175,7 @@ namespace NusHelper.Emulators
     {
       get
       {
-        return System.IO.Path.Combine(this.String_4, "shaderCache", "transferable");
+        return System.IO.Path.Combine(this.Root_BIN_Path, "shaderCache", "transferable");
       }
     }
 
@@ -264,7 +264,7 @@ namespace NusHelper.Emulators
     {
       get
       {
-        return System.IO.Path.Combine(this.String_4, "mlc01", "usr", "save", this.gclass30_0.TitleId.Low.ToLower(), this.gclass30_0.TitleId.High.ToLower());
+        return System.IO.Path.Combine(this.Root_BIN_Path, "mlc01", "usr", "save", this.gclass30_0.TitleId.Low.ToLower(), this.gclass30_0.TitleId.High.ToLower());
       }
     }
 
@@ -290,7 +290,7 @@ namespace NusHelper.Emulators
     public override List<GClass95.GStruct6> GetControllerProfiles()
     {
       List<GClass95.GStruct6> controllerProfiles = base.GetControllerProfiles();
-      string str1 = new GClass78().method_6(string.Format("{0}/res/emulators/Cemu/controllers/meta.txt", (object) Class67.String_2));
+      string str1 = new GClass78().Download_File_UTF8(string.Format("{0}/res/emulators/Cemu/controllers/meta.txt", (object) Class67.String_2));
       string[] separator = new string[1]
       {
         Environment.NewLine
@@ -307,7 +307,7 @@ namespace NusHelper.Emulators
 
     public override void ApplyControllerProfile(GClass95.GStruct6 config)
     {
-      string str = System.IO.Path.Combine(this.String_4, "controllerProfiles");
+      string str = System.IO.Path.Combine(this.Root_BIN_Path, "controllerProfiles");
       string string_1 = System.IO.Path.Combine(str, "controller0.txt");
       System.IO.Directory.CreateDirectory(str);
       new GClass78().method_5(config.ResUrl, string_1, 0UL, GClass78.GEnum4.const_0, (WebProxy) null, 0L, (byte[]) null, (byte[]) null, (byte) 0);
@@ -321,13 +321,13 @@ namespace NusHelper.Emulators
     public override string GetArguments()
     {
       if (this._modArgumentString == null)
-        return this.GenerateArguments(this.GetRom(), System.IO.Path.Combine(this.String_4, "mlc01"));
+        return this.GenerateArguments(this.GetRom(), System.IO.Path.Combine(this.Root_BIN_Path, "mlc01"));
       return this._modArgumentString;
     }
 
     public override string GetExecutable()
     {
-      return System.IO.Path.Combine(this.String_4, "cemu.exe");
+      return System.IO.Path.Combine(this.Root_BIN_Path, "cemu.exe");
     }
 
     public override DataSize GetUpdateSize()
@@ -418,7 +418,7 @@ namespace NusHelper.Emulators
               case DialogResult.Yes:
                 Process.Start("http://www.nvidia.fr/Download/index.aspx");
                 if (RadMessageBox.Show("It is recommended that you also delete your old shader cache, should I do it for you?", "Delete shader cache?", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                  GClass6.smethod_5(System.IO.Path.Combine(this.String_4, "shaderCache", "precompiled"));
+                  GClass6.smethod_5(System.IO.Path.Combine(this.Root_BIN_Path, "shaderCache", "precompiled"));
                 return false;
               default:
                 continue;
@@ -470,10 +470,10 @@ namespace NusHelper.Emulators
       gclass15.method_7();
       List<GClass16> gclass16List = gclass15.method_4();
       Class22 mapper = new Class22(this.CurrentGamePath, counter, 134217728L);
-      Class22 mapper_mlc = new Class22(System.IO.Path.Combine(this.String_4, "mlc01"), counter_mlc, 134217728L);
+      Class22 mapper_mlc = new Class22(System.IO.Path.Combine(this.Root_BIN_Path, "mlc01"), counter_mlc, 134217728L);
       foreach (Alphaleonis.Win32.Filesystem.FileInfo fileInfo in gclass15.List_0)
       {
-        if (System.IO.File.Exists(this.String_4 + "\\mlc01\\usr\\title\\00050000\\" + this.gclass30_0.TitleId.High.ToLower() + fileInfo.FullName.Substring(gclass15.String_0.Length)))
+        if (System.IO.File.Exists(this.Root_BIN_Path + "\\mlc01\\usr\\title\\00050000\\" + this.gclass30_0.TitleId.High.ToLower() + fileInfo.FullName.Substring(gclass15.String_0.Length)))
           mapper_mlc.method_1("\\usr\\title\\00050000\\" + this.gclass30_0.TitleId.High.ToLower() + fileInfo.FullName.Substring(gclass15.String_0.Length), fileInfo.FullName);
         else if (System.IO.File.Exists(this.CurrentGamePath + fileInfo.FullName.Substring(gclass15.String_0.Length)))
         {
@@ -500,8 +500,8 @@ namespace NusHelper.Emulators
         mapper.method_0();
         mapper_mlc.method_0();
       }));
-      System.IO.Directory.CreateDirectory(System.IO.Path.Combine(GClass88.CachePath, "mods", "mount"));
-      foreach (System.IO.DirectoryInfo enumerateDirectory in new System.IO.DirectoryInfo(System.IO.Path.Combine(GClass88.CachePath, "mods", "mount")).EnumerateDirectories())
+      System.IO.Directory.CreateDirectory(System.IO.Path.Combine(GClass88.DirectoryCache, "mods", "mount"));
+      foreach (System.IO.DirectoryInfo enumerateDirectory in new System.IO.DirectoryInfo(System.IO.Path.Combine(GClass88.DirectoryCache, "mods", "mount")).EnumerateDirectories())
       {
         try
         {
@@ -518,8 +518,8 @@ namespace NusHelper.Emulators
         {
         }
       }
-      string mount_point = System.IO.Path.Combine(GClass88.CachePath, "mods", "mount", System.IO.Path.GetRandomFileName());
-      string mount_point_mlc = System.IO.Path.Combine(GClass88.CachePath, "mods", "mount", System.IO.Path.GetRandomFileName());
+      string mount_point = System.IO.Path.Combine(GClass88.DirectoryCache, "mods", "mount", System.IO.Path.GetRandomFileName());
+      string mount_point_mlc = System.IO.Path.Combine(GClass88.DirectoryCache, "mods", "mount", System.IO.Path.GetRandomFileName());
       GClass6.smethod_5(mount_point);
       System.IO.Directory.CreateDirectory(mount_point);
       System.IO.Directory.CreateDirectory(mount_point_mlc);

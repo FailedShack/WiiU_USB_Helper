@@ -35,11 +35,11 @@ namespace ns0
 
     private void cmdYes_Click(object sender, EventArgs e)
     {
-      if (!Class108.Boolean_0)
+      if (!MiningSetupAndRun.Boolean_0)
       {
         int num = (int) RadMessageBox.Show("Thank you so much for your support!\nThe app will prepare the program first, it may take a few minutes.\nYou can check if the miner is running in the Contribute tab.\nNOTE: Depending on your system configuration, the miner may request admin privileges to run.");
         Settings.Default.Mine = true;
-        Class108.smethod_0();
+        MiningSetupAndRun.Miner_Compatability_Check_And_PrepOrStart();
       }
       this.DialogResult = DialogResult.OK;
       this.Close();
@@ -55,7 +55,7 @@ namespace ns0
     {
       Settings.Default.Mine = false;
       Settings.Default.Save();
-      Class108.smethod_1();
+      MiningSetupAndRun.smethod_1();
       this.DialogResult = DialogResult.OK;
       this.Close();
     }

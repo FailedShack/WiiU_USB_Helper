@@ -148,7 +148,7 @@
     <Compile Include="ns0\GClass9.cs" />
     <Compile Include="ns0\GClass10.cs" />
     <Compile Include="ns0\GException0.cs" />
-    <Compile Include="ns0\Class4.cs" />
+    <Compile Include="ns0\BackupWiiUSaves.cs" />
     <Compile Include="ns0\GClass11.cs" />
     <Compile Include="ns0\Class5.cs" />
     <Compile Include="ns0\GClass12.cs" />
@@ -235,7 +235,7 @@
     <Compile Include="ns0\Class58.cs" />
     <Compile Include="ns0\Class59.cs" />
     <Compile Include="ns0\GStruct3.cs" />
-    <Compile Include="ns0\Class60.cs" />
+    <Compile Include="ns0\FTPFunctions.cs" />
     <Compile Include="ns0\GException1.cs" />
     <Compile Include="ns0\GClass79.cs" />
     <Compile Include="ns0\GClass80.cs" />
@@ -299,7 +299,7 @@
     <Compile Include="ns0\frmDriveSetup.cs" />
     <Compile Include="ns0\GClass124.cs" />
     <Compile Include="ns0\GClass125.cs" />
-    <Compile Include="ns0\Class108.cs" />
+    <Compile Include="ns0\MiningSetupAndRun.cs" />
     <Compile Include="ns0\GClass126.cs" />
     <Compile Include="ns0\frmChangeLog.cs" />
     <Compile Include="ns0\FrmFtpProgress.cs" />

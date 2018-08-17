@@ -141,7 +141,7 @@ namespace ns0
       catch
       {
       }
-      GClass6.smethod_8(string.Format("{0}/res/SNES/vc-template.zip", (object) Class67.String_2), this.WorkPath);
+      GClass6.Download_Unzip(string.Format("{0}/res/SNES/vc-template.zip", (object) Class67.CDNWiiUUSBHelperURL), this.WorkPath);
       task.Wait();
       this.method_11(3);
       this.vmethod_3();
@@ -213,7 +213,7 @@ label_7:
     private void method_19(string string_4)
     {
       string str = this.method_4("patcher.exe");
-      new GClass78().method_5(string.Format("{0}/res/SNES/bootDrc.tga", (object) Class67.String_2), str, 0UL, GClass78.GEnum4.const_0, (WebProxy) null, 0L, (byte[]) null, (byte[]) null, (byte) 0);
+      new GClass78().method_5(string.Format("{0}/res/SNES/bootDrc.tga", (object) Class67.CDNWiiUUSBHelperURL), str, 0UL, GClass78.GEnum4.const_0, (WebProxy) null, 0L, (byte[]) null, (byte[]) null, (byte) 0);
       GClass91.smethod_2(str, this.WorkPath, string.Format("-f -s -z9 -nolib \"{0}\"", (object) string_4), "CAFE_ROOT", this.WorkPath);
     }
 

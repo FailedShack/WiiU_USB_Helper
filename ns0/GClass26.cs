@@ -38,9 +38,9 @@ namespace ns0
       GClass26.string_0 = string_5;
       GClass26.string_1 = string_6;
       GClass26.string_2 = string_7;
-      GClass88.smethod_13(GClass26.string_0);
+      GClass88.Check_For_Create_Cache_Dir(GClass26.string_0);
       Directory.CreateDirectory(GClass17.string_0);
-      Class67.RootDomain = string_8;
+      Class67.WiiU_USB_Helper_Domain = string_8;
       GClass28.string_5 = Class67.smethod_22();
       GClass28.list_2 = Class67.smethod_2();
       GClass28.string_4 = string_4;
@@ -51,15 +51,15 @@ namespace ns0
       GClass28.dictionary_2.Clear();
       GClass30.smethod_0();
       Class67.smethod_13();
-      Class67.smethod_20("out/games.json");
-      Class67.smethod_20("out/customs.json");
-      Class67.smethod_20("out/injections.json");
-      Class67.smethod_20("out/games3ds.json");
-      Class67.smethod_20("out/gamesWii.json");
-      Class67.smethod_21("out/updates.json");
-      Class67.smethod_21("out/updates3ds.json");
-      Class67.smethod_19("out/dlcs.json");
-      Class67.smethod_19("out/dlcs3ds.json");
+      Class67.JSON_Game_Custom_Injection_Import("out/games.json");
+      Class67.JSON_Game_Custom_Injection_Import("out/customs.json");
+      Class67.JSON_Game_Custom_Injection_Import("out/injections.json");
+      Class67.JSON_Game_Custom_Injection_Import("out/games3ds.json");
+      Class67.JSON_Game_Custom_Injection_Import("out/gamesWii.json");
+      Class67.JSON_Update_Import("out/updates.json");
+      Class67.JSON_Update_Import("out/updates3ds.json");
+      Class67.JSON_DLC_Import("out/dlcs.json");
+      Class67.JSON_DLC_Import("out/dlcs3ds.json");
       if (!bool_0)
       {
         try
@@ -104,7 +104,7 @@ namespace ns0
           }
         }
       }
-      if (GClass88.smethod_1("lasttitles"))
+      if (GClass88.Check_If_Exists_In_Cache_Dir("lasttitles"))
       {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: reference to a compiler-generated method
@@ -114,7 +114,7 @@ namespace ns0
         }.method_0)).ToList<GClass32>();
       }
       GClass88.smethod_10("lasttitles", GClass28.dictionary_0.Values.Select<GClass32, string>((Func<GClass32, string>) (gclass32_0 => gclass32_0.TitleId.IdRaw)).ToArray<string>());
-      if (GClass88.smethod_1("lastUpdates"))
+      if (GClass88.Check_If_Exists_In_Cache_Dir("lastUpdates"))
       {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: reference to a compiler-generated method
@@ -191,9 +191,9 @@ namespace ns0
           if (id.Length == 16)
           {
             TitleId titleId = new TitleId(id);
-            if (titleId.IdType != GEnum1.const_3)
+            if (titleId.IdType != DownloadType.Game3DS)
             {
-              if (titleId.IdType != GEnum1.const_1)
+              if (titleId.IdType != DownloadType.GameWiiOrU)
                 continue;
             }
             if (!GClass28.list_1.Contains(titleId))
@@ -225,20 +225,20 @@ namespace ns0
           GClass26.Class36 class36 = new GClass26.Class36();
           switch (index.IdType)
           {
-            case GEnum1.const_0:
-              GClass100 gclass100 = GClass100.smethod_0(Path.Combine(directoryInfo.FullName, "title.tmd"), GEnum3.const_1);
+            case DownloadType.Update:
+              GClass100 gclass100 = GClass100.smethod_0(Path.Combine(directoryInfo.FullName, "title.tmd"), SystemType.SystemWiiU);
               // ISSUE: reference to a compiler-generated field
               class36.ushort_0 = gclass100.TitleVersion;
               // ISSUE: reference to a compiler-generated method
               gclass30 = (GClass30) GClass28.dictionary_0[index.FullGame].Updates.First<GClass33>(new Func<GClass33, bool>(class36.method_0));
               break;
-            case GEnum1.const_1:
+            case DownloadType.GameWiiOrU:
               gclass30 = (GClass30) GClass28.dictionary_0[index];
               break;
-            case GEnum1.const_2:
+            case DownloadType.DLC:
               gclass30 = (GClass30) GClass28.dictionary_0[index.FullGame].Dlc;
               break;
-            case GEnum1.const_3:
+            case DownloadType.Game3DS:
               gclass30 = (GClass30) GClass28.dictionary_0[index];
               break;
           }
@@ -261,7 +261,7 @@ namespace ns0
     {
       try
       {
-        new WebClient().DownloadStringAsync(new Uri(string.Format("{0}/telemetry.php?distribution_media={1}&os_revision={2}&app_version={3}", (object) Class67.String_3, (object) gstruct2_0.string_0, (object) gstruct2_0.string_1, (object) gstruct2_0.string_2)));
+        new WebClient().DownloadStringAsync(new Uri(string.Format("{0}/telemetry.php?distribution_media={1}&os_revision={2}&app_version={3}", (object) Class67.RegistrationWiiUUSBHelperURL, (object) gstruct2_0.string_0, (object) gstruct2_0.string_1, (object) gstruct2_0.string_2)));
       }
       catch
       {
@@ -294,7 +294,7 @@ namespace ns0
                 {
                   // ISSUE: reference to a compiler-generated field
                   TitleId index = new TitleId(class37.string_0[2]);
-                  if (GClass28.dictionary_2.ContainsKey(index.FullGame) && index.IdType != GEnum1.const_0 && !((IEnumerable<string>) GClass28.string_5).Contains<string>((string) index.FullGame))
+                  if (GClass28.dictionary_2.ContainsKey(index.FullGame) && index.IdType != DownloadType.Update && !((IEnumerable<string>) GClass28.string_5).Contains<string>((string) index.FullGame))
                   {
                     byte[] buffer;
                     using (MemoryStream memoryStream = new MemoryStream())
@@ -304,18 +304,18 @@ namespace ns0
                     }
                     switch (index.IdType)
                     {
-                      case GEnum1.const_2:
+                      case DownloadType.DLC:
                         if (GClass28.dictionary_1.ContainsKey(index))
                         {
                           // ISSUE: reference to a compiler-generated field
-                          GClass31 gclass31_1 = new GClass31("", index, class37.string_0[0], buffer, GClass28.dictionary_1[index].dataSize_0, "http://ccs.cdn.wup.shop.nintendo.net/ccs/download/", GEnum3.const_1);
+                          GClass31 gclass31_1 = new GClass31("", index, class37.string_0[0], buffer, GClass28.dictionary_1[index].dataSize_0, "http://ccs.cdn.wup.shop.nintendo.net/ccs/download/", SystemType.SystemWiiU);
                           gclass31_1.CfwOnly = true;
                           GClass31 gclass31_2 = gclass31_1;
                           GClass28.list_6.Add(gclass31_2);
                           continue;
                         }
                         break;
-                      case GEnum1.const_5:
+                      case DownloadType.const_5:
                         continue;
                     }
                     List<GClass33> list_2 = new List<GClass33>();
@@ -326,7 +326,7 @@ namespace ns0
                     }
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated field
-                    GClass32 gclass32 = new GClass32(class37.string_0[1], index, class37.string_0[0], buffer, GClass28.dictionary_2[index].Size, list_2, GClass28.dictionary_2[index].EshopId, GClass28.dictionary_2[index].ProductCode, GClass28.dictionary_2[index].IconUrl, "http://ccs.cdn.wup.shop.nintendo.net/ccs/download/", GClass28.dictionary_2[index].Platform, GEnum3.const_1);
+                    GClass32 gclass32 = new GClass32(class37.string_0[1], index, class37.string_0[0], buffer, GClass28.dictionary_2[index].Size, list_2, GClass28.dictionary_2[index].EshopId, GClass28.dictionary_2[index].ProductCode, GClass28.dictionary_2[index].IconUrl, "http://ccs.cdn.wup.shop.nintendo.net/ccs/download/", GClass28.dictionary_2[index].Platform, SystemType.SystemWiiU);
                     if (GClass28.dictionary_2[index.FullGame].ProductCode.Length < 6)
                       Console.WriteLine(string.Format("{0} {1} {2} has bad product code.", (object) gclass32.Name, (object) gclass32.TitleId, (object) gclass32.EshopId));
                     if (GClass28.dictionary_2[index.FullGame].IconUrl == "#N/A")

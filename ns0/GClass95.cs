@@ -32,8 +32,8 @@ namespace ns0
       this.Name = string_2;
       try
       {
-        if (!Directory.Exists(this.String_6))
-          Directory.CreateDirectory(this.String_6);
+        if (!Directory.Exists(this.Root_Path))
+          Directory.CreateDirectory(this.Root_Path);
       }
       catch (Exception ex)
       {
@@ -48,49 +48,49 @@ namespace ns0
         Environment.Exit(0);
         return;
       }
-      if (!Directory.Exists(this.String_5))
-        Directory.CreateDirectory(this.String_5);
-      if (!Directory.Exists(this.String_4))
-        Directory.CreateDirectory(this.String_4);
+      if (!Directory.Exists(this.Root_Games_Path))
+        Directory.CreateDirectory(this.Root_Games_Path);
+      if (!Directory.Exists(this.Root_BIN_Path))
+        Directory.CreateDirectory(this.Root_BIN_Path);
       this.Url = string_3;
       this.bool_0 = bool_3;
       if (!bool_3)
         return;
-      this.method_1();
+      this.Check_If_Emulator_Autoupdate_Is_Enabled();
     }
 
-    public string String_0
+    public string Get_Emulator_Web_Location
     {
       get
       {
-        return string.Format("{0}/res/emulators/{1}.zip", (object) Class67.String_2, (object) this.Name);
+        return string.Format("{0}/res/emulators/{1}.zip", (object) Class67.CDNWiiUUSBHelperURL, (object) this.Name);
       }
     }
 
-    public void method_0()
+    public void CheckWebForEmulatorUpdate()
     {
-      string str = "";
+      string Current_Emulator_Metadata = "";
       try
       {
-        str = System.IO.File.ReadAllText(Path.Combine(this.String_4, "etag"));
+        Current_Emulator_Metadata = System.IO.File.ReadAllText(Path.Combine(this.Root_BIN_Path, "etag"));
       }
       catch
       {
       }
-      string contents = GClass6.smethod_14(this.String_0);
-      if (this.Boolean_0 && !(str != contents))
+      string Downloaded_Emulator_File_Metadata = GClass6.Get_URL_File_Metadata(this.Get_Emulator_Web_Location);
+      if (this.Boolean_0 && !(Current_Emulator_Metadata != Downloaded_Emulator_File_Metadata))
         return;
       Class67.smethod_3(this);
       if (!this.Boolean_0)
         return;
-      System.IO.File.WriteAllText(Path.Combine(this.String_4, "etag"), contents);
+      System.IO.File.WriteAllText(Path.Combine(this.Root_BIN_Path, "etag"), Downloaded_Emulator_File_Metadata);
     }
 
-    public void method_1()
+    public void Check_If_Emulator_Autoupdate_Is_Enabled()
     {
       if (!new GClass17(this).method_0().AutoUpdate)
         return;
-      this.method_0();
+      this.CheckWebForEmulatorUpdate();
     }
 
     public virtual string FileSaveLocation
@@ -117,7 +117,7 @@ namespace ns0
       string str = Path.Combine(Path.GetDirectoryName(string_2), Convert.ToBase64String(Encoding.UTF8.GetBytes(string_3 + " " + string_4 + " " + this.gclass30_0.TitleId.IdRaw)));
       GClass6.smethod_6(str);
       System.IO.File.Move(string_2, str);
-      string text = Class67.smethod_14(str, string.Format("{0}/saves/upload_save_b64.php", (object) Class67.String_1));
+      string text = Class67.smethod_14(str, string.Format("{0}/saves/upload_save_b64.php", (object) Class67.CloudWiiUUSBHelperURL));
       if (!(text != "OK"))
         return;
       int num = (int) RadMessageBox.Show(text);
@@ -127,7 +127,7 @@ namespace ns0
     {
       try
       {
-        string str = Path.Combine(GClass88.CachePath, "saves_backup");
+        string str = Path.Combine(GClass88.DirectoryCache, "saves_backup");
         foreach (DirectoryInfo enumerateDirectory in new DirectoryInfo(str).EnumerateDirectories())
         {
           if (enumerateDirectory.Name.Contains<char>(','))
@@ -150,7 +150,7 @@ namespace ns0
       if (this.FileSaveLocation == null)
         return;
       WebClient webClient = new WebClient();
-      if (new WebClient().UploadValues(new Uri(string.Format("{0}/saves/get_save.php", (object) Class67.String_1)), new NameValueCollection()
+      if (new WebClient().UploadValues(new Uri(string.Format("{0}/saves/get_save.php", (object) Class67.CloudWiiUUSBHelperURL)), new NameValueCollection()
       {
         {
           "username",
@@ -176,7 +176,7 @@ namespace ns0
       webClient.UploadValuesCompleted += new UploadValuesCompletedEventHandler(class83.method_0);
       // ISSUE: reference to a compiler-generated method
       webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(class83.method_1);
-      webClient.UploadValuesAsync(new Uri(string.Format("{0}/saves/get_save.php", (object) Class67.String_1)), new NameValueCollection()
+      webClient.UploadValuesAsync(new Uri(string.Format("{0}/saves/get_save.php", (object) Class67.CloudWiiUUSBHelperURL)), new NameValueCollection()
       {
         {
           "username",
@@ -240,27 +240,27 @@ namespace ns0
     {
       get
       {
-        return Path.Combine(this.String_5, this.gclass30_0.method_12());
+        return Path.Combine(this.Root_Games_Path, this.gclass30_0.method_12());
       }
     }
 
-    internal string String_4
+    internal string Root_BIN_Path
     {
       get
       {
-        return Path.Combine(this.String_6, "BIN");
+        return Path.Combine(this.Root_Path, "BIN");
       }
     }
 
-    internal string String_5
+    internal string Root_Games_Path
     {
       get
       {
-        return Path.Combine(this.String_6, "GAMES");
+        return Path.Combine(this.Root_Path, "GAMES");
       }
     }
 
-    private string String_6
+    private string Root_Path
     {
       get
       {
@@ -371,7 +371,7 @@ namespace ns0
       process.StartInfo.FileName = this.GetExecutable();
       process.EnableRaisingEvents = true;
       process.StartInfo.Arguments = string_2;
-      process.StartInfo.WorkingDirectory = this.String_4;
+      process.StartInfo.WorkingDirectory = this.Root_BIN_Path;
       process.StartInfo.UseShellExecute = false;
       process.StartInfo.RedirectStandardOutput = true;
       process.Exited += (EventHandler) ((sender, e) => this.method_7());
@@ -383,8 +383,8 @@ namespace ns0
       process.Start();
       if (!Settings.Default.PauseMiner)
         return;
-      Class108.smethod_1();
-      this.Event_0 += (EventHandler) ((sender, e) => Class108.smethod_0());
+      MiningSetupAndRun.smethod_1();
+      this.Event_0 += (EventHandler) ((sender, e) => MiningSetupAndRun.Miner_Compatability_Check_And_PrepOrStart());
     }
 
     protected static long smethod_0(Stream stream_0, byte[] byte_0)
@@ -470,7 +470,7 @@ namespace ns0
 
     protected void method_9(bool bool_3)
     {
-      string path1 = Path.Combine(GClass88.CachePath, "rpl2elf.exe");
+      string path1 = Path.Combine(GClass88.DirectoryCache, "rpl2elf.exe");
       if (!System.IO.File.Exists(path1))
         System.IO.File.WriteAllBytes(path1, Class123.rpl2elf);
       GClass13 gclass13 = this.gclass30_0.method_15();
@@ -481,7 +481,7 @@ namespace ns0
           return gclass12_0.string_1 == "code";
         return false;
       }));
-      this.gclass30_0.method_16(this.String_5, true, (bool_3 ? 1 : 0) != 0, (IEnumerable<GClass12>) new GClass12[2]
+      this.gclass30_0.method_16(this.Root_Games_Path, true, (bool_3 ? 1 : 0) != 0, (IEnumerable<GClass12>) new GClass12[2]
       {
         gclass12_1,
         gclass12_2
@@ -564,9 +564,9 @@ namespace ns0
 
     protected virtual void PrepareRomIfNecessary(bool directDownload)
     {
-      if (this.Boolean_2 || this.gclass30_0.System != GEnum3.const_1)
+      if (this.Boolean_2 || this.gclass30_0.System != SystemType.SystemWiiU)
         return;
-      this.gclass30_0.method_16(this.String_5, true, directDownload, (IEnumerable<GClass12>) null, false);
+      this.gclass30_0.method_16(this.Root_Games_Path, true, directDownload, (IEnumerable<GClass12>) null, false);
     }
 
     public struct GStruct6

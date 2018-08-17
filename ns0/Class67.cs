@@ -27,61 +27,61 @@ namespace ns0
     private static ZipArchive zipArchive_0;
     private const string string_1 = "https://";
 
-    public static string RootDomain { get; set; } = "wiiuusbhelper.com";
+    public static string WiiU_USB_Helper_Domain { get; set; } = "wiiuusbhelper.com";
 
-    public static string String_0
+    public static string ApplicationWiiUUSBHelperURL
     {
       get
       {
-        return "https://application." + Class67.RootDomain;
+        return "https://application." + Class67.WiiU_USB_Helper_Domain;
       }
     }
 
-    public static string String_1
+    public static string CloudWiiUUSBHelperURL
     {
       get
       {
-        return "https://cloud." + Class67.RootDomain;
+        return "https://cloud." + Class67.WiiU_USB_Helper_Domain;
       }
     }
 
-    public static string String_2
+    public static string CDNWiiUUSBHelperURL
     {
       get
       {
-        return "https://cdn." + Class67.RootDomain;
+        return "https://cdn." + Class67.WiiU_USB_Helper_Domain;
       }
     }
 
-    public static string String_3
+    public static string RegistrationWiiUUSBHelperURL
     {
       get
       {
-        return "https://registration." + Class67.RootDomain;
+        return "https://registration." + Class67.WiiU_USB_Helper_Domain;
       }
     }
 
-    public static string String_4
+    public static string SupportWiiUUSBHelperURL
     {
       get
       {
-        return "https://support." + Class67.RootDomain;
+        return "https://support." + Class67.WiiU_USB_Helper_Domain;
       }
     }
 
-    private static string String_5
+    private static string DataV6URL
     {
       get
       {
-        return string.Format("{0}/res/db/datav6.enc", (object) Class67.String_2);
+        return string.Format("{0}/res/db/datav6.enc", (object) Class67.CDNWiiUUSBHelperURL);
       }
     }
 
-    public static List<GClass90> smethod_0()
+    public static List<GClass90> Deserialize_FAQ()
     {
       try
       {
-        return JsonConvert.DeserializeObject<List<GClass90>>(new GClass78().method_6(string.Format("{0}/getFaq.php", (object) Class67.String_4)));
+        return JsonConvert.DeserializeObject<List<GClass90>>(new GClass78().Download_File_UTF8(string.Format("{0}/getFaq.php", (object) Class67.SupportWiiUUSBHelperURL)));
       }
       catch
       {
@@ -91,14 +91,14 @@ namespace ns0
 
     public static string smethod_1(string string_2, int int_1)
     {
-      return string.Format("{0}/proxy.php?url=", (object) Class67.String_0) + Convert.ToBase64String(Encoding.UTF8.GetBytes(string_2)) + "&cache=" + int_1.ToString();
+      return string.Format("{0}/proxy.php?url=", (object) Class67.ApplicationWiiUUSBHelperURL) + Convert.ToBase64String(Encoding.UTF8.GetBytes(string_2)) + "&cache=" + int_1.ToString();
     }
 
     public static List<string> smethod_2()
     {
       try
       {
-        return new List<string>((IEnumerable<string>) new GClass78().method_6(string.Format("{0}/res/db/forceCFW.txt", (object) Class67.String_2)).ToUpper().Split(new string[1]
+        return new List<string>((IEnumerable<string>) new GClass78().Download_File_UTF8(string.Format("{0}/res/db/forceCFW.txt", (object) Class67.CDNWiiUUSBHelperURL)).ToUpper().Split(new string[1]
         {
           Environment.NewLine
         }, StringSplitOptions.RemoveEmptyEntries));
@@ -141,9 +141,9 @@ namespace ns0
       }
     }
 
-    internal static void smethod_4()
+    internal static void CheckOrInstallDirectXRuntime()
     {
-      if (GClass27.smethod_2("xinput1_3.dll") && (!Environment.Is64BitOperatingSystem || GClass27.smethod_3("xinput1_3.dll")))
+      if (GClass27.InSysDir("xinput1_3.dll") && (!Environment.Is64BitOperatingSystem || GClass27.InWinSysWOW64("xinput1_3.dll")))
         return;
       Class67.smethod_7("dxwebsetup.exe");
     }
@@ -172,7 +172,7 @@ namespace ns0
       // ISSUE: reference to a compiler-generated field
       class70.string_0 = Path.Combine(Path.GetTempPath(), string_2);
       // ISSUE: reference to a compiler-generated field
-      GClass27.smethod_9(string.Format("{0}/res/prerequisites/{1}", (object) Class67.String_2, (object) string_2), class70.string_0, (string) null);
+      GClass27.smethod_9(string.Format("{0}/res/prerequisites/{1}", (object) Class67.CDNWiiUUSBHelperURL, (object) string_2), class70.string_0, (string) null);
       Process process = new Process();
       // ISSUE: reference to a compiler-generated field
       process.StartInfo.FileName = class70.string_0;
@@ -187,7 +187,7 @@ namespace ns0
 
     private static void smethod_8(string string_2, string string_3, string string_4)
     {
-      if (GClass27.smethod_2(string_2) && (!Environment.Is64BitOperatingSystem || GClass27.smethod_3(string_2)))
+      if (GClass27.InSysDir(string_2) && (!Environment.Is64BitOperatingSystem || GClass27.InWinSysWOW64(string_2)))
         return;
       Class67.smethod_7(string_3);
       Class67.smethod_7(string_4);
@@ -200,19 +200,19 @@ namespace ns0
 
     internal static void smethod_10()
     {
-      if (GClass27.smethod_2("msvcp140.dll"))
+      if (GClass27.InSysDir("msvcp140.dll"))
         return;
       Class67.smethod_7("vcredist_x642015.exe");
     }
 
     public static string smethod_11()
     {
-      return new GClass78().method_6(string.Format("{0}/res/txt/changelog.txt", (object) Class67.String_2));
+      return new GClass78().Download_File_UTF8(string.Format("{0}/res/txt/changelog.txt", (object) Class67.CDNWiiUUSBHelperURL));
     }
 
     public static string smethod_12()
     {
-      return new GClass78().method_6(string.Format("{0}/getContributors.php", (object) Class67.String_3));
+      return new GClass78().Download_File_UTF8(string.Format("{0}/getContributors.php", (object) Class67.RegistrationWiiUUSBHelperURL));
     }
 
     public static void smethod_13()
@@ -290,9 +290,9 @@ namespace ns0
 
     private static void smethod_17(string string_2)
     {
-      string string_0_1 = Path.Combine(GClass88.CachePath, "etag");
-      string string_0_2 = Path.Combine(GClass88.CachePath, "db");
-      using (MemoryStream memoryStream_0 = new MemoryStream(new GClass78().method_2(Class67.String_5)))
+      string string_0_1 = Path.Combine(GClass88.DirectoryCache, "etag");
+      string string_0_2 = Path.Combine(GClass88.DirectoryCache, "db");
+      using (MemoryStream memoryStream_0 = new MemoryStream(new GClass78().DownloadFile(Class67.DataV6URL)))
         Class67.smethod_16(memoryStream_0);
       GClass6.smethod_6(string_0_1);
       GClass6.smethod_6(string_0_2);
@@ -302,9 +302,9 @@ namespace ns0
     {
       if (Class67.zipArchive_0 != null)
         return;
-      string path = Path.Combine(GClass88.CachePath, "etag");
-      string str = Path.Combine(GClass88.CachePath, "db");
-      string string_2 = GClass6.smethod_14(Class67.String_5);
+      string path = Path.Combine(GClass88.DirectoryCache, "etag");
+      string str = Path.Combine(GClass88.DirectoryCache, "db");
+      string string_2 = GClass6.Get_URL_File_Metadata(Class67.DataV6URL);
       if (System.IO.File.Exists(path) && System.IO.File.Exists(str))
       {
         if (!(System.IO.File.ReadAllText(path) != string_2) && new FileInfo(str).Length != 0L)
@@ -319,7 +319,7 @@ namespace ns0
         Class67.smethod_17(string_2);
     }
 
-    public static void smethod_19(string string_2)
+    public static void JSON_DLC_Import(string string_2)
     {
       Class67.smethod_18();
       foreach (DbRow dbRow in JsonConvert.DeserializeObject<IEnumerable<DbRow>>(Class67.zipArchive_0.GetEntry(string_2).smethod_7()))
@@ -333,14 +333,14 @@ namespace ns0
       }
     }
 
-    public static void smethod_20(string string_2)
+    public static void JSON_Game_Custom_Injection_Import(string string_2)
     {
       Class67.smethod_18();
       foreach (DbRow dbRow in JsonConvert.DeserializeObject<IEnumerable<DbRow>>(Class67.zipArchive_0.GetEntry(string_2).smethod_7()).Where<DbRow>((Func<DbRow, bool>) (dbRow_0 => !dbRow_0.PreLoad)))
         GClass28.dictionary_2.Add(dbRow.TitleId, dbRow);
     }
 
-    public static void smethod_21(string string_2)
+    public static void JSON_Update_Import(string string_2)
     {
       Class67.smethod_18();
       foreach (DbRow dbRow in JsonConvert.DeserializeObject<IEnumerable<DbRow>>(Class67.zipArchive_0.GetEntry(string_2).smethod_7()))
@@ -358,7 +358,7 @@ namespace ns0
 
     public static string[] smethod_22()
     {
-      return new GClass78().method_6(string.Format("{0}/res/db/blackList.txt", (object) Class67.String_2)).Split(new string[1]
+      return new GClass78().Download_File_UTF8(string.Format("{0}/res/db/blackList.txt", (object) Class67.CDNWiiUUSBHelperURL)).Split(new string[1]
       {
         Environment.NewLine
       }, StringSplitOptions.RemoveEmptyEntries);

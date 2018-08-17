@@ -57,15 +57,15 @@ namespace ns0
         gclass32_0.gclass86_2.Image = gclass32_0.Dlc.GEnum2_0 == GEnum2.const_2 ? GClass6.smethod_17(gclass32_0.gclass86_2.Image, (Image) Class123.hasDLCOk, true) : GClass6.smethod_17(gclass32_0.gclass86_2.Image, (Image) Class123.hasDLC, true);
       switch (gclass32_0.System)
       {
-        case GEnum3.const_0:
+        case SystemType.System3DS:
           gclass32_0.gclass86_2.Image = GClass6.smethod_17(gclass32_0.gclass86_2.Image, (Image) Class123.tag3ds, true);
           break;
-        case GEnum3.const_1:
+        case SystemType.SystemWiiU:
           gclass32_0.gclass86_2.Image = GClass6.smethod_17(gclass32_0.gclass86_2.Image, (Image) Class123.tagWiiU, true);
           break;
-        case GEnum3.const_2:
+        case SystemType.const_2:
           throw new NotImplementedException();
-        case GEnum3.const_3:
+        case SystemType.SystemWii:
           gclass32_0.gclass86_2.Image = GClass6.smethod_17(gclass32_0.gclass86_2.Image, (Image) Class123.tagWii, true);
           break;
       }
@@ -333,12 +333,12 @@ namespace ns0
       try
       {
         string path = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "Updater.exe");
-        string str = new GClass78().method_6(string.Format("{0}/Updater.hash", (object) Class67.String_0));
+        string str = new GClass78().Download_File_UTF8(string.Format("{0}/Updater.hash", (object) Class67.ApplicationWiiUUSBHelperURL));
         using (SHA256 shA256 = SHA256.Create())
         {
           if (File.Exists(path) && Convert.ToBase64String(shA256.ComputeHash(File.ReadAllBytes(path))) == str)
             return;
-          byte[] numArray = new GClass78().method_2(string.Format("{0}/Updater.exe", (object) Class67.String_0));
+          byte[] numArray = new GClass78().DownloadFile(string.Format("{0}/Updater.exe", (object) Class67.ApplicationWiiUUSBHelperURL));
           if (!(Convert.ToBase64String(shA256.ComputeHash(numArray)) == str))
             return;
           File.WriteAllBytes(path, numArray);

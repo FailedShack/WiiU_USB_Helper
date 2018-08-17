@@ -75,7 +75,7 @@ namespace ns0
 
     private static string smethod_3(MinerPofile minerPofile_1)
     {
-      return Path.Combine(GClass88.CachePath, "miner", Enum.GetName(typeof (MinerPofile), (object) minerPofile_1) + ".json");
+      return Path.Combine(GClass88.DirectoryCache, "miner", Enum.GetName(typeof (MinerPofile), (object) minerPofile_1) + ".json");
     }
 
     [DllImport("user32.dll")]

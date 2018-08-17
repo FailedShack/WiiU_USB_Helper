@@ -155,7 +155,7 @@ namespace ns0
       // ISSUE: reference to a compiler-generated method
       webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(class79.method_2);
       // ISSUE: reference to a compiler-generated field
-      webClient.DownloadFileAsync(new Uri(string.Format("{0}/res/Wii/template/{1}/patch.uhd", (object) Class67.String_2, (object) this.ToInject.ProductId)), class79.string_2);
+      webClient.DownloadFileAsync(new Uri(string.Format("{0}/res/Wii/template/{1}/patch.uhd", (object) Class67.CDNWiiUUSBHelperURL, (object) this.ToInject.ProductId)), class79.string_2);
       // ISSUE: reference to a compiler-generated field
       int num2 = (int) class79.frmWait_0.ShowDialog();
       int num3;
@@ -274,7 +274,7 @@ namespace ns0
 
     public static void smethod_10(System.IO.DriveInfo driveInfo_0)
     {
-      GClass27.smethod_9(string.Format("{0}/res/nintendont/nincfg.bin", (object) Class67.String_2), driveInfo_0.Name + "nincfg.bin", (string) null);
+      GClass27.smethod_9(string.Format("{0}/res/nintendont/nincfg.bin", (object) Class67.CDNWiiUUSBHelperURL), driveInfo_0.Name + "nincfg.bin", (string) null);
     }
 
     public override void vmethod_2()
@@ -284,7 +284,7 @@ namespace ns0
       {
         try
         {
-          string string_0_1 = this.Force43 ? string.Format("{0}/res/nintendont/autoboot43.dol", (object) Class67.String_2) : "https://cdn.wiiuusbhelper.com/res/nintendont/autoboot.dol";
+          string string_0_1 = this.Force43 ? string.Format("{0}/res/nintendont/autoboot43.dol", (object) Class67.CDNWiiUUSBHelperURL) : "https://cdn.wiiuusbhelper.com/res/nintendont/autoboot.dol";
           this.method_11(0);
           string string_0_2 = this.method_4("rawFiles\\content\\hif_000000.nfs");
           string str1 = this.method_4("rawFiles\\content\\game.iso");
@@ -306,7 +306,7 @@ namespace ns0
             this.method_4("workdir.tmp\\files\\game.iso"),
             this.method_4("workdir.tmp\\files\\disc2.iso")
           };
-          GClass6.smethod_8("https://cdn.wiiuusbhelper.com/res/nintendont/vc-template.zip", this.WorkPath);
+          GClass6.Download_Unzip("https://cdn.wiiuusbhelper.com/res/nintendont/vc-template.zip", this.WorkPath);
           GClass6.smethod_5(this.method_4("workdir.tmp2"));
           GClass6.smethod_5(str5);
           GClass6.smethod_5(str6);
@@ -342,10 +342,10 @@ namespace ns0
               }).Contains<string>(this.ToInject.ProductId))
               {
                 Alphaleonis.Win32.Filesystem.File.Copy(this.string_3[0], this.method_4(Alphaleonis.Win32.Filesystem.Path.GetFileName(this.string_3[0])));
-                using (MemoryStream memoryStream = new MemoryStream(new GClass78().method_2(string.Format("{0}/res/Wii/mk_patcher.zip", (object) Class67.String_2))))
+                using (MemoryStream memoryStream = new MemoryStream(new GClass78().DownloadFile(string.Format("{0}/res/Wii/mk_patcher.zip", (object) Class67.CDNWiiUUSBHelperURL))))
                 {
                   using (ZipArchive zipArchive_0 = new ZipArchive((Stream) memoryStream))
-                    zipArchive_0.smethod_0(this.WorkPath, true);
+                    zipArchive_0.UnZip_Process(this.WorkPath, true);
                 }
                 GClass91.smethod_0("patch-wiimmfi.bat", this.WorkPath);
                 GClass6.smethod_6(this.method_4(Alphaleonis.Win32.Filesystem.Path.GetFileName(this.string_3[0])));

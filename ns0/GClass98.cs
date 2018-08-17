@@ -87,17 +87,17 @@ namespace ns0
       (byte) 86
     };
 
-    public static byte[] smethod_0(GEnum3 genum3_0)
+    public static byte[] smethod_0(SystemType genum3_0)
     {
       switch (genum3_0)
       {
-        case GEnum3.const_0:
+        case SystemType.System3DS:
           return GClass98.byte_0;
-        case GEnum3.const_1:
+        case SystemType.SystemWiiU:
           return GClass98.byte_3;
-        case GEnum3.const_2:
+        case SystemType.const_2:
           throw new NotImplementedException();
-        case GEnum3.const_3:
+        case SystemType.SystemWii:
           return GClass98.byte_1;
         default:
           throw new NotImplementedException();

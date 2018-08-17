@@ -132,12 +132,12 @@ namespace ns0
       this.bool_2 = true;
     }
 
-    public static GClass99 smethod_6(string string_0, GEnum3 genum3_0)
+    public static GClass99 smethod_6(string string_0, SystemType genum3_0)
     {
       return GClass99.smethod_7(File.ReadAllBytes(string_0), genum3_0);
     }
 
-    public static GClass99 smethod_7(byte[] byte_18, GEnum3 genum3_0)
+    public static GClass99 smethod_7(byte[] byte_18, SystemType genum3_0)
     {
       GClass99 gclass99 = new GClass99();
       MemoryStream memoryStream = new MemoryStream(byte_18);
@@ -154,7 +154,7 @@ namespace ns0
       return gclass99;
     }
 
-    private void method_1(GEnum3 genum3_0)
+    private void method_1(SystemType genum3_0)
     {
       byte[] numArray = GClass98.smethod_0(genum3_0);
       byte[] bytes = BitConverter.GetBytes(GClass27.smethod_6(this.ulong_1));
@@ -176,7 +176,7 @@ namespace ns0
       rijndaelManaged.Clear();
     }
 
-    private void method_2(Stream stream_0, GEnum3 genum3_0)
+    private void method_2(Stream stream_0, SystemType genum3_0)
     {
       stream_0.Seek(0L, SeekOrigin.Begin);
       byte[] buffer = new byte[8];
@@ -213,7 +213,7 @@ namespace ns0
       this.method_1(genum3_0);
     }
 
-    private void method_3(GEnum3 genum3_0)
+    private void method_3(SystemType genum3_0)
     {
       this.byte_6 = this.byte_8;
       this.method_1(genum3_0);

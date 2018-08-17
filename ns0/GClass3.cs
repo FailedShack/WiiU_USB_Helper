@@ -31,7 +31,7 @@ namespace ns0
 
     private static void smethod_2()
     {
-      using (FileStream fileStream = File.Create(Path.Combine(GClass88.CachePath, GClass3.string_0)))
+      using (FileStream fileStream = File.Create(Path.Combine(GClass88.DirectoryCache, GClass3.string_0)))
         new BinaryFormatter().Serialize((Stream) fileStream, (object) GClass3.list_0);
     }
 
@@ -44,7 +44,7 @@ namespace ns0
     {
       try
       {
-        using (FileStream fileStream = File.Open(Path.Combine(GClass88.CachePath, GClass3.string_0), FileMode.Open))
+        using (FileStream fileStream = File.Open(Path.Combine(GClass88.DirectoryCache, GClass3.string_0), FileMode.Open))
           GClass3.list_0 = (List<string>) new BinaryFormatter().Deserialize((Stream) fileStream);
       }
       catch

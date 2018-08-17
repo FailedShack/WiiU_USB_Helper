@@ -26,7 +26,7 @@ namespace ns0
 
     public void method_0(string string_4, string string_5, string string_6, string string_7)
     {
-      this.gclass100_0 = GClass100.smethod_0(string_6, GEnum3.const_3);
+      this.gclass100_0 = GClass100.smethod_0(string_6, SystemType.SystemWii);
       this.string_0 = string_4;
       this.string_1 = string_5;
       this.string_2 = string_6;
@@ -56,7 +56,7 @@ namespace ns0
       byte[] buffer1 = File.ReadAllBytes(this.string_2);
       byte[] buffer2 = File.ReadAllBytes(this.string_0);
       byte[] numArray = File.ReadAllBytes(this.string_1);
-      GClass99.smethod_7(numArray, GEnum3.const_3);
+      GClass99.smethod_7(numArray, SystemType.SystemWii);
       this.gclass108_0.UInt32_2 = (uint) (484 + this.gclass100_0.GClass101_0.Length * 36);
       this.gclass108_0.UInt32_1 = 0U;
       stream_0.Seek(0L, SeekOrigin.Begin);

@@ -137,7 +137,7 @@ namespace ns0
     {
       get
       {
-        return Path.Combine(GClass88.CachePath, "wfsdump.exe");
+        return Path.Combine(GClass88.DirectoryCache, "wfsdump.exe");
       }
     }
 
@@ -145,7 +145,7 @@ namespace ns0
     {
       get
       {
-        return Path.Combine(GClass88.CachePath, this.String_6);
+        return Path.Combine(GClass88.DirectoryCache, this.String_6);
       }
     }
 

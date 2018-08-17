@@ -248,7 +248,7 @@ namespace ns0
     {
       this.method_17("Computing title.cert...");
       string str = Path.Combine(string_0, "title.cert");
-      if (gclass30_0.System == GEnum3.const_3)
+      if (gclass30_0.System == SystemType.SystemWii)
         System.IO.File.WriteAllBytes(str, GClass96.byte_0);
       else if (gclass30_0.Platform == Platform.Wii_U_Custom)
       {
@@ -284,7 +284,7 @@ namespace ns0
     {
       this.method_17("Fetching Ticket...");
       string str = Path.Combine(gclass30_0.OutputPath, "title.tik");
-      if (gclass30_0.Platform != Platform.Wii_U_Custom && (!(gclass30_0 is GClass33) || gclass30_0.System != GEnum3.const_1))
+      if (gclass30_0.Platform != Platform.Wii_U_Custom && (!(gclass30_0 is GClass33) || gclass30_0.System != SystemType.SystemWiiU))
       {
         if (!gclass30_0.bool_0)
         {
@@ -293,7 +293,7 @@ namespace ns0
           return gclass30_0.Ticket;
         }
         this.method_17("Downloading ticket from that site");
-        byte[] bytes = System.IO.File.ReadAllBytes(Path.Combine(Path.Combine(GClass88.CachePath, "tickets"), gclass30_0.TitleId.IdRaw + ".tik"));
+        byte[] bytes = System.IO.File.ReadAllBytes(Path.Combine(Path.Combine(GClass88.DirectoryCache, "tickets"), gclass30_0.TitleId.IdRaw + ".tik"));
         gclass30_0.TicketArray = bytes;
         System.IO.File.WriteAllBytes(str, bytes);
         gclass30_0.Ticket = GClass99.smethod_7(gclass30_0.TicketArray, gclass30_0.System);
@@ -354,7 +354,7 @@ namespace ns0
       GClass99 gclass99 = this.method_11(class63.gclass30_0);
       // ISSUE: reference to a compiler-generated field
       // ISSUE: reference to a compiler-generated field
-      if (class63.gclass30_0.System == GEnum3.const_1 || class63.gclass30_0.System == GEnum3.const_3)
+      if (class63.gclass30_0.System == SystemType.SystemWiiU || class63.gclass30_0.System == SystemType.SystemWii)
       {
         // ISSUE: reference to a compiler-generated field
         // ISSUE: reference to a compiler-generated field
@@ -566,7 +566,7 @@ label_48:
       byte[] numArray = (byte[]) null;
       try
       {
-        numArray = !(gclass30_0 is GClass33) ? gclass78.method_2(gclass30_0.String_1 + "tmd") : gclass78.method_2(string.Format("{0}tmd.{1}", (object) gclass30_0.String_1, (object) gclass30_0.Version));
+        numArray = !(gclass30_0 is GClass33) ? gclass78.DownloadFile(gclass30_0.String_1 + "tmd") : gclass78.DownloadFile(string.Format("{0}tmd.{1}", (object) gclass30_0.String_1, (object) gclass30_0.Version));
         gclass30_0.Tmd = GClass100.smethod_1(numArray, gclass30_0.System);
       }
       catch (Exception ex)

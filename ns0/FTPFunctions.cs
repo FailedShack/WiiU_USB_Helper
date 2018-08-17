@@ -16,26 +16,26 @@ using System.Threading.Tasks;
 
 namespace ns0
 {
-  internal class Class60
+  internal class FTPConnection
   {
     private readonly int int_1 = 131072;
     public static volatile bool bool_0;
     private const int int_0 = 5;
-    private readonly string string_0;
-    private readonly string string_1;
-    private readonly string string_2;
-    private readonly string string_3;
+    private readonly string FTPFullURL;
+    private readonly string FTPIP;
+    private readonly string FTPPassword;
+    private readonly string FTPUser;
     private volatile bool bool_1;
     private FtpWebRequest ftpWebRequest_0;
     private FtpWebResponse ftpWebResponse_0;
     private Stream stream_0;
 
-    public Class60(string string_4, string string_5, string string_6)
+    public FTPConnection(string IPAddress, string FTPUser, string FTPPassword)
     {
-      this.string_1 = string_4;
-      this.string_0 = "ftp://" + string_4;
-      this.string_3 = string_5;
-      this.string_2 = string_6;
+      this.FTPIP = IPAddress;
+      this.FTPFullURL = "ftp://" + IPAddress;
+      this.FTPUser = FTPUser;
+      this.FTPPassword = FTPPassword;
     }
 
     public event EventHandler<long> Event_0;
@@ -44,13 +44,13 @@ namespace ns0
 
     public GClass81 TransferStatus { get; private set; } = new GClass81("Upload complete!", false, GEnum5.const_6);
 
-    public void method_0()
+    public void FTP_AbortFTP()
     {
       this.TransferStatus = new GClass81("Upload aborted.", true, GEnum5.const_2);
       this.bool_1 = true;
     }
 
-    public bool method_1()
+    public bool FTP_ListFiles()
     {
       bool flag = true;
       try
@@ -76,7 +76,7 @@ namespace ns0
       return flag;
     }
 
-    public void method_2(string string_4)
+    public void FTP_MakeDir(string string_4)
     {
       try
       {
@@ -91,7 +91,7 @@ namespace ns0
       }
     }
 
-    public void method_3(string string_4)
+    public void FTP_DelFile(string string_4)
     {
       try
       {
@@ -208,14 +208,14 @@ namespace ns0
       foreach (string str in this.method_4(string_4))
       {
         string string_5_1 = Path.Combine(string_5, str);
-        if (Class60.smethod_1(str))
+        if (FTPConnection.smethod_1(str))
           this.method_8(Path.Combine(string_4, str) + "/", zipArchive_0, string_5_1);
         else
           this.method_17(Path.Combine(string_4, str), zipArchive_0, string_5_1);
       }
     }
 
-    public string method_9(string string_4)
+    public string FTP_CheckFileVersion(string string_4)
     {
       try
       {
@@ -296,7 +296,7 @@ namespace ns0
     {
       try
       {
-        Class60.smethod_2(this.string_1, 21, this.string_3, this.string_2, "INST install/" + string_4);
+        FTPConnection.smethod_2(this.FTPIP, 21, this.FTPUser, this.FTPPassword, "INST install/" + string_4);
       }
       catch (Exception ex)
       {
@@ -308,7 +308,7 @@ namespace ns0
     {
       try
       {
-        Class60.smethod_2(this.string_1, 21, this.string_3, this.string_2, "REMO " + (bool_2 ? "Y" : "N"));
+        FTPConnection.smethod_2(this.FTPIP, 21, this.FTPUser, this.FTPPassword, "REMO " + (bool_2 ? "Y" : "N"));
       }
       catch (Exception ex)
       {
@@ -320,7 +320,7 @@ namespace ns0
     {
       // ISSUE: object of a compiler-generated type is created
       // ISSUE: reference to a compiler-generated method
-      Task.Run(new Action(new Class60.Class61()
+      Task.Run(new Action(new FTPConnection.Class61()
       {
         class60_0 = this,
         string_0 = string_4,
@@ -328,9 +328,9 @@ namespace ns0
       }.method_0));
     }
 
-    public void method_15(string string_4, ZipArchive zipArchive_0)
+    public void FTP_UploadZIP(string string_4, ZipArchive zipArchive_0)
     {
-      this.method_2(string_4);
+      this.FTP_MakeDir(string_4);
       List<string> stringList = new List<string>();
       foreach (ZipArchiveEntry entry in zipArchive_0.Entries)
       {
@@ -343,7 +343,7 @@ namespace ns0
           foreach (string str in strArray)
           {
             string_4_1 = string_4_1 + "/" + str;
-            this.method_2(string_4_1);
+            this.FTP_MakeDir(string_4_1);
           }
         }
       }
@@ -352,7 +352,7 @@ namespace ns0
         if (!(entry.FullName == "meta.json"))
         {
           string string_4_1 = Path.Combine(string_4, entry.FullName.Replace("\\", "/"));
-          if (!Class60.smethod_1(string_4_1))
+          if (!FTPConnection.smethod_1(string_4_1))
             this.method_19(string_4_1, entry);
         }
       }
@@ -387,8 +387,8 @@ namespace ns0
       {
         TcpClient tcpClient_0 = new TcpClient();
         tcpClient_0.Connect(string_4, int_2);
-        Class60.smethod_0(tcpClient_0);
-        if (Class60.smethod_3(tcpClient_0, "user " + string_5).Contains("331") && Class60.smethod_3(tcpClient_0, "pass " + string_6).Contains("230") && Class60.smethod_3(tcpClient_0, string_7).Contains("200"))
+        FTPConnection.smethod_0(tcpClient_0);
+        if (FTPConnection.smethod_3(tcpClient_0, "user " + string_5).Contains("331") && FTPConnection.smethod_3(tcpClient_0, "pass " + string_6).Contains("230") && FTPConnection.smethod_3(tcpClient_0, string_7).Contains("200"))
           flag = true;
         tcpClient_0.Close();
       }
@@ -421,8 +421,8 @@ namespace ns0
 
     private FtpWebRequest method_16(string string_4, string string_5)
     {
-      this.ftpWebRequest_0 = (FtpWebRequest) WebRequest.Create(this.string_0 + "/" + string_4);
-      this.ftpWebRequest_0.Credentials = (ICredentials) new NetworkCredential(this.string_3, this.string_2);
+      this.ftpWebRequest_0 = (FtpWebRequest) WebRequest.Create(this.FTPFullURL + "/" + string_4);
+      this.ftpWebRequest_0.Credentials = (ICredentials) new NetworkCredential(this.FTPUser, this.FTPPassword);
       this.ftpWebRequest_0.UseBinary = true;
       this.ftpWebRequest_0.UsePassive = true;
       this.ftpWebRequest_0.KeepAlive = true;

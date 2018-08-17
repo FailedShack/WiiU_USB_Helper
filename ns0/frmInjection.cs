@@ -151,7 +151,7 @@ namespace ns0
 
     private void radButton1_Click(object sender, EventArgs e)
     {
-      Process.Start(string.Format("{0}/vote/gamecube.php", (object) Class67.String_3));
+      Process.Start(string.Format("{0}/vote/gamecube.php", (object) Class67.RegistrationWiiUUSBHelperURL));
     }
 
     private void radLabel2_Click(object sender, EventArgs e)

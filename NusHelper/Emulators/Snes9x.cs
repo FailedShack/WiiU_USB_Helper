@@ -37,7 +37,7 @@ namespace NusHelper.Emulators
 
     public override string GetExecutable()
     {
-      return System.IO.Path.Combine(this.String_4, "snes9x.exe");
+      return System.IO.Path.Combine(this.Root_BIN_Path, "snes9x.exe");
     }
 
     public override bool UpdateIsInstalled()
@@ -47,7 +47,7 @@ namespace NusHelper.Emulators
 
     public override string GetRom()
     {
-      return System.IO.Path.Combine(this.String_5, this.gclass30_0.method_12(), "rom.sfc");
+      return System.IO.Path.Combine(this.Root_Games_Path, this.gclass30_0.method_12(), "rom.sfc");
     }
 
     protected override void PrepareRomIfNecessary(bool directDownload)

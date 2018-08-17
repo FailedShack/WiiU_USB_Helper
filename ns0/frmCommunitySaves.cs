@@ -48,7 +48,7 @@ namespace ns0
         return;
       GClass95 gclass95 = this.gclass32_0.method_14(false);
       GClass6.smethod_5(gclass95.FileSaveLocation);
-      GClass27.smethod_7(string.Format("{0}/communitysaves/cdn/{1}", (object) Class67.String_1, (object) (this.lstSaves.SelectedItem.Tag as frmCommunitySaves.Class131).Md5), gclass95.FileSaveLocation);
+      GClass27.smethod_7(string.Format("{0}/communitysaves/cdn/{1}", (object) Class67.CloudWiiUUSBHelperURL, (object) (this.lstSaves.SelectedItem.Tag as frmCommunitySaves.Class131).Md5), gclass95.FileSaveLocation);
       if (Settings.Default.EnableCloudSaving)
         gclass95.method_2(gclass95.vmethod_0(), Settings.Default.CloudUserName, Settings.Default.CloudPassWord);
       int num = (int) RadMessageBox.Show("Save imported!");
@@ -70,12 +70,12 @@ namespace ns0
         }
         else
         {
-          string str = Class67.smethod_14(string_2, string.Format("{0}/communitysaves/upload.php", (object) Class67.String_1));
+          string str = Class67.smethod_14(string_2, string.Format("{0}/communitysaves/upload.php", (object) Class67.CloudWiiUUSBHelperURL));
           if (str.Length != 32)
           {
             int num3 = (int) RadMessageBox.Show("An error occured while uploading your save.");
           }
-          else if (GClass6.smethod_20(string.Format("{0}/communitysaves/add.php", (object) Class67.String_1), new NameValueCollection() { { "titleid", this.gclass32_0.TitleId.IdRaw }, { "md5", str }, { "description", communitySaveDescription.Description } }) == "Ok")
+          else if (GClass6.smethod_20(string.Format("{0}/communitysaves/add.php", (object) Class67.CloudWiiUUSBHelperURL), new NameValueCollection() { { "titleid", this.gclass32_0.TitleId.IdRaw }, { "md5", str }, { "description", communitySaveDescription.Description } }) == "Ok")
           {
             int num4 = (int) RadMessageBox.Show("Thank you for your contribution!");
             this.method_0();
@@ -92,7 +92,7 @@ namespace ns0
     {
       this.lstSaves.BeginUpdate();
       this.lstSaves.Items.Clear();
-      string string_0 = string.Format("{0}/communitysaves/list.php", (object) Class67.String_1);
+      string string_0 = string.Format("{0}/communitysaves/list.php", (object) Class67.CloudWiiUUSBHelperURL);
       foreach (frmCommunitySaves.Class131 class131 in JsonConvert.DeserializeObject<List<frmCommunitySaves.Class131>>(GClass6.smethod_20(string_0, new NameValueCollection() { { "titleid", this.gclass32_0.TitleId.IdRaw } })))
       {
         ListViewDataItem listViewDataItem = new ListViewDataItem() { Tag = (object) class131 };

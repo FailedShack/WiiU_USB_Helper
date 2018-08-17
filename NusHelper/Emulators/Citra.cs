@@ -231,7 +231,7 @@ namespace NusHelper.Emulators
 
     public override string GetExecutable()
     {
-      return Path.Combine(this.String_4, "citra-qt.exe");
+      return Path.Combine(this.Root_BIN_Path, "citra-qt.exe");
     }
 
     public override string GetRom()
@@ -380,11 +380,11 @@ namespace NusHelper.Emulators
     {
       if (!this.Boolean_2)
       {
-        string str = Path.Combine(this.String_5, this.gclass30_0.TitleId.IdRaw);
+        string str = Path.Combine(this.Root_Games_Path, this.gclass30_0.TitleId.IdRaw);
         GClass6.smethod_5(str);
         this.gclass30_0.method_3(str, false);
         string name = new DirectoryInfo(this.CurrentGamePath).Name;
-        GClass6.smethod_5(Path.Combine(this.String_5, name));
+        GClass6.smethod_5(Path.Combine(this.Root_Games_Path, name));
         FileSystem.RenameDirectory(str, name);
       }
       this.PrepareUpdateIfNecessary(directDownload);

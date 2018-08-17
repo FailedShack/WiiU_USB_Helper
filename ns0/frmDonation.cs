@@ -40,7 +40,7 @@ namespace ns0
     {
       try
       {
-        Process.Start(string.Format("{0}/donation.php", (object) Class67.String_3));
+        Process.Start(string.Format("{0}/donation.php", (object) Class67.RegistrationWiiUUSBHelperURL));
       }
       catch
       {

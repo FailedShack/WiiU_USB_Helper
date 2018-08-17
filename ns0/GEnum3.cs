@@ -6,11 +6,11 @@
 
 namespace ns0
 {
-  public enum GEnum3
+  public enum SystemType
   {
-    const_0,
-    const_1,
+    System3DS,
+    SystemWiiU,
     const_2,
-    const_3,
+    SystemWii,
   }
 }

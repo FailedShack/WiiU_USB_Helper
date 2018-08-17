@@ -40,10 +40,10 @@ namespace ns0
         {
           if (!gclass95_0.EmuConfiguration_0.AutoUpdate)
           {
-            int num = (int) RadMessageBox.Show(string.Format("No emulator detected. Please install it in {0} or enable Automatic updates in 'Emu. Settings'.", (object) gclass95_0.String_4));
+            int num = (int) RadMessageBox.Show(string.Format("No emulator detected. Please install it in {0} or enable Automatic updates in 'Emu. Settings'.", (object) gclass95_0.Root_BIN_Path));
             return;
           }
-          gclass95_0.method_0();
+          gclass95_0.CheckWebForEmulatorUpdate();
         }
         gclass95_0.FullScreen = true;
         frmShortcutType frmShortcutType = new frmShortcutType((GClass30) gclass32_0);
@@ -132,7 +132,7 @@ namespace ns0
     {
       get
       {
-        return System.IO.Path.Combine(GClass88.CachePath, "steam");
+        return System.IO.Path.Combine(GClass88.DirectoryCache, "steam");
       }
     }
 
@@ -145,20 +145,20 @@ namespace ns0
 
     private static string smethod_4(GClass32 gclass32_0, GClass95 gclass95_0)
     {
-      System.IO.Path.Combine(GClass88.CachePath, "steam");
+      System.IO.Path.Combine(GClass88.DirectoryCache, "steam");
       string string_1 = GClass128.smethod_8(gclass32_0);
       System.IO.Directory.CreateDirectory(GClass128.String_0);
-      new GClass78().method_5(string.Format("{0}/res/tools/Shortcut.exe", (object) Class67.String_2), string_1, 0UL, GClass78.GEnum4.const_0, (WebProxy) null, 0L, (byte[]) null, (byte[]) null, (byte) 0);
+      new GClass78().method_5(string.Format("{0}/res/tools/Shortcut.exe", (object) Class67.CDNWiiUUSBHelperURL), string_1, 0UL, GClass78.GEnum4.const_0, (WebProxy) null, 0L, (byte[]) null, (byte[]) null, (byte) 0);
       System.IO.File.WriteAllText(string_1 + ".arg", string.Format("{0}|{1}|{2}", (object) gclass95_0.GetExecutable(), (object) gclass95_0.GetArguments(), (object) System.IO.Path.GetDirectoryName(gclass95_0.GetExecutable())));
       return string_1;
     }
 
     private static void smethod_5(GClass32 gclass32_0, GClass95 gclass95_0)
     {
-      string str1 = System.IO.Path.Combine(GClass88.CachePath, "icons");
+      string str1 = System.IO.Path.Combine(GClass88.DirectoryCache, "icons");
       string str2 = System.IO.Path.Combine(str1, gclass32_0.TitleId.IdRaw + ".ico");
       System.IO.Directory.CreateDirectory(str1);
-      using (MemoryStream memoryStream = new MemoryStream(new GClass78().method_2(gclass32_0.IconUrl)))
+      using (MemoryStream memoryStream = new MemoryStream(new GClass78().DownloadFile(gclass32_0.IconUrl)))
       {
         using (FileStream fileStream = System.IO.File.Create(str2))
           GClass124.smethod_0((Bitmap) Image.FromStream((Stream) memoryStream), (Stream) fileStream, 128, false);
@@ -285,7 +285,7 @@ namespace ns0
       {
         try
         {
-          string string_0 = string.Format("{0}/res/emulators/banners/{1}.png", (object) Class67.String_2, (object) gclass32_0.TitleId.IdRaw);
+          string string_0 = string.Format("{0}/res/emulators/banners/{1}.png", (object) Class67.CDNWiiUUSBHelperURL, (object) gclass32_0.TitleId.IdRaw);
           string_1 = System.IO.Path.Combine(GClass128.String_0, gclass32_0.TitleId.IdRaw + ".banner.png");
           new GClass78().method_5(string_0, string_1, 0UL, GClass78.GEnum4.const_0, (WebProxy) null, 0L, (byte[]) null, (byte[]) null, (byte) 0);
           return string_1;
@@ -294,13 +294,13 @@ namespace ns0
         {
           string_1 = (string) null;
         }
-        string html1 = new GClass78().method_6("http://steambanners.booru.org/index.php?page=post&s=list&tags=" + GClass30.smethod_3(GClass30.smethod_3(gclass32_0.Name.ToLower())).Replace(' ', '+'));
+        string html1 = new GClass78().Download_File_UTF8("http://steambanners.booru.org/index.php?page=post&s=list&tags=" + GClass30.smethod_3(GClass30.smethod_3(gclass32_0.Name.ToLower())).Replace(' ', '+'));
         HtmlAgilityPack.HtmlDocument htmlDocument = new HtmlAgilityPack.HtmlDocument();
         htmlDocument.LoadHtml(html1);
         IEnumerable<string> source = htmlDocument.DocumentNode.Descendants("a").Where<HtmlNode>((Func<HtmlNode, bool>) (htmlNode_0 => htmlNode_0.Attributes.Contains("id"))).Select<HtmlNode, string>((Func<HtmlNode, string>) (htmlNode_0 => htmlNode_0.Attributes["href"].Value)).Where<string>((Func<string, bool>) (string_0 => string_0.Contains("index.php?page=post")));
         if (source.Any<string>())
         {
-          string html2 = new GClass78().method_6("http://steambanners.booru.org/" + HtmlEntity.DeEntitize(source.ElementAt<string>(0)));
+          string html2 = new GClass78().Download_File_UTF8("http://steambanners.booru.org/" + HtmlEntity.DeEntitize(source.ElementAt<string>(0)));
           htmlDocument.LoadHtml(html2);
           string string_0_1 = htmlDocument.DocumentNode.Descendants("img").Where<HtmlNode>((Func<HtmlNode, bool>) (htmlNode_0 => htmlNode_0.Attributes.Contains("src"))).Select<HtmlNode, string>((Func<HtmlNode, string>) (htmlNode_0 => htmlNode_0.Attributes["src"].Value)).Where<string>((Func<string, bool>) (string_0 => string_0.Contains("img.booru.org/steambanners//images"))).ElementAt<string>(0);
           string_1 = System.IO.Path.Combine(GClass128.String_0, gclass32_0.TitleId.IdRaw + ".banner.png");

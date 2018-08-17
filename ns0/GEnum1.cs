@@ -6,13 +6,13 @@
 
 namespace ns0
 {
-  public enum GEnum1
+  public enum DownloadType
   {
-    const_0,
-    const_1,
-    const_2,
-    const_3,
-    const_4,
+    Update,
+    GameWiiOrU,
+    DLC,
+    Game3DS,
+    GameDSI,
     const_5,
   }
 }

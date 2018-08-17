@@ -17,7 +17,7 @@ namespace ns0
 {
   public class frmFaq : RadForm
   {
-    private List<GClass90> list_0;
+    private List<GClass90> FAQ_As_List;
     private IContainer icontainer_0;
     private RadLabel radLabel1;
     private RadLabel radLabel2;
@@ -36,7 +36,7 @@ namespace ns0
     {
       // ISSUE: object of a compiler-generated type is created
       // ISSUE: reference to a compiler-generated method
-      IEnumerable<GClass90> gclass90s = this.list_0.Where<GClass90>(new Func<GClass90, bool>(new frmFaq.Class141() { string_0 = this.txtKeyWords.Text.ToLower().Split(' ') }.method_0));
+      IEnumerable<GClass90> gclass90s = this.FAQ_As_List.Where<GClass90>(new Func<GClass90, bool>(new frmFaq.Class141() { string_0 = this.txtKeyWords.Text.ToLower().Split(' ') }.method_0));
       this.lstQuestions.BeginUpdate();
       this.lstQuestions.Items.Clear();
       foreach (object obj in gclass90s)
@@ -46,7 +46,7 @@ namespace ns0
 
     private void frmFaq_Load(object sender, EventArgs e)
     {
-      this.list_0 = Class67.smethod_0();
+      this.FAQ_As_List = Class67.Deserialize_FAQ();
       this.method_0();
     }
 

@@ -285,7 +285,7 @@ namespace ns0
 
     protected string method_6(string string_3)
     {
-      return new GClass78().method_6(this.method_12(string_3));
+      return new GClass78().Download_File_UTF8(this.method_12(string_3));
     }
 
     protected Task method_7()

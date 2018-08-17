@@ -33,16 +33,16 @@ namespace ns0
       "SP",
       "MX"
     };
-    private readonly string string_7 = string.Format("{0}/res/nintendont/template/", (object) Class67.String_2);
-    private readonly string string_8 = string.Format("{0}/res/Wii/template/", (object) Class67.String_2);
-    private readonly string string_9 = string.Format("{0}/res/SNES/template/", (object) Class67.String_2);
-    private readonly string string_10 = string.Format("{0}/res/N64/template/", (object) Class67.String_2);
+    private readonly string string_7 = string.Format("{0}/res/nintendont/template/", (object) Class67.CDNWiiUUSBHelperURL);
+    private readonly string string_8 = string.Format("{0}/res/Wii/template/", (object) Class67.CDNWiiUUSBHelperURL);
+    private readonly string string_9 = string.Format("{0}/res/SNES/template/", (object) Class67.CDNWiiUUSBHelperURL);
+    private readonly string string_10 = string.Format("{0}/res/N64/template/", (object) Class67.CDNWiiUUSBHelperURL);
     public GClass86 gclass86_0 = new GClass86();
     public GClass86 gclass86_1 = new GClass86();
     public GClass86 gclass86_2 = new GClass86();
     private GClass74 gclass74_0;
 
-    public GClass32(string string_15, TitleId titleId_1, string string_16, byte[] byte_2, DataSize dataSize_1, List<GClass33> list_2, string string_17, string string_18, string string_19, string string_20, Platform platform_1, GEnum3 genum3_1)
+    public GClass32(string string_15, TitleId titleId_1, string string_16, byte[] byte_2, DataSize dataSize_1, List<GClass33> list_2, string string_17, string string_18, string string_19, string string_20, Platform platform_1, SystemType genum3_1)
       : base(string_15, titleId_1, string_16, byte_2, dataSize_1, string_20, genum3_1)
     {
       this.EshopId = string_17;
@@ -81,11 +81,11 @@ namespace ns0
         string str = this.Region == "EUR" ? "EN" : (this.Region == "USA" ? "US" : "JA");
         switch (this.System)
         {
-          case GEnum3.const_0:
+          case SystemType.System3DS:
             return string.Format("http://art.gametdb.com/3ds/box/{0}/{1}.png", (object) str, (object) this.ProductId);
-          case GEnum3.const_1:
+          case SystemType.SystemWiiU:
             return string.Format("http://art.gametdb.com/wiiu/cover3D/{0}/{1}.png", (object) str, (object) this.ProductId);
-          case GEnum3.const_3:
+          case SystemType.SystemWii:
             return string.Format("http://art.gametdb.com/wii/cover3D/{0}/{1}.png", (object) str, (object) this.ProductId);
           default:
             throw new NotImplementedException("Unknown system");
@@ -168,13 +168,13 @@ namespace ns0
       {
         switch (this.System)
         {
-          case GEnum3.const_0:
+          case SystemType.System3DS:
             return Path.Combine(base.OutputPath, "DATA_3DS", this.Region, this.CfwOnly ? "ESHOP" : "GAMES", this.String_5);
-          case GEnum3.const_1:
+          case SystemType.SystemWiiU:
             return Path.Combine(base.OutputPath, "DATA", this.Region, this.CfwOnly ? "ESHOP" : "GAMES", this.String_5);
-          case GEnum3.const_2:
+          case SystemType.const_2:
             throw new NotImplementedException();
-          case GEnum3.const_3:
+          case SystemType.SystemWii:
             return Path.Combine(base.OutputPath, "DATA_WII", this.Region, this.CfwOnly ? "ESHOP" : "GAMES", this.String_5);
           default:
             throw new NotImplementedException();
@@ -296,7 +296,7 @@ namespace ns0
       string str2 = Path.Combine(this.String_8, str1 + ".zip");
       try
       {
-        Class4.smethod_0((GClass30) this, gclass82_0.IPAddress_0, str2);
+        BackupWiiUSaves.BackupWiiUSave((GClass30) this, gclass82_0.IPAddress_0, str2);
       }
       catch
       {
@@ -329,7 +329,7 @@ namespace ns0
     public void method_26(GClass82 gclass82_0, string string_15)
     {
       string string_0 = Path.Combine(this.String_8, string_15 + ".zip");
-      Class4.smethod_1((GClass30) this, gclass82_0.IPAddress_0, string_0);
+      BackupWiiUSaves.BackupWiiUSaveZip((GClass30) this, gclass82_0.IPAddress_0, string_0);
     }
 
     public static DriveInfo smethod_4(DataSize dataSize_1)
@@ -347,12 +347,12 @@ namespace ns0
         int index = 0;
         GClass78 gclass78 = new GClass78()
         {
-          bool_0 = true
+          DownloadAsJSON = true
         };
-        if (this.System == GEnum3.const_3)
-          return gclass78.method_6(string.Format("{0}/wii/info/json/{1}/info", (object) Class67.String_2, (object) this.TitleId.IdRaw));
+        if (this.System == SystemType.SystemWii)
+          return gclass78.Download_File_UTF8(string.Format("{0}/wii/info/json/{1}/info", (object) Class67.CDNWiiUUSBHelperURL, (object) this.TitleId.IdRaw));
         if (this.Platform == Platform.Wii_U_Custom || this.Boolean_0)
-          return gclass78.method_6(string.Format("{0}/wiiu/info/US/{1}", (object) Class67.String_2, (object) this.TitleId.IdRaw));
+          return gclass78.Download_File_UTF8(string.Format("{0}/wiiu/info/US/{1}", (object) Class67.CDNWiiUUSBHelperURL, (object) this.TitleId.IdRaw));
         string str1 = gclass78.method_7(string.Format("https://samurai.ctr.shop.nintendo.net/samurai/ws/{0}/title/{1}/?shop_id=2", (object) string_15, (object) this.EshopId), 604800);
         if (str1 != "")
           return str1;

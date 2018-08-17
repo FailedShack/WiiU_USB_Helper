@@ -45,15 +45,15 @@ namespace ns0
         ListViewDataItem listViewDataItem = new ListViewDataItem((object) gclass30) { Tag = (object) gclass30 };
         switch (gclass30.System)
         {
-          case GEnum3.const_0:
+          case SystemType.System3DS:
             listViewDataItem.Group = this.listViewDataItemGroup_0;
             break;
-          case GEnum3.const_1:
+          case SystemType.SystemWiiU:
             listViewDataItem.Group = this.listViewDataItemGroup_2;
             break;
-          case GEnum3.const_2:
+          case SystemType.const_2:
             throw new NotImplementedException();
-          case GEnum3.const_3:
+          case SystemType.SystemWii:
             listViewDataItem.Group = this.listViewDataItemGroup_1;
             break;
         }
